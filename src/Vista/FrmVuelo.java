@@ -72,6 +72,11 @@ public class FrmVuelo extends javax.swing.JFrame {
         });
 
         BtnReservar.setText("Reservar");
+        BtnReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReservarActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(BtnRegresar, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -85,8 +90,8 @@ public class FrmVuelo extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnReservar)
-                    .addComponent(BtnRegresar))
+                    .addComponent(BtnRegresar)
+                    .addComponent(BtnReservar))
                 .addGap(0, 23, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -123,6 +128,10 @@ public class FrmVuelo extends javax.swing.JFrame {
         cliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
+
+    private void BtnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservarActionPerformed
+      
+    }//GEN-LAST:event_BtnReservarActionPerformed
     public void listar(ArrayList<ClsVuelo> listavuelos) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = controladorvuelos.listarElementos(listavuelos);
