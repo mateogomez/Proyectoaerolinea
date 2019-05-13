@@ -70,7 +70,7 @@ public class FrmPromocion extends javax.swing.JFrame {
         BtnLimpiar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
         lblPromocion = new javax.swing.JLabel();
-        JdateFecha = new com.toedter.calendar.JDateChooser();
+        JdateFecha = new org.netbeans.modules.form.InvalidComponent();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -192,8 +192,6 @@ public class FrmPromocion extends javax.swing.JFrame {
 
         lblPromocion.setText("Promocion");
 
-        JdateFecha.setEnabled(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -253,8 +251,8 @@ public class FrmPromocion extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(201, 201, 201)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BtnRegresar)
                             .addComponent(BtnLimpiar)
@@ -494,7 +492,7 @@ public void limpiar() {
     private javax.swing.JButton BtnNuevo;
     private javax.swing.JButton BtnRegistrar;
     private javax.swing.JButton BtnRegresar;
-    private com.toedter.calendar.JDateChooser JdateFecha;
+    private org.netbeans.modules.form.InvalidComponent JdateFecha;
     private javax.swing.JTable JtablePromocion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEquipaje;
