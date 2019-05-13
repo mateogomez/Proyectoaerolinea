@@ -70,7 +70,7 @@ public class FrmPromocion extends javax.swing.JFrame {
         BtnLimpiar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
         lblPromocion = new javax.swing.JLabel();
-        JdateFecha = new org.netbeans.modules.form.InvalidComponent();
+        JdateFecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -219,7 +219,7 @@ public class FrmPromocion extends javax.swing.JFrame {
                                     .addComponent(lblEquipaje)
                                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtMillas, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                                     .addComponent(txtEquipaje)
                                     .addComponent(txtIdpromocion)
@@ -492,7 +492,7 @@ public void limpiar() {
     private javax.swing.JButton BtnNuevo;
     private javax.swing.JButton BtnRegistrar;
     private javax.swing.JButton BtnRegresar;
-    private org.netbeans.modules.form.InvalidComponent JdateFecha;
+    private com.toedter.calendar.JDateChooser JdateFecha;
     private javax.swing.JTable JtablePromocion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEquipaje;
