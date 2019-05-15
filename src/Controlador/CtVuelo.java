@@ -24,7 +24,7 @@ public class CtVuelo {
           
            for (int i = 0; i < listaVuelos.size(); i++) {
                
-               modelo.addRow(new Object[]{listaVuelos.get(i).getNumeroVuelo(),listaVuelos.get(i).getFecha(),listaVuelos.get(i).getOrigen(),listaVuelos.get(i).getDestino(),listaVuelos.get(i).getEstado()});
+               modelo.addRow(new Object[]{listaVuelos.get(i).getNumeroVuelo(),listaVuelos.get(i).getFechaida(),listaVuelos.get(i).getOrigen(),listaVuelos.get(i).getDestino(),listaVuelos.get(i).getEstado()});
                
            }
        

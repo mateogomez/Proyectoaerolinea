@@ -65,9 +65,10 @@ public class FrmVuelos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         CbxHorallegada = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtVuelos = new javax.swing.JTable();
+        JtVuelosida = new javax.swing.JTable();
         lblOrigen = new javax.swing.JLabel();
         CbxAvion = new javax.swing.JComboBox<>();
         BtnRegistrar = new javax.swing.JButton();
@@ -87,14 +88,18 @@ public class FrmVuelos extends javax.swing.JFrame {
         lblFecha = new javax.swing.JLabel();
         CbxHorasalida = new javax.swing.JComboBox<>();
         lblAvion = new javax.swing.JLabel();
-        JcalendarFecha = new com.toedter.calendar.JDateChooser();
+        JcalendarFechaida = new com.toedter.calendar.JDateChooser();
         lblNumerovuelo = new javax.swing.JLabel();
+        lblVueloida = new javax.swing.JLabel();
+        lblVueloRegreso = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         CbxHorallegada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "Tarde", "Noche" }));
 
-        JtVuelos.setModel(new javax.swing.table.DefaultTableModel(
+        JtVuelosida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -105,7 +110,7 @@ public class FrmVuelos extends javax.swing.JFrame {
                 "Fecha", "Numero vuelo", "Avion", "Origen", "Destino", "Hora salida", "Hora llegada", "Estado"
             }
         ));
-        jScrollPane1.setViewportView(JtVuelos);
+        jScrollPane1.setViewportView(JtVuelosida);
 
         lblOrigen.setText("Origen");
 
@@ -155,7 +160,7 @@ public class FrmVuelos extends javax.swing.JFrame {
 
         lblVuelo.setText("Vuelos");
 
-        lblFecha.setText("Fecha");
+        lblFecha.setText("Fecha ida");
 
         CbxHorasalida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "Tarde", "Noche" }));
 
@@ -163,63 +168,92 @@ public class FrmVuelos extends javax.swing.JFrame {
 
         lblNumerovuelo.setText("Numero vuelo");
 
+        lblVueloida.setText("Vuelos de ida");
+
+        lblVueloRegreso.setText("Vuelos de regreso");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Fecha", "Numero vuelo", "Avion", "Origen", "Destino", "Hora salida", "Hora llegada", "Estado"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(284, 284, 284)
+                        .addComponent(lblVuelo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(JcalendarFechaida, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblVueloRegreso)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAvion)
-                            .addComponent(lblOrigen)
-                            .addComponent(lblHorasalida)
-                            .addComponent(lblFecha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CbxAvion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CbxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JcalendarFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                            .addComponent(CbxHorasalida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNumerovuelo)
-                            .addComponent(lblDestino)
-                            .addComponent(lblHorallegada)
-                            .addComponent(lblEstado))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CbxDestino, 0, 160, Short.MAX_VALUE)
-                            .addComponent(txtNumeroVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CbxHorallegada, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BtnRegistrar)
-                        .addGap(33, 33, 33)
+                        .addGap(59, 59, 59)
                         .addComponent(BtnBuscar)
-                        .addGap(54, 54, 54)
+                        .addGap(52, 52, 52)
                         .addComponent(BtnModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(47, 47, 47)
                         .addComponent(BtnEliminar)
-                        .addGap(54, 54, 54)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(BtnRegresar)
-                        .addGap(10, 10, 10)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(284, 284, 284)
-                .addComponent(lblVuelo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAvion)
+                                    .addComponent(lblOrigen)
+                                    .addComponent(lblHorasalida)
+                                    .addComponent(lblFecha))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(CbxAvion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(CbxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(CbxHorasalida, 0, 156, Short.MAX_VALUE))
+                                .addGap(96, 96, 96)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNumerovuelo)
+                                    .addComponent(lblDestino)
+                                    .addComponent(lblHorallegada)
+                                    .addComponent(lblEstado))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(CbxDestino, 0, 160, Short.MAX_VALUE)
+                                    .addComponent(txtNumeroVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CbxHorallegada, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblVueloida))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblVuelo)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvion)
                     .addComponent(lblNumerovuelo)
@@ -239,29 +273,27 @@ public class FrmVuelos extends javax.swing.JFrame {
                     .addComponent(CbxHorallegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblFecha)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblEstado)
-                                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(21, 21, 21)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BtnRegresar)
-                            .addComponent(BtnRegistrar)
-                            .addComponent(BtnBuscar)
-                            .addComponent(BtnModificar)
-                            .addComponent(BtnEliminar))
-                        .addGap(8, 8, 8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JcalendarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(lblFecha)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblEstado)
+                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JcalendarFechaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(lblVueloida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(lblVueloRegreso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnRegresar)
+                    .addComponent(BtnRegistrar)
+                    .addComponent(BtnBuscar)
+                    .addComponent(BtnModificar)
+                    .addComponent(BtnEliminar))
+                .addGap(8, 8, 8))
         );
 
         pack();
@@ -275,7 +307,7 @@ public class FrmVuelos extends javax.swing.JFrame {
         String destino = CbxDestino.getSelectedItem().toString();
         String horaSalida = CbxHorasalida.getSelectedItem().toString();
         String horaLlegada = CbxHorallegada.getSelectedItem().toString();
-        String fecha = formato.format(JcalendarFecha.getDate());
+        String fecha = formato.format(JcalendarFechaida.getDate());
         String estado = txtEstado.getText();
         listaVuelos = controladorVuelos.registrarVuelo(listaVuelos, fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial);
         String res = controladorVuelos.guardarArchivo(listaVuelos);
@@ -291,8 +323,8 @@ public class FrmVuelos extends javax.swing.JFrame {
         if (vuelo == null) {
             limpiar();
         } else {
-            Date fecha = convertirString(vuelo.getFecha());
-            JcalendarFecha.setDate(fecha);
+            Date fecha = convertirString(vuelo.getFechaida());
+            JcalendarFechaida.setDate(fecha);
             CbxAvion.setSelectedItem(vuelo.getSerial());
             txtNumeroVuelo.setText(vuelo.getNumeroVuelo());
             CbxOrigen.setSelectedItem(vuelo.getOrigen());
@@ -311,9 +343,9 @@ public class FrmVuelos extends javax.swing.JFrame {
         String destino = CbxDestino.getSelectedItem().toString();
         String horaSalida = CbxHorasalida.getSelectedItem().toString();
         String horaLlegada = CbxHorallegada.getSelectedItem().toString();
-        String fecha = formato.format(JcalendarFecha.getDate());
+        String fechaida = formato.format(JcalendarFechaida.getDate());
         String estado = txtEstado.getText();
-        listaVuelos = controladorVuelos.modificarVuelo(listaVuelos, fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial);
+        listaVuelos = controladorVuelos.modificarVuelo(listaVuelos, fechaida, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial);
         String res = controladorVuelos.guardarArchivo(listaVuelos);
         limpiar();
         BtnModificar.setEnabled(false);
@@ -335,13 +367,13 @@ public class FrmVuelos extends javax.swing.JFrame {
 public void listar() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = controladorVuelos.listarElementos(listaVuelos);
-        JtVuelos.setModel(modelo);
+        JtVuelosida.setModel(modelo);
     }
 
     public void limpiar() {
         Date vacio = null;
-        JcalendarFecha.setDate(vacio);
-        JcalendarFecha.setCalendar(null);
+        JcalendarFechaida.setDate(vacio);
+        JcalendarFechaida.setCalendar(null);
         txtNumeroVuelo.setText("");
         txtEstado.setText("");
     }
@@ -429,9 +461,12 @@ public void listar() {
     private javax.swing.JComboBox<String> CbxHorallegada;
     private javax.swing.JComboBox<String> CbxHorasalida;
     private javax.swing.JComboBox<String> CbxOrigen;
-    private com.toedter.calendar.JDateChooser JcalendarFecha;
-    private javax.swing.JTable JtVuelos;
+    private com.toedter.calendar.JDateChooser JcalendarFechaida;
+    private javax.swing.JTable JtVuelosida;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAvion;
     private javax.swing.JLabel lblDestino;
     private javax.swing.JLabel lblEstado;
@@ -441,6 +476,8 @@ public void listar() {
     private javax.swing.JLabel lblNumerovuelo;
     private javax.swing.JLabel lblOrigen;
     private javax.swing.JLabel lblVuelo;
+    private javax.swing.JLabel lblVueloRegreso;
+    private javax.swing.JLabel lblVueloida;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNumeroVuelo;
     // End of variables declaration//GEN-END:variables

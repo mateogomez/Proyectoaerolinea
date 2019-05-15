@@ -93,7 +93,7 @@ public class CtVuelos {
         try {
             for (int i = 0; i < listaVuelos.size(); i++) {
                 if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo())) {
-                    listaVuelos.get(i).setFecha(fecha);
+                    listaVuelos.get(i).setFechaida(fecha);
                     listaVuelos.get(i).setHoraSalida(horaSalida);
                     listaVuelos.get(i).setHoraLlegada(horaLlegada);
                     listaVuelos.get(i).setEstado(estado);
@@ -122,7 +122,7 @@ public class CtVuelos {
         try {
 
             for (int i = 0; i < listaVuelos.size(); i++) {
-                modelo.addRow(new Object[]{listaVuelos.get(i).getFecha(), listaVuelos.get(i).getNumeroVuelo(), listaVuelos.get(i).getSerial(), listaVuelos.get(i).getOrigen(), listaVuelos.get(i).getDestino(), listaVuelos.get(i).getHoraSalida(), listaVuelos.get(i).getHoraLlegada(), listaVuelos.get(i).getEstado()});
+                modelo.addRow(new Object[]{listaVuelos.get(i).getFechaida(), listaVuelos.get(i).getNumeroVuelo(), listaVuelos.get(i).getSerial(), listaVuelos.get(i).getOrigen(), listaVuelos.get(i).getDestino(), listaVuelos.get(i).getHoraSalida(), listaVuelos.get(i).getHoraLlegada(), listaVuelos.get(i).getEstado()});
             }
         } catch (Exception e) {
             System.out.println(e.toString());

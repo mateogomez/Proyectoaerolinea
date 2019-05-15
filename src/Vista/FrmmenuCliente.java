@@ -187,6 +187,11 @@ public class FrmmenuCliente extends javax.swing.JFrame {
                 txtPasajerosActionPerformed(evt);
             }
         });
+        txtPasajeros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasajerosKeyTyped(evt);
+            }
+        });
 
         btnSumar.setText("+");
         btnSumar.addActionListener(new java.awt.event.ActionListener() {
@@ -413,18 +418,24 @@ public class FrmmenuCliente extends javax.swing.JFrame {
 
     private void btnSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumarActionPerformed
         int entrada = Integer.parseInt(txtPasajeros.getText());
-        int suma = entrada + 1;
-        String numero = suma + "";
-        txtPasajeros.setText(numero);
+        if (entrada >= 1 && entrada <= 2) {
+            int suma = entrada + 1;
+            String numero = suma + "";
+            txtPasajeros.setText(numero);
+        }
+
     }//GEN-LAST:event_btnSumarActionPerformed
 
     private void BtnRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRestarActionPerformed
         int entrada = Integer.parseInt(txtPasajeros.getText());
-        int resta = entrada - 1;
-        if (resta >= 0) {
-            String numero = resta + "";
-            txtPasajeros.setText(numero);
+        if (entrada >= 1 && entrada <=3) {
+            int resta = entrada - 1;
+            if (resta > 0) {
+                String numero = resta + "";
+                txtPasajeros.setText(numero);
+            }
         }
+
     }//GEN-LAST:event_BtnRestarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
@@ -436,9 +447,9 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         for (int i = 0; i < listavuelos.size(); i++) {
             if (JrdbtnSoloida.isSelected() == true) {
                 Date ida = convertirString(fechaida);
-                Date idavuelos = convertirString(listavuelos.get(i).getFecha());
+                Date idavuelos = convertirString(listavuelos.get(i).getFechaida());
                 if (ida.equals(idavuelos) && origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino())) {
-                    FrmVuelo vuelo = new FrmVuelo(listavuelos, pasajeros,nombre);
+                    FrmVuelo vuelo = new FrmVuelo(listavuelos, pasajeros, nombre);
                     vuelo.setVisible(true);
                     dispose();
                 } else {
@@ -446,13 +457,16 @@ public class FrmmenuCliente extends javax.swing.JFrame {
                 }
             }
             if (JrdbtnSoloida.isSelected() == false) {
-
+               Date ida =convertirString(fechaida);
+               Date idavuelos=convertirString(listavuelos.get(i).getFechaida());
+               
+               
             }
         }
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void txtPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasajerosActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtPasajerosActionPerformed
 
     private void JmenupromocionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmenupromocionesActionPerformed
@@ -464,6 +478,13 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         ofertas.setVisible(true);
         dispose();
     }//GEN-LAST:event_jmOfertasActionPerformed
+
+    private void txtPasajerosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasajerosKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '1' || c > '4') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPasajerosKeyTyped
     private void listarcomboxorigen() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < listarutas.size(); i++) {
