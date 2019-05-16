@@ -21,10 +21,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CtVuelos {
 
-    public ArrayList<ClsVuelo> registrarVuelo(ArrayList<ClsVuelo> listaVuelos, String fecha, String horaSalida, String horaLlegada, String numeroVuelo, String estado, String origen, String destino, String serial) {
+    public ArrayList<ClsVuelo> registrarVuelo(ArrayList<ClsVuelo> listaVuelos, String fecha, String horaSalida, String horaLlegada, String numeroVuelo, String estado, String origen, String destino, String serial, String tipovuelo) {
         try {
             if (listaVuelos.isEmpty()) {
-                ClsVuelo vuelo = new ClsVuelo(fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial);
+                ClsVuelo vuelo = new ClsVuelo(fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial, tipovuelo);
                 listaVuelos.add(vuelo);
                 JOptionPane.showMessageDialog(null, "Vuelo registrado");
             } else {
@@ -32,7 +32,7 @@ public class CtVuelos {
                     if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo())) {
                         JOptionPane.showMessageDialog(null, "Este vuelo ya existe");
                     } else {
-                        ClsVuelo vuelo = new ClsVuelo(fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial);
+                        ClsVuelo vuelo = new ClsVuelo(fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial, tipovuelo);
                         listaVuelos.add(vuelo);
                         JOptionPane.showMessageDialog(null, "Vuelo registrado");
                         break;
@@ -52,7 +52,12 @@ public class CtVuelos {
         int encontrado = 0;
         try {
             for (int i = 0; i < listaVuelos.size(); i++) {
-                if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo())) {
+                if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo()) && listaVuelos.get(i).getTipovuelo().equals("Ida")) {
+                    vuelo = listaVuelos.get(i);
+                    encontrado++;
+                    break;
+                }
+                if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo()) && listaVuelos.get(i).getTipovuelo().equals("Vuelta")) {
                     vuelo = listaVuelos.get(i);
                     encontrado++;
                     break;
@@ -72,7 +77,13 @@ public class CtVuelos {
             int encontrado = 0;
 
             for (int i = 0; i < listaVuelos.size(); i++) {
-                if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo())) {
+                if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo()) && listaVuelos.get(i).getTipovuelo().equals("Ida")) {
+                    listaVuelos.remove(i);
+                    JOptionPane.showMessageDialog(null, "vuelo eliminado");
+                    encontrado++;
+                    break;
+                }
+                if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo()) && listaVuelos.get(i).getTipovuelo().equals("Vuelta")) {
                     listaVuelos.remove(i);
                     JOptionPane.showMessageDialog(null, "vuelo eliminado");
                     encontrado++;
@@ -92,8 +103,8 @@ public class CtVuelos {
         int encontrado = 0;
         try {
             for (int i = 0; i < listaVuelos.size(); i++) {
-                if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo())) {
-                    listaVuelos.get(i).setFechaida(fecha);
+                if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo()) && listaVuelos.get(i).getTipovuelo().equals("Ida")) {
+                    listaVuelos.get(i).setFecha(fecha);
                     listaVuelos.get(i).setHoraSalida(horaSalida);
                     listaVuelos.get(i).setHoraLlegada(horaLlegada);
                     listaVuelos.get(i).setEstado(estado);
@@ -104,32 +115,49 @@ public class CtVuelos {
                     encontrado++;
                     break;
 
+                } else {
+                    if (numeroVuelo.equals(listaVuelos.get(i).getNumeroVuelo()) && listaVuelos.get(i).getTipovuelo().equals("Vuelta")) {
+                        listaVuelos.get(i).setFecha(fecha);
+                        listaVuelos.get(i).setHoraSalida(horaSalida);
+                        listaVuelos.get(i).setHoraLlegada(horaLlegada);
+                        listaVuelos.get(i).setEstado(estado);
+                        listaVuelos.get(i).setOrigen(origen);
+                        listaVuelos.get(i).setDestino(destino);
+                        listaVuelos.get(i).setSerial(serial);
+                        JOptionPane.showMessageDialog(null, "Vuelo modificado");
+                        encontrado++;
+                        break;
+                    }
                 }
+
             }
             if (encontrado == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontro ningún vuelo con ese numero de vuelo");
             }
         } catch (Exception e) {
             System.out.println(e.toString());
+
         }
         return listaVuelos;
     }
 
-    public DefaultTableModel listarElementos(ArrayList<ClsVuelo> listaVuelos) {
+    public DefaultTableModel listarElementosida(ArrayList<ClsVuelo> listaVuelos) {
         DefaultTableModel modelo;
-        String nombreColumnas[] = {"Fecha", "Numero vuelo", "Avion", "Origen", "Destino", "Hora salida", "Hora llegada", "Estado"};
+        String nombreColumnas[] = {"Fecha", "Numero vuelo", "Avion", "Origen", "Destino", "Hora salida", "Hora llegada", "Estado", "Tipo viaje"};
         modelo = new DefaultTableModel(new Object[][]{}, nombreColumnas);
         try {
 
             for (int i = 0; i < listaVuelos.size(); i++) {
-                modelo.addRow(new Object[]{listaVuelos.get(i).getFechaida(), listaVuelos.get(i).getNumeroVuelo(), listaVuelos.get(i).getSerial(), listaVuelos.get(i).getOrigen(), listaVuelos.get(i).getDestino(), listaVuelos.get(i).getHoraSalida(), listaVuelos.get(i).getHoraLlegada(), listaVuelos.get(i).getEstado()});
+                modelo.addRow(new Object[]{listaVuelos.get(i).getFecha(), listaVuelos.get(i).getNumeroVuelo(), listaVuelos.get(i).getSerial(), listaVuelos.get(i).getOrigen(), listaVuelos.get(i).getDestino(), listaVuelos.get(i).getHoraSalida(), listaVuelos.get(i).getHoraLlegada(), listaVuelos.get(i).getEstado(), listaVuelos.get(i).getTipovuelo()});
+
             }
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return modelo;
     }
-     public String guardarArchivo(ArrayList<ClsVuelo> listaVuelo) {
+
+    public String guardarArchivo(ArrayList<ClsVuelo> listaVuelo) {
         FileOutputStream archivo = null; //reservar en memoria un espacio para la creacion del archivo
 
         try {

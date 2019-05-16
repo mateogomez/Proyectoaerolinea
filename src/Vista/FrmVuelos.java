@@ -34,15 +34,17 @@ public class FrmVuelos extends javax.swing.JFrame {
     CtlRuta controladorRuta;
     CtVuelos controladorVuelos;
     String nombre;
-    public FrmVuelos(){
-        
+
+    public FrmVuelos() {
+
     }
+
     public FrmVuelos(String nombre) {
         initComponents();
         controladorAvion = new CtlAvion();
         controladorRuta = new CtlRuta();
         controladorVuelos = new CtVuelos();
-        this.nombre=nombre;
+        this.nombre = nombre;
         try {
             listaAvion = controladorAvion.cargarArchivo(listaAvion);
             listaRuta = controladorRuta.cargarArchivo(listaRuta);
@@ -50,7 +52,8 @@ public class FrmVuelos extends javax.swing.JFrame {
             listarcomboxavion();
             listarcomboxdestino();
             listarcomboxorigen();
-            listar();
+            listarida();
+            
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -65,7 +68,7 @@ public class FrmVuelos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         CbxHorallegada = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         JtVuelosida = new javax.swing.JTable();
@@ -91,9 +94,9 @@ public class FrmVuelos extends javax.swing.JFrame {
         JcalendarFechaida = new com.toedter.calendar.JDateChooser();
         lblNumerovuelo = new javax.swing.JLabel();
         lblVueloida = new javax.swing.JLabel();
-        lblVueloRegreso = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        JrbtnIda = new javax.swing.JRadioButton();
+        JrbtnVuelta = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,7 +163,7 @@ public class FrmVuelos extends javax.swing.JFrame {
 
         lblVuelo.setText("Vuelos");
 
-        lblFecha.setText("Fecha ida");
+        lblFecha.setText("Fecha ");
 
         CbxHorasalida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "Tarde", "Noche" }));
 
@@ -168,39 +171,20 @@ public class FrmVuelos extends javax.swing.JFrame {
 
         lblNumerovuelo.setText("Numero vuelo");
 
-        lblVueloida.setText("Vuelos de ida");
+        lblVueloida.setText("Vuelos");
 
-        lblVueloRegreso.setText("Vuelos de regreso");
+        jLabel1.setText("Tipo vuelo");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Fecha", "Numero vuelo", "Avion", "Origen", "Destino", "Hora salida", "Hora llegada", "Estado"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        buttonGroup2.add(JrbtnIda);
+        JrbtnIda.setText("Ida");
+
+        buttonGroup2.add(JrbtnVuelta);
+        JrbtnVuelta.setText("Vuelta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(lblVuelo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(JcalendarFechaida, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblVueloRegreso)))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,9 +200,7 @@ public class FrmVuelos extends javax.swing.JFrame {
                         .addComponent(BtnRegresar)
                         .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,10 +211,12 @@ public class FrmVuelos extends javax.swing.JFrame {
                                     .addComponent(lblHorasalida)
                                     .addComponent(lblFecha))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(CbxAvion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(CbxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(CbxHorasalida, 0, 156, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CbxAvion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(CbxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(CbxHorasalida, 0, 156, Short.MAX_VALUE))
+                                    .addComponent(JcalendarFechaida, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(96, 96, 96)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNumerovuelo)
@@ -247,6 +231,19 @@ public class FrmVuelos extends javax.swing.JFrame {
                                     .addComponent(CbxHorallegada, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(lblVueloida))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(284, 284, 284)
+                        .addComponent(lblVuelo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(JrbtnIda, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(JrbtnVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,15 +275,17 @@ public class FrmVuelos extends javax.swing.JFrame {
                         .addComponent(lblEstado)
                         .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(JcalendarFechaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JrbtnIda)
+                        .addComponent(JrbtnVuelta)))
+                .addGap(7, 7, 7)
                 .addComponent(lblVueloida)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(lblVueloRegreso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnRegresar)
                     .addComponent(BtnRegistrar)
@@ -309,10 +308,24 @@ public class FrmVuelos extends javax.swing.JFrame {
         String horaLlegada = CbxHorallegada.getSelectedItem().toString();
         String fecha = formato.format(JcalendarFechaida.getDate());
         String estado = txtEstado.getText();
-        listaVuelos = controladorVuelos.registrarVuelo(listaVuelos, fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial);
-        String res = controladorVuelos.guardarArchivo(listaVuelos);
-        limpiar();
-        listar();
+
+        if (JrbtnIda.isSelected() == true && JrbtnVuelta.isSelected() == false) {
+            String ida = JrbtnIda.getText();
+            listaVuelos = controladorVuelos.registrarVuelo(listaVuelos, fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial, ida);
+            String res = controladorVuelos.guardarArchivo(listaVuelos);
+            limpiar();
+            listarida();
+            
+        }
+        if (JrbtnIda.isSelected() == false && JrbtnVuelta.isSelected() == true) {
+            String vuelta = JrbtnVuelta.getText();
+            listaVuelos = controladorVuelos.registrarVuelo(listaVuelos, fecha, horaSalida, horaLlegada, numeroVuelo, estado, origen, destino, serial, vuelta);
+            String res = controladorVuelos.guardarArchivo(listaVuelos);
+            limpiar();
+           listarida();
+           
+        }
+
     }//GEN-LAST:event_BtnRegistrarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
@@ -323,16 +336,36 @@ public class FrmVuelos extends javax.swing.JFrame {
         if (vuelo == null) {
             limpiar();
         } else {
-            Date fecha = convertirString(vuelo.getFechaida());
-            JcalendarFechaida.setDate(fecha);
-            CbxAvion.setSelectedItem(vuelo.getSerial());
-            txtNumeroVuelo.setText(vuelo.getNumeroVuelo());
-            CbxOrigen.setSelectedItem(vuelo.getOrigen());
-            CbxDestino.setSelectedItem(vuelo.getDestino());
-            CbxHorasalida.setSelectedItem(vuelo.getHoraSalida());
-            CbxHorallegada.setSelectedItem(vuelo.getHoraLlegada());
-            txtEstado.setText(vuelo.getEstado());
-            BtnModificar.setEnabled(true);
+            if (vuelo.getTipovuelo().equals("Ida")) {
+                Date fecha = convertirString(vuelo.getFecha());
+                JcalendarFechaida.setDate(fecha);
+                CbxAvion.setSelectedItem(vuelo.getSerial());
+                txtNumeroVuelo.setText(vuelo.getNumeroVuelo());
+                CbxOrigen.setSelectedItem(vuelo.getOrigen());
+                CbxDestino.setSelectedItem(vuelo.getDestino());
+                CbxHorasalida.setSelectedItem(vuelo.getHoraSalida());
+                CbxHorallegada.setSelectedItem(vuelo.getHoraLlegada());
+                txtEstado.setText(vuelo.getEstado());
+                JrbtnIda.setSelected(true);
+                JrbtnVuelta.setSelected(false);
+                BtnModificar.setEnabled(true);
+
+            }
+            if (vuelo.getTipovuelo().equals("Vuelta")) {
+                Date fecha = convertirString(vuelo.getFecha());
+                JcalendarFechaida.setDate(fecha);
+                CbxAvion.setSelectedItem(vuelo.getSerial());
+                txtNumeroVuelo.setText(vuelo.getNumeroVuelo());
+                CbxOrigen.setSelectedItem(vuelo.getOrigen());
+                CbxDestino.setSelectedItem(vuelo.getDestino());
+                CbxHorasalida.setSelectedItem(vuelo.getHoraSalida());
+                CbxHorallegada.setSelectedItem(vuelo.getHoraLlegada());
+                txtEstado.setText(vuelo.getEstado());
+                JrbtnIda.setSelected(false);
+                JrbtnVuelta.setSelected(true);
+                BtnModificar.setEnabled(true);
+            }
+
         }
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
@@ -349,14 +382,16 @@ public class FrmVuelos extends javax.swing.JFrame {
         String res = controladorVuelos.guardarArchivo(listaVuelos);
         limpiar();
         BtnModificar.setEnabled(false);
-        listar();
+        listarida();
+        
     }//GEN-LAST:event_BtnModificarActionPerformed
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         String numeroVuelo = JOptionPane.showInputDialog("Ingrese el numero de vuelo");
         listaVuelos = controladorVuelos.eliminarVuelo(listaVuelos, numeroVuelo);
-        String res=controladorVuelos.guardarArchivo(listaVuelos);
-        listar();
+        String res = controladorVuelos.guardarArchivo(listaVuelos);
+        listarida();
+       
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
@@ -364,11 +399,13 @@ public class FrmVuelos extends javax.swing.JFrame {
         administrador.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
-public void listar() {
+    private void listarida() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = controladorVuelos.listarElementos(listaVuelos);
+        modelo = controladorVuelos.listarElementosida(listaVuelos);
         JtVuelosida.setModel(modelo);
     }
+
+ 
 
     public void limpiar() {
         Date vacio = null;
@@ -410,11 +447,13 @@ public void listar() {
     private void listarcomboxdestino() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < listaRuta.size(); i++) {
+          
             modelo.addElement(listaRuta.get(i).getDestino());
         }
         CbxDestino.setModel(modelo);
 
     }
+
     /**
      * @param args the command line arguments
      */
@@ -462,11 +501,12 @@ public void listar() {
     private javax.swing.JComboBox<String> CbxHorasalida;
     private javax.swing.JComboBox<String> CbxOrigen;
     private com.toedter.calendar.JDateChooser JcalendarFechaida;
+    private javax.swing.JRadioButton JrbtnIda;
+    private javax.swing.JRadioButton JrbtnVuelta;
     private javax.swing.JTable JtVuelosida;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAvion;
     private javax.swing.JLabel lblDestino;
     private javax.swing.JLabel lblEstado;
@@ -476,7 +516,6 @@ public void listar() {
     private javax.swing.JLabel lblNumerovuelo;
     private javax.swing.JLabel lblOrigen;
     private javax.swing.JLabel lblVuelo;
-    private javax.swing.JLabel lblVueloRegreso;
     private javax.swing.JLabel lblVueloida;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNumeroVuelo;

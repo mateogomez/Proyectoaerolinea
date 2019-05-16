@@ -15,20 +15,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mateo
  */
-public class FrmVuelo extends javax.swing.JFrame {
+public class FrmVueloida extends javax.swing.JFrame {
 
     CtVuelo controladorvuelos;
     public static int pasajeros;
     String nombre;
 
-    public FrmVuelo() {
+    public FrmVueloida() {
         initComponents();
     }
 
-    public FrmVuelo(ArrayList<ClsVuelo> listavuelo, int pasajeros,String nombre) {
+    public FrmVueloida(ArrayList<ClsVuelo> listavuelo, int pasajeros, String nombre) {
         initComponents();
         this.pasajeros = pasajeros;
-        this.nombre=nombre;
+        this.nombre = nombre;
 
         controladorvuelos = new CtVuelo();
         listar(listavuelo);
@@ -53,13 +53,13 @@ public class FrmVuelo extends javax.swing.JFrame {
 
         JtViajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Numero vuelo", "Fecha", "Origen", "Destino", "Estado"
+                "Numero vuelo", "Fecha", "Origen", "Destino", "Hora salida", "Hora llegada", "Estado"
             }
         ));
         jScrollPane1.setViewportView(JtViajes);
@@ -87,21 +87,21 @@ public class FrmVuelo extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnRegresar)
-                    .addComponent(BtnReservar))
-                .addGap(0, 23, Short.MAX_VALUE))
+                    .addComponent(BtnReservar)
+                    .addComponent(BtnRegresar))
+                .addGap(27, 27, 27))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(BtnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -130,11 +130,13 @@ public class FrmVuelo extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
     private void BtnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservarActionPerformed
-      
+        FrmPuestos puesto = new FrmPuestos();
+        puesto.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnReservarActionPerformed
     public void listar(ArrayList<ClsVuelo> listavuelos) {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = controladorvuelos.listarElementos(listavuelos);
+        modelo = controladorvuelos.listarElementosida(listavuelos);
         JtViajes.setModel(modelo);
     }
 
@@ -155,20 +157,20 @@ public class FrmVuelo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmVuelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVueloida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmVuelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVueloida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmVuelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVueloida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmVuelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVueloida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmVuelo().setVisible(true);
+                new FrmVueloida().setVisible(true);
             }
         });
     }

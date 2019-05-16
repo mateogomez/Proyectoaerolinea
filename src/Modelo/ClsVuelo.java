@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class ClsVuelo implements Serializable {
 
-    String fechaida;
+    String fecha;
     String horaSalida;
     String horaLlegada;
     String numeroVuelo;
@@ -21,9 +21,10 @@ public class ClsVuelo implements Serializable {
     String origen;
     String destino;
     String serial;
+    String tipovuelo;
 
-    public ClsVuelo(String fechaida, String horaSalida, String horaLlegada, String numeroVuelo, String estado, String origen, String destino, String serial) {
-        this.fechaida = fechaida;
+    public ClsVuelo(String fecha, String horaSalida, String horaLlegada, String numeroVuelo, String estado, String origen, String destino, String serial, String tipovuelo) {
+        this.fecha = fecha;
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
         this.numeroVuelo = numeroVuelo;
@@ -31,14 +32,15 @@ public class ClsVuelo implements Serializable {
         this.origen = origen;
         this.destino = destino;
         this.serial = serial;
+        this.tipovuelo = tipovuelo;
     }
 
-    public String getFechaida() {
-        return fechaida;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setFechaida(String fechaida) {
-        this.fechaida = fechaida;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public String getHoraSalida() {
@@ -97,4 +99,12 @@ public class ClsVuelo implements Serializable {
         this.serial = serial;
     }
 
+    public String getTipovuelo() {
+        return tipovuelo;
+    }
+
+    public void setTipovuelo(String tipovuelo) {
+        this.tipovuelo = tipovuelo;
+    }
+    
 }

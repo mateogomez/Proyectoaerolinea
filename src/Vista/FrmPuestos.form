@@ -243,13 +243,15 @@
                       <Component id="Jrbtnpuesto24" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Jrbtnpuesto25" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Jrbtnpuesto26" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Jrbtnpuesto27" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Jrbtnpuesto28" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Jrbtnpuesto29" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="Jrbtnpuesto30" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Jrbtnpuesto25" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jrbtnpuesto26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jrbtnpuesto27" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jrbtnpuesto28" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Jrbtnpuesto29" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">

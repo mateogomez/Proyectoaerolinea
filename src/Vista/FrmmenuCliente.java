@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.CtVuelo;
 import Controlador.CtVuelos;
 import Controlador.CtlRuta;
 import Modelo.ClsRuta;
@@ -28,6 +29,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     ArrayList<ClsVuelo> listavuelos = new ArrayList<ClsVuelo>();
     CtVuelos controladorVuelo;
     CtlRuta controladorruta;
+    CtVuelo controladorVuelos;
     String nombre;
 
     public FrmmenuCliente() {
@@ -38,6 +40,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         initComponents();
         controladorruta = new CtlRuta();
         controladorVuelo = new CtVuelos();
+        controladorVuelos = new CtVuelo();
         this.nombre = nombre;
         lblNombre.setText(nombre);
         try {
@@ -60,6 +63,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jRadioButton1 = new javax.swing.JRadioButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         BtnRegresar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -79,6 +83,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         btnSumar = new javax.swing.JButton();
         BtnRestar = new javax.swing.JButton();
         BtnBuscar = new javax.swing.JButton();
+        JrdbtnSoloidayvuelta = new javax.swing.JRadioButton();
         lblBienvenido = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -100,6 +105,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(JrdbtnSoloida);
         JrdbtnSoloida.setText("Solo ida");
         JrdbtnSoloida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +256,14 @@ public class FrmmenuCliente extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(JrdbtnSoloidayvuelta);
+        JrdbtnSoloidayvuelta.setText("ida y vuelta");
+        JrdbtnSoloidayvuelta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JrdbtnSoloidayvueltaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -257,7 +271,10 @@ public class FrmmenuCliente extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JrdbtnSoloida, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(JrdbtnSoloida, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JrdbtnSoloidayvuelta))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -274,7 +291,9 @@ public class FrmmenuCliente extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(JrdbtnSoloida)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JrdbtnSoloida)
+                            .addComponent(JrdbtnSoloidayvuelta))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -402,10 +421,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
             lblFecharegreso.setEnabled(false);
             JdateFecharegreso.setEnabled(false);
         }
-        if (JrdbtnSoloida.isSelected() == false) {
-            lblFecharegreso.setEnabled(true);
-            JdateFecharegreso.setEnabled(true);
-        }
+
     }//GEN-LAST:event_JrdbtnSoloidaActionPerformed
 
     private void JcbxIdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcbxIdaActionPerformed
@@ -428,7 +444,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
 
     private void BtnRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRestarActionPerformed
         int entrada = Integer.parseInt(txtPasajeros.getText());
-        if (entrada >= 1 && entrada <=3) {
+        if (entrada >= 1 && entrada <= 3) {
             int resta = entrada - 1;
             if (resta > 0) {
                 String numero = resta + "";
@@ -442,27 +458,49 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         String origen = JcbxIda.getSelectedItem().toString();
         String destino = JcbxDestino.getSelectedItem().toString();
         String fechaida = formato.format(JdateFechaida.getDate());
-//        String fecharegreso = formato.format(JdateFecharegreso.getDate());
         int pasajeros = Integer.parseInt(txtPasajeros.getText());
-        for (int i = 0; i < listavuelos.size(); i++) {
-            if (JrdbtnSoloida.isSelected() == true) {
-                Date ida = convertirString(fechaida);
-                Date idavuelos = convertirString(listavuelos.get(i).getFechaida());
-                if (ida.equals(idavuelos) && origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino())) {
-                    FrmVuelo vuelo = new FrmVuelo(listavuelos, pasajeros, nombre);
-                    vuelo.setVisible(true);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "no existe vuelos disponibles");
+        if (JrdbtnSoloida.isSelected() == true) {
+            for (int i = 0; i < listavuelos.size(); i++) {
+                if (listavuelos.get(i).getTipovuelo().equals("Ida")) {
+                    Date ida = convertirString(fechaida);
+                    Date idavuelos = convertirString(listavuelos.get(i).getFecha());
+                    boolean desicionida = buscarorigenydestinoida(origen, destino);
+                    if (ida.equals(idavuelos) && listavuelos.get(i).getTipovuelo().equals("Ida") && desicionida == true) {
+                        FrmVueloida vuelo = new FrmVueloida(listavuelos, pasajeros, nombre);
+                        vuelo.setVisible(true);
+                        dispose();
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "no existe vuelos disponibles");
+                        break;
+                    }
                 }
             }
-            if (JrdbtnSoloida.isSelected() == false) {
-               Date ida =convertirString(fechaida);
-               Date idavuelos=convertirString(listavuelos.get(i).getFechaida());
-               
-               
-            }
         }
+        if (JrdbtnSoloidayvuelta.isSelected() == true) {
+            for (int i = 0; i < listavuelos.size(); i++) {
+                String fecharegreso = formato.format(JdateFecharegreso.getDate());
+                Date ida = convertirString(fechaida);
+                Date regreso = convertirString(fecharegreso);
+                boolean desicionida = buscarfechasida(ida);
+                boolean desicionregreso = buscarfechasregreso(regreso);
+                boolean origenydestinoida = buscarorigenydestinoida(origen, destino);
+                boolean origenydestinoregreso = buscarorigenydestinoregreso(destino, origen);
+                if (desicionida == true && desicionregreso == true && origenydestinoida == true && origenydestinoregreso) {
+                    FrmVueloidaregreso vuelos = new FrmVueloidaregreso(listavuelos, pasajeros, nombre);
+                    vuelos.setVisible(true);
+                    dispose();
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "no existe vuelos disponibles");
+                    break;
+                }
+
+            }
+
+        }
+
+
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void txtPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasajerosActionPerformed
@@ -485,6 +523,13 @@ public class FrmmenuCliente extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtPasajerosKeyTyped
+
+    private void JrdbtnSoloidayvueltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrdbtnSoloidayvueltaActionPerformed
+        if (JrdbtnSoloidayvuelta.isSelected() == true) {
+            lblFecharegreso.setEnabled(true);
+            JdateFecharegreso.setEnabled(true);
+        }
+    }//GEN-LAST:event_JrdbtnSoloidayvueltaActionPerformed
     private void listarcomboxorigen() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < listarutas.size(); i++) {
@@ -501,6 +546,54 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         }
         JcbxDestino.setModel(modelo);
 
+    }
+
+    public boolean buscarorigenydestinoida(String origen, String destino) {
+        boolean desicion = false;
+        for (int i = 0; i < listavuelos.size(); i++) {
+            if (origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino()) && listavuelos.get(i).getTipovuelo().equals("Ida")) {
+                desicion = true;
+            }
+        }
+        return desicion;
+    }
+
+    public boolean buscarorigenydestinoregreso(String origen, String destino) {
+        boolean desicion = false;
+        for (int i = 0; i < listavuelos.size(); i++) {
+            if (origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino()) && listavuelos.get(i).getTipovuelo().equals("Vuelta")) {
+                desicion = true;
+            }
+        }
+        return desicion;
+    }
+
+    public boolean buscarfechasida(Date fechaida) {
+        boolean desicion = false;
+        for (int i = 0; i < listavuelos.size(); i++) {
+            if (listavuelos.get(i).getTipovuelo().equals("Ida")) {
+                Date fechas = convertirString(listavuelos.get(i).getFecha());
+                if (fechaida.equals(fechas)) {
+                    desicion = true;
+                    break;
+                }
+            }
+        }
+        return desicion;
+    }
+
+    public boolean buscarfechasregreso(Date fechaida) {
+        boolean desicion = false;
+        for (int i = 0; i < listavuelos.size(); i++) {
+            if (listavuelos.get(i).getTipovuelo().equals("Vuelta")) {
+                Date fechas = convertirString(listavuelos.get(i).getFecha());
+                if (fechaida.equals(fechas)) {
+                    desicion = true;
+                    break;
+                }
+            }
+        }
+        return desicion;
     }
 
     public Date convertirString(String fecha) {
@@ -528,16 +621,24 @@ public class FrmmenuCliente extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmmenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmmenuCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmmenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmmenuCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmmenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmmenuCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmmenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmmenuCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -562,7 +663,9 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     private javax.swing.JMenu Jmenupromociones;
     private javax.swing.JMenuItem JmtRutas;
     private javax.swing.JRadioButton JrdbtnSoloida;
+    private javax.swing.JRadioButton JrdbtnSoloidayvuelta;
     private javax.swing.JButton btnSumar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
