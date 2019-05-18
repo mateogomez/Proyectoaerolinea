@@ -321,14 +321,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        
-        FrmPuestos abrir = new FrmPuestos();
-        abrir.setVisible(true);
-        dispose();
-        
-        
-        
-        
+     
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**

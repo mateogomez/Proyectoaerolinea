@@ -9,9 +9,9 @@ package Vista;
  *
  * @author mateo
  */
-public class FrmPuestos extends javax.swing.JFrame {
+public class FrmPuestosprueba extends javax.swing.JFrame {
 
-    public FrmPuestos() {
+    public FrmPuestosprueba() {
         initComponents();
     }
 
@@ -591,22 +591,22 @@ public class FrmPuestos extends javax.swing.JFrame {
 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmPuestos.class
+            java.util.logging.Logger.getLogger(FrmPuestosprueba.class
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         
 
 } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmPuestos.class
+            java.util.logging.Logger.getLogger(FrmPuestosprueba.class
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         
 
 } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmPuestos.class
+            java.util.logging.Logger.getLogger(FrmPuestosprueba.class
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         
 
 } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmPuestos.class
+            java.util.logging.Logger.getLogger(FrmPuestosprueba.class
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -614,7 +614,7 @@ public class FrmPuestos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmPuestos().setVisible(true);
+                new FrmPuestosprueba().setVisible(true);
             }
         });
     }

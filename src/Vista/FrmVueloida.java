@@ -130,9 +130,7 @@ public class FrmVueloida extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
     private void BtnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservarActionPerformed
-        FrmPuestos puesto = new FrmPuestos();
-        puesto.setVisible(true);
-        dispose();
+       
     }//GEN-LAST:event_BtnReservarActionPerformed
     public void listar(ArrayList<ClsVuelo> listavuelos) {
         DefaultTableModel modelo = new DefaultTableModel();
