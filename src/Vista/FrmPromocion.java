@@ -192,6 +192,8 @@ public class FrmPromocion extends javax.swing.JFrame {
 
         lblPromocion.setText("Promocion");
 
+        JdateFecha.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

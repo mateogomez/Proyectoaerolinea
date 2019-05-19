@@ -315,6 +315,9 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="JdateFecha">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
