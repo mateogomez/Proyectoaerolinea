@@ -25,21 +25,18 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         botones = new JButton[6][10];
         sillas = new ClsSillas[6][10];
         fila = new String[10];
-        fila[0]=new String("a");
-        fila[1]=new String("b");
-        fila[2]=new String("c");
-        fila[3]=new String("d");
-        fila[4]=new String("e");
-        fila[5]=new String("f");
-        fila[6]=new String("g");
-        fila[7]=new String("h");
-        fila[8]=new String("i");
-        fila[9]=new String("j");
+        fila[0]=new String("A");
+        fila[1]=new String("B");
+        fila[2]=new String("C");
+        fila[3]=new String("D");
+        fila[4]=new String("E");
+        fila[5]=new String("F");
+        fila[6]=new String("G");
+        fila[7]=new String("H");
+        fila[8]=new String("I");
+        fila[9]=new String("J");
         
-        cargarBotones
-    
-
-    ();
+        cargarBotones();
 
     }
 
@@ -130,7 +127,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                     if (sillas[j][i] == null) {
                         boolean ocupado = new Boolean(false);
                         if (ocupado == false) {
-
+                        
                         }
                     }
 
