@@ -32,6 +32,14 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
         initComponents();
         this.nombre= nombre;
         lblNombre.setText(nombre);
+        controladorcliente= new CtCliente();
+        controladorempleado= new CtEmpleado();
+        try{
+            listacliente=controladorcliente.cargarArchivo(listacliente);
+            listaempleado= controladorempleado.cargarArchivo(listaempleado);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.

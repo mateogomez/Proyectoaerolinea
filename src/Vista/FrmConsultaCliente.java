@@ -6,7 +6,9 @@
 package Vista;
 
 import Controlador.CtCliente;
+import Controlador.CtEmpleado;
 import Modelo.ClsCliente;
+import Modelo.ClsEmpleado;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,33 +18,31 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmConsultaCliente extends javax.swing.JFrame {
 
-    String cedula;
     String nombre;
     ArrayList<ClsCliente> listaclientes = new ArrayList<ClsCliente>();
+    ArrayList<ClsEmpleado> listaempleado = new ArrayList<ClsEmpleado>();
     CtCliente controladorcliente;
+    CtEmpleado controladorempleado;
 
     public FrmConsultaCliente() {
         initComponents();
     }
 
-    public FrmConsultaCliente(String cedula, String nombre) {
-        System.out.println("estor en consulta");
-        this.cedula = cedula;
+    public FrmConsultaCliente(String nombre) {
         this.nombre = nombre;
-        System.out.println(cedula + nombre);
         controladorcliente = new CtCliente();
-        
+
         try {
             listaclientes = controladorcliente.cargarArchivo(listaclientes);
-            listar();
+            listaempleado = controladorempleado.cargarArchivo(listaempleado);
+
         } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
 
-    private void listar() {
-        System.out.println("estoy en listar");
-        DefaultTableModel modelo= new DefaultTableModel() ;
+    public void listar(String cedula) {
+       DefaultTableModel modelo = new DefaultTableModel();
         modelo = controladorcliente.listarElementoscedula(listaclientes, cedula);
         Jtableconsulta.setModel(modelo);
     }
@@ -96,39 +96,32 @@ public class FrmConsultaCliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnRegresar)
-                .addGap(21, 21, 21))
-            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
                         .addComponent(lblCedulaCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(btnConsultar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnConsultar)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnRegresar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedulaCliente)
-                    .addComponent(txtCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addComponent(btnConsultar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                    .addComponent(txtCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultar)
+                    .addComponent(BtnRegresar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnRegresar)
-                .addGap(107, 107, 107))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,10 +134,9 @@ public class FrmConsultaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-         String cedulaCliente = txtCedulaCliente.getText();
-        listaclientes = controladorcliente.cargarArchivo(listaclientes);
-       
-        listar();
+        String cedula = txtCedulaCliente.getText();
+        listar(cedula);
+   
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
