@@ -259,7 +259,8 @@ public class FrmLogin extends javax.swing.JFrame {
             String empleado = JrbtnEmpleado.getText();
             String respuesta = controladorLogin.Login(listaEmpleado, listaCliente, administrado, empleado, cedula, password);
             if (respuesta.equals("Si")) {
-                FrmmenuEmpleado menuempleado = new FrmmenuEmpleado();
+                String nombre = controladorEmpleado.buscarCedula(cedula, listaEmpleado);
+                FrmmenuEmpleado menuempleado = new FrmmenuEmpleado(nombre);
                 menuempleado.setVisible(true);
                 dispose();
             } else {

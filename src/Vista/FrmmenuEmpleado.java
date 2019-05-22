@@ -5,17 +5,42 @@
  */
 package Vista;
 
+import Controlador.CtCliente;
+import Controlador.CtEmpleado;
+import Modelo.ClsCliente;
+import Modelo.ClsEmpleado;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mateo
  */
 public class FrmmenuEmpleado extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmmenuEmpleado
-     */
+    public static String nombre;
+
+    ArrayList<ClsEmpleado> listaempleado = new ArrayList<ClsEmpleado>();
+    ArrayList<ClsCliente> listacliente = new ArrayList<ClsCliente>();
+    CtCliente controladorcliente;
+    CtEmpleado controladorempleado;
+
     public FrmmenuEmpleado() {
         initComponents();
+    }
+
+    public FrmmenuEmpleado(String nombre) {
+        initComponents();
+        this.nombre=nombre;
+        controladorempleado = new CtEmpleado();
+        controladorcliente = new CtCliente();
+        lblNombre.setText(nombre);
+        try {
+            listaempleado = controladorempleado.cargarArchivo(listaempleado);
+            listacliente = controladorcliente.cargarArchivo(listacliente);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     /**
@@ -27,12 +52,17 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         BtnRegresar = new javax.swing.JButton();
+        lblBienvenido = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         JmbMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        BtnConsultar = new javax.swing.JMenuItem();
         JmtpagarReservas = new javax.swing.JMenuItem();
         Jmtreservas = new javax.swing.JMenuItem();
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,10 +73,19 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
             }
         });
 
+        lblBienvenido.setText("Bienvenido");
+
+        lblNombre.setText("Nombre");
+
         JmbMenu.setText("Menu");
 
-        jMenuItem1.setText("Consultar clientes");
-        JmbMenu.add(jMenuItem1);
+        BtnConsultar.setText("Consultar clientes");
+        BtnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConsultarActionPerformed(evt);
+            }
+        });
+        JmbMenu.add(BtnConsultar);
 
         JmtpagarReservas.setText("Pagar reservas");
         JmbMenu.add(JmtpagarReservas);
@@ -62,15 +101,25 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(310, Short.MAX_VALUE)
-                .addComponent(BtnRegresar)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(223, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BtnRegresar)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblBienvenido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblNombre)
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(243, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBienvenido)
+                    .addComponent(lblNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(BtnRegresar)
                 .addContainerGap())
         );
@@ -79,10 +128,30 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-      FrmLogin login = new FrmLogin();
-      login.setVisible(true);
-      dispose();
+        FrmLogin login = new FrmLogin();
+        login.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
+
+    private void BtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultarActionPerformed
+        String cedula = JOptionPane.showInputDialog("ingrese cedula del cliente");
+        System.out.println(listacliente.size());
+        for (int i = 0; i < listacliente.size(); i++) {
+
+            if (cedula.equals(listacliente.get(i).getCedula())) {
+                System.out.println("entro al if"+cedula+nombre);
+                FrmConsultaCliente cliente = new FrmConsultaCliente(cedula, nombre);
+                cliente.setVisible(true);
+                dispose();
+
+                break;
+            } else {
+                JOptionPane.showMessageDialog(null, "no existe cedula");
+            }
+        }
+
+
+    }//GEN-LAST:event_BtnConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,11 +190,14 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem BtnConsultar;
     private javax.swing.JButton BtnRegresar;
     private javax.swing.JMenu JmbMenu;
     private javax.swing.JMenuItem JmtpagarReservas;
     private javax.swing.JMenuItem Jmtreservas;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }

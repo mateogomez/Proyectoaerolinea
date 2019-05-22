@@ -126,6 +126,25 @@ public class CtCliente {
         return modelo;
     }
 
+    public DefaultTableModel listarElementoscedula(ArrayList<ClsCliente> listaCliente, String cedula) {
+        DefaultTableModel modelo;
+        String nombreColumnas[] = {"Cedula", "Nombre", "Apellido", "Genero", "Correo", "Telefono", "Millas recorridas"};
+        modelo = new DefaultTableModel(new Object[][]{}, nombreColumnas);
+        try {
+            for (int i = 0; i < listaCliente.size(); i++) {
+                System.out.println("estoy en el for");
+                if (cedula.equals(listaCliente.get(i).getCedula())) {
+                    System.out.println("estoy en el if");
+                    modelo.addRow(new Object[]{listaCliente.get(i).getCedula(), listaCliente.get(i).getNombre(), listaCliente.get(i).getApellido(), listaCliente.get(i).getGenero(), listaCliente.get(i).getCorreo(), listaCliente.get(i).getTelefono(), listaCliente.get(i).getMillasRecorridas()});
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return modelo;
+    }
+
     public String buscarCedula(String cedula, ArrayList<ClsCliente> listacliente) {
         String caracter = null;
         for (int i = 0; i < listacliente.size(); i++) {

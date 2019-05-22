@@ -109,7 +109,16 @@ public class CtEmpleado {
         return listaEmpleado;
 
     }
-
+ public String buscarCedula(String cedula, ArrayList<ClsEmpleado> listaempleado) {
+        String caracter = null;
+        for (int i = 0; i < listaempleado.size(); i++) {
+            if (cedula.equals(listaempleado.get(i).getCedula())) {
+                caracter = listaempleado.get(i).getNombre();
+                break;
+            }
+        }
+        return caracter;
+    }
     public DefaultTableModel listarElementos(ArrayList<ClsEmpleado> listaEmpleado) {
         DefaultTableModel modelo;
         String nombreColumnas[] = {"Cargo", "Cedula", "Nombre", "Apellido", "Genero", "Correo", "Telefono", "Password"};
