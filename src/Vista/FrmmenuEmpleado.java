@@ -28,21 +28,11 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     public FrmmenuEmpleado() {
         initComponents();
     }
-
-    public FrmmenuEmpleado(String nombre) {
+ public FrmmenuEmpleado(String nombre) {
         initComponents();
-        this.nombre=nombre;
-        controladorempleado = new CtEmpleado();
-        controladorcliente = new CtCliente();
+        this.nombre= nombre;
         lblNombre.setText(nombre);
-        try {
-            listaempleado = controladorempleado.cargarArchivo(listaempleado);
-            listacliente = controladorcliente.cargarArchivo(listacliente);
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,21 +124,9 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
     private void BtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultarActionPerformed
-        String cedula = JOptionPane.showInputDialog("ingrese cedula del cliente");
-        System.out.println(listacliente.size());
-        for (int i = 0; i < listacliente.size(); i++) {
-
-            if (cedula.equals(listacliente.get(i).getCedula())) {
-                System.out.println("entro al if"+cedula+nombre);
-                FrmConsultaCliente cliente = new FrmConsultaCliente(cedula, nombre);
-                cliente.setVisible(true);
-                dispose();
-
-                break;
-            } else {
-                JOptionPane.showMessageDialog(null, "no existe cedula");
-            }
-        }
+        FrmConsultaCliente cliente = new FrmConsultaCliente();
+        cliente.setVisible(true);
+        dispose();
 
 
     }//GEN-LAST:event_BtnConsultarActionPerformed
