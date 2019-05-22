@@ -18,12 +18,28 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
 
     JButton[][] botones;
     ClsSillas[][] sillas;
+    String fila[];
 
     public FrmSillas() {
         initComponents();
         botones = new JButton[6][10];
-        sillas = new ClsSillas[10][6];
-        cargarBotones();
+        sillas = new ClsSillas[6][10];
+        fila = new String[10];
+        fila[0]=new String("a");
+        fila[1]=new String("b");
+        fila[2]=new String("c");
+        fila[3]=new String("d");
+        fila[4]=new String("e");
+        fila[5]=new String("f");
+        fila[6]=new String("g");
+        fila[7]=new String("h");
+        fila[8]=new String("i");
+        fila[9]=new String("j");
+        
+        cargarBotones
+    
+
+    ();
 
     }
 
@@ -113,9 +129,11 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                 if (e.getSource() == botones[i][j]) {
                     if (sillas[j][i] == null) {
                         boolean ocupado = new Boolean(false);
-                       
+                        if (ocupado == false) {
+
+                        }
                     }
-                    
+
                 }
             }
         }
@@ -126,7 +144,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
             for (int j = 0; j < botones[i].length; j++) {
                 botones[i][j] = new JButton();
                 botones[i][j].setBounds(20 + i * 160, 20 + j * 50, 100, 50);
-                botones[i][j].setText(i + 1 + "");
+                botones[i][j].setText(fila[j] +  (i + 1) + "");
                 jPanel1.add(botones[i][j]);
                 botones[i][j].setVisible(true);
                 botones[i][j].addActionListener(this);
