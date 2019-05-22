@@ -23,6 +23,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         initComponents();
         botones = new JButton[6][10];
         sillas = new ClsSillas[10][6];
+        cargarBotones();
 
     }
 
@@ -35,17 +36,36 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 601, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -90,13 +110,31 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
-               if(e.getSource()== botones[i][j]){
-                   
-               }
+                if (e.getSource() == botones[i][j]) {
+                    if (sillas[j][i] == null) {
+                        boolean ocupado = new Boolean(false);
+                       
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    private void cargarBotones() {
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                botones[i][j] = new JButton();
+                botones[i][j].setBounds(20 + i * 160, 20 + j * 50, 100, 50);
+                botones[i][j].setText(i + 1 + "");
+                jPanel1.add(botones[i][j]);
+                botones[i][j].setVisible(true);
+                botones[i][j].addActionListener(this);
             }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
