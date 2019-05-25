@@ -126,20 +126,13 @@ public class CtCliente {
         return modelo;
     }
 
-    public DefaultTableModel listarElementoscedula(ArrayList<ClsCliente> listaCliente, String cedula) {
+    public DefaultTableModel listarElementoscedula(ClsCliente cliente) {
         DefaultTableModel modelo;
         String nombreColumnas[] = {"Cedula", "Nombre", "Apellido", "Genero", "Correo", "Telefono", "Millas recorridas"};
         modelo = new DefaultTableModel(new Object[][]{}, nombreColumnas);
         try {
-            for (int i = 0; i < listaCliente.size(); i++) {
-                if (cedula.equals(listaCliente.get(i).getCedula())) {
-                    modelo.addRow(new Object[]{listaCliente.get(i).getCedula(), listaCliente.get(i).getNombre(), listaCliente.get(i).getApellido(), listaCliente.get(i).getGenero(), listaCliente.get(i).getCorreo(), listaCliente.get(i).getTelefono(), listaCliente.get(i).getMillasRecorridas()});
-                    break;
-                }
-                else {
-                    JOptionPane.showMessageDialog(null,"no existe cedula");
-                }
-            }
+            modelo.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(), cliente.getApellido(), cliente.getGenero(), cliente.getCorreo(), cliente.getTelefono(), cliente.getMillasRecorridas()});
+
         } catch (Exception e) {
             System.out.println(e.toString());
         }

@@ -29,9 +29,10 @@ public class FrmConsultaCliente extends javax.swing.JFrame {
     }
 
     public FrmConsultaCliente(String nombre) {
+       initComponents();
         this.nombre = nombre;
         controladorcliente = new CtCliente();
-
+        controladorempleado= new CtEmpleado();
         try {
             listaclientes = controladorcliente.cargarArchivo(listaclientes);
             listaempleado = controladorempleado.cargarArchivo(listaempleado);
@@ -39,12 +40,6 @@ public class FrmConsultaCliente extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-    }
-
-    public void listar(String cedula) {
-       DefaultTableModel modelo = new DefaultTableModel();
-        modelo = controladorcliente.listarElementoscedula(listaclientes, cedula);
-        Jtableconsulta.setModel(modelo);
     }
 
     /**
@@ -120,8 +115,7 @@ public class FrmConsultaCliente extends javax.swing.JFrame {
                     .addComponent(btnConsultar)
                     .addComponent(BtnRegresar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,9 +129,21 @@ public class FrmConsultaCliente extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         String cedula = txtCedulaCliente.getText();
-        listar(cedula);
-   
+        ClsCliente cliente = null;
+        cliente = controladorcliente.buscarCliente(listaclientes, cedula);
+        if (cliente == null) {
+            txtCedulaCliente.setText("");
+        } else {
+            listar(cliente);
+        }
+
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    public void listar(ClsCliente cliente) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = controladorcliente.listarElementoscedula(cliente);
+        Jtableconsulta.setModel(modelo);
+    }
 
     /**
      * @param args the command line arguments

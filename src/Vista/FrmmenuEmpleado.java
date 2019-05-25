@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 public class FrmmenuEmpleado extends javax.swing.JFrame {
 
     public static String nombre;
-
     ArrayList<ClsEmpleado> listaempleado = new ArrayList<ClsEmpleado>();
     ArrayList<ClsCliente> listacliente = new ArrayList<ClsCliente>();
     CtCliente controladorcliente;
@@ -28,19 +27,21 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     public FrmmenuEmpleado() {
         initComponents();
     }
- public FrmmenuEmpleado(String nombre) {
+
+    public FrmmenuEmpleado(String nombre) {
         initComponents();
-        this.nombre= nombre;
+        this.nombre = nombre;
         lblNombre.setText(nombre);
-        controladorcliente= new CtCliente();
-        controladorempleado= new CtEmpleado();
-        try{
-            listacliente=controladorcliente.cargarArchivo(listacliente);
-            listaempleado= controladorempleado.cargarArchivo(listaempleado);
-        }catch(Exception e){
+        controladorcliente = new CtCliente();
+        controladorempleado = new CtEmpleado();
+        try {
+            listacliente = controladorcliente.cargarArchivo(listacliente);
+            listaempleado = controladorempleado.cargarArchivo(listaempleado);
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,7 +133,7 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
     private void BtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConsultarActionPerformed
-        FrmConsultaCliente cliente = new FrmConsultaCliente();
+        FrmConsultaCliente cliente = new FrmConsultaCliente(nombre);
         cliente.setVisible(true);
         dispose();
 
