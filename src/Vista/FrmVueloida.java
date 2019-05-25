@@ -9,6 +9,7 @@ import Controlador.CtVuelo;
 import Controlador.CtVuelos;
 import Modelo.ClsVuelo;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,9 +18,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmVueloida extends javax.swing.JFrame {
 
-    CtVuelo controladorvuelos;
+    CtVuelo controladorvuelo;
     public static int pasajeros;
     String nombre;
+    CtVuelos controladorvuelos;
+    ArrayList<ClsVuelo> listavuelos = new ArrayList<ClsVuelo>();
 
     public FrmVueloida() {
         initComponents();
@@ -29,8 +32,8 @@ public class FrmVueloida extends javax.swing.JFrame {
         initComponents();
         this.pasajeros = pasajeros;
         this.nombre = nombre;
-
-        controladorvuelos = new CtVuelo();
+        controladorvuelos = new CtVuelos();
+        this.listavuelos = listavuelo;
         listar(listavuelo);
     }
 
@@ -62,6 +65,11 @@ public class FrmVueloida extends javax.swing.JFrame {
                 "Numero vuelo", "Fecha", "Origen", "Destino", "Hora salida", "Hora llegada", "Estado"
             }
         ));
+        JtViajes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JtViajesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JtViajes);
 
         BtnRegresar.setText("Regresar");
@@ -130,8 +138,28 @@ public class FrmVueloida extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
     private void BtnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservarActionPerformed
-       
+        String numerovuelo = JOptionPane.showInputDialog("ingrese el numero de vuelo");
+        ClsVuelo vuelo = null;
+        for (int i = 0; i < listavuelos.size(); i++) {
+            if (numerovuelo.equals(listavuelos.get(i).getNumeroVuelo())) {
+                vuelo = listavuelos.get(i);
+                FrmSillas sillas = new FrmSillas(vuelo);
+                sillas.setVisible(true);
+                dispose();
+                break;
+            } else {
+                JOptionPane.showMessageDialog(this, "no se encontro numero de vuelo");
+            }
+        }
+        if (vuelo == null) {
+
+        }
+
     }//GEN-LAST:event_BtnReservarActionPerformed
+
+    private void JtViajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtViajesMouseClicked
+
+    }//GEN-LAST:event_JtViajesMouseClicked
     public void listar(ArrayList<ClsVuelo> listavuelos) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = controladorvuelos.listarElementosida(listavuelos);

@@ -13,12 +13,12 @@ public class ClsSillas {
 
     String numeropuesto;
     boolean ocupado;
-    String categoria;
+    
 
-    public ClsSillas(String numeropuesto, boolean ocupado, String categoria) {
+    public ClsSillas(String numeropuesto, boolean ocupado) {
         this.numeropuesto = numeropuesto;
         this.ocupado = ocupado;
-        this.categoria = categoria;
+        
     }
 
     public String getNumeropuesto() {
@@ -37,13 +37,7 @@ public class ClsSillas {
         this.ocupado = ocupado;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+  
 
     
 }   

@@ -73,4 +73,8 @@ public class CtVuelo {
         return desicion;
     }
 
+    public ClsVuelo buscarvueloseleccionado(int pos, ArrayList<ClsVuelo> listavuelo) {
+        int indice = pos;
+        return listavuelo.get(indice);
+}
 }

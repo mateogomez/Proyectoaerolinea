@@ -6,9 +6,11 @@
 package Vista;
 
 import Modelo.ClsSillas;
+import Modelo.ClsVuelo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,23 +21,29 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     JButton[][] botones;
     ClsSillas[][] sillas;
     String fila[];
-
+    public int pasajeros;
+    ClsVuelo vuelo;
     public FrmSillas() {
+
+    }
+
+    public FrmSillas(ClsVuelo vuelo) {
         initComponents();
+        this.vuelo=vuelo;
         botones = new JButton[6][10];
         sillas = new ClsSillas[6][10];
         fila = new String[10];
-        fila[0]=new String("A");
-        fila[1]=new String("B");
-        fila[2]=new String("C");
-        fila[3]=new String("D");
-        fila[4]=new String("E");
-        fila[5]=new String("F");
-        fila[6]=new String("G");
-        fila[7]=new String("H");
-        fila[8]=new String("I");
-        fila[9]=new String("J");
-        
+        fila[0] = new String("A");
+        fila[1] = new String("B");
+        fila[2] = new String("C");
+        fila[3] = new String("D");
+        fila[4] = new String("E");
+        fila[5] = new String("F");
+        fila[6] = new String("G");
+        fila[7] = new String("H");
+        fila[8] = new String("I");
+        fila[9] = new String("J");
+
         cargarBotones();
 
     }
@@ -124,13 +132,39 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 if (e.getSource() == botones[i][j]) {
-                    if (sillas[j][i] == null) {
-                        boolean ocupado = new Boolean(false);
-                        if (ocupado == false) {
-                        
-                        }
-                    }
 
+                    if (pasajeros == 1) {
+                        if (sillas[i][j] == null) {
+                            boolean ocupado = new Boolean(false);
+                            if (ocupado == false) {
+                                ClsSillas silla = new ClsSillas(botones[i][j].toString(), ocupado);
+                                sillas[i][j] = silla;
+                            }
+
+                        } else {
+                            if (sillas[i][j].isOcupado() == false) {
+                                boolean ocupado = new Boolean(false);
+                                String asignar = JOptionPane.showInputDialog("Desea asignar este puesto a su reseva? (si-no):").toLowerCase();
+                                if (asignar.equals("si")) {
+                                    ClsSillas silla = new ClsSillas(botones[i][j].toString(), ocupado);
+                                    sillas[i][j] = silla;
+                                    FrmIngresarDatos datos = new FrmIngresarDatos(botones[i][j].toString());
+                                    datos.setVisible(true);
+                                    dispose();
+                                } else {
+
+                                }
+
+                            }
+                        }
+
+                    }
+                    if (pasajeros == 2) {
+
+                    }
+                    if (pasajeros == 3) {
+
+                    }
                 }
             }
         }
@@ -141,7 +175,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
             for (int j = 0; j < botones[i].length; j++) {
                 botones[i][j] = new JButton();
                 botones[i][j].setBounds(20 + i * 160, 20 + j * 50, 100, 50);
-                botones[i][j].setText(fila[j] +  (i + 1) + "");
+                botones[i][j].setText(fila[j] + (i + 1) + "");
                 jPanel1.add(botones[i][j]);
                 botones[i][j].setVisible(true);
                 botones[i][j].addActionListener(this);

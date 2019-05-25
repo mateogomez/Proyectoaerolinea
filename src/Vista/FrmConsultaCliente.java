@@ -122,7 +122,7 @@ public class FrmConsultaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmmenuEmpleado empleado = new FrmmenuEmpleado();
+        FrmmenuEmpleado empleado = new FrmmenuEmpleado(nombre);
         empleado.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
