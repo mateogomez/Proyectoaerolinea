@@ -143,9 +143,9 @@ public class FrmVueloida extends javax.swing.JFrame {
         for (int i = 0; i < listavuelos.size(); i++) {
             if (numerovuelo.equals(listavuelos.get(i).getNumeroVuelo())) {
                 vuelo = listavuelos.get(i);
-                FrmSillas sillas = new FrmSillas(vuelo);
-                sillas.setVisible(true);
-                dispose();
+                //FrmSillas sillas = new FrmSillas(vuelo);
+                //sillas.setVisible(true);
+                //dispose();
                 break;
             } else {
                 JOptionPane.showMessageDialog(this, "no se encontro numero de vuelo");

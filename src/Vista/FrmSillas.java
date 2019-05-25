@@ -7,6 +7,7 @@ package Vista;
 
 import Modelo.ClsSillas;
 import Modelo.ClsVuelo;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -22,14 +23,13 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     ClsSillas[][] sillas;
     String fila[];
     public int pasajeros;
-    ClsVuelo vuelo;
+    // ClsVuelo vuelo;
+    // public FrmSillas() {
+
+    //}
     public FrmSillas() {
-
-    }
-
-    public FrmSillas(ClsVuelo vuelo) {
         initComponents();
-        this.vuelo=vuelo;
+        //this.vuelo=vuelo;
         botones = new JButton[6][10];
         sillas = new ClsSillas[6][10];
         fila = new String[10];
@@ -57,7 +57,11 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        BtnAleatorio = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,28 +69,32 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addGap(0, 944, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        BtnAleatorio.setText("Aleatorio");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnAleatorio)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(294, Short.MAX_VALUE)
+                .addComponent(BtnAleatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(218, 218, 218))
         );
 
         pack();
@@ -132,32 +140,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 if (e.getSource() == botones[i][j]) {
-
                     if (pasajeros == 1) {
-                        if (sillas[i][j] == null) {
-                            boolean ocupado = new Boolean(false);
-                            if (ocupado == false) {
-                                ClsSillas silla = new ClsSillas(botones[i][j].toString(), ocupado);
-                                sillas[i][j] = silla;
-                            }
-
-                        } else {
-                            if (sillas[i][j].isOcupado() == false) {
-                                boolean ocupado = new Boolean(false);
-                                String asignar = JOptionPane.showInputDialog("Desea asignar este puesto a su reseva? (si-no):").toLowerCase();
-                                if (asignar.equals("si")) {
-                                    ClsSillas silla = new ClsSillas(botones[i][j].toString(), ocupado);
-                                    sillas[i][j] = silla;
-                                    FrmIngresarDatos datos = new FrmIngresarDatos(botones[i][j].toString());
-                                    datos.setVisible(true);
-                                    dispose();
-                                } else {
-
-                                }
-
-                            }
-                        }
-
                     }
                     if (pasajeros == 2) {
 
@@ -183,7 +166,33 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         }
     }
 
+    private void verificarsilla() {
+        for (int i = 0; i < sillas.length; i++) {
+            for (int j = 0; j < sillas[i].length; j++) {
+                //si libros en la posicion esta vacio 
+                if (sillas[i][j] == null) {
+                    //El boton en la posicion cambiar el color agris
+                    botones[j][i].setBackground(Color.GRAY);
+
+                } else {
+                    //Botones en la posicion mandememe libros en posicion el nombre
+                    botones[j][i].setText(sillas[i][j].getNumeropuesto());
+                    // si libros es prestado
+                    if (sillas[i][j].isOcupado()) {
+                        //cambiar color
+                        botones[j][i].setBackground(Color.BLUE);
+                    } else {
+                        //cambiar color
+                        botones[j][i].setBackground(Color.WHITE);
+                    }
+                }
+
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAleatorio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
