@@ -33,7 +33,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     String nombre;
 
     public FrmmenuCliente() {
-        initComponents();
+        
     }
 
     public FrmmenuCliente(String nombre) {
