@@ -472,28 +472,22 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRestarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-      
+        ArrayList<ClsVuelo> listavuelo = new ArrayList<ClsVuelo>();
         String origen = JcbxIda.getSelectedItem().toString();
         String destino = JcbxDestino.getSelectedItem().toString();
         int pasajeros = Integer.parseInt(txtPasajeros.getText());
         if (JrdbtnSoloida.isSelected() == true) {
-            for (int i = 0; i < listavuelos.size(); i++) {
-                if (listavuelos.get(i).getTipovuelo().equals("Ida")) {
-                    String fechaida = formato.format(JdateFechaida.getDate());
-                    Date ida = convertirString(fechaida);
-                    Date idavuelos = convertirString(listavuelos.get(i).getFecha());
-                    boolean desicionida = buscarorigenydestinoida(origen, destino);
-                    if (ida.equals(idavuelos) && listavuelos.get(i).getTipovuelo().equals("Ida") && origen.equals(listavuelos.get(i).getOrigen())&& destino.equals(listavuelos.get(i).getDestino())) {
-                       
-                        FrmVueloida vuelo = new FrmVueloida(listavuelos, pasajeros, nombre);
-                        vuelo.setVisible(true);
-                        dispose();
-                        break;
-                    } else {
-                        JOptionPane.showMessageDialog(null, "no existe vuelos disponibles");
-                        break;
-                    }
-                }
+            String fechaida = formato.format(JdateFechaida.getDate());
+            Date ida = convertirString(fechaida);
+            boolean desicionida = buscarorigenydestinoida(origen, destino);
+            listavuelo = llenararray(listavuelos, ida, origen, destino);
+
+            if (listavuelo.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "no existe vuelos disponibles");
+            } else {
+                FrmVueloida vuelo = new FrmVueloida(listavuelo, pasajeros, nombre);
+                vuelo.setVisible(true);
+                dispose();
             }
         }
         if (JrdbtnSoloidayvuelta.isSelected() == true) {
@@ -512,7 +506,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
                     dispose();
                     break;
                 } else {
-                    JOptionPane.showMessageDialog(null, "no existe vuelos disponibles");
+                    JOptionPane.showMessageDialog(this, "no existe vuelos disponibles");
                     break;
                 }
 
@@ -625,6 +619,19 @@ public class FrmmenuCliente extends javax.swing.JFrame {
             System.out.println(ex);
         }
         return fechaDate;
+    }
+
+    public ArrayList<ClsVuelo> llenararray(ArrayList<ClsVuelo> listavuelo, Date ida, String origen, String destino) {
+        ArrayList<ClsVuelo> nuevalista = new ArrayList<ClsVuelo>();
+
+        for (int i = 0; i < listavuelo.size(); i++) {
+            Date idavuelos = convertirString(listavuelo.get(i).getFecha());
+            if (ida.equals(idavuelos) && origen.equals(listavuelo.get(i).getOrigen()) && listavuelo.get(i).getTipovuelo().equals("Ida")) {
+                nuevalista.add(listavuelo.get(i));
+            }
+        }
+
+        return nuevalista;
     }
 
     /**
