@@ -14,14 +14,20 @@ import java.util.ArrayList;
  */
 public class FrmIngresarDatos extends javax.swing.JFrame {
 
-    
     public FrmIngresarDatos() {
         initComponents();
     }
 
-    public FrmIngresarDatos(ArrayList<String>silla) {
-        initComponents();
+    public FrmIngresarDatos(ArrayList<String> silla) {
+        if (silla.size() == 1) {
+            initComponents();
+        }
+        if (silla.size() == 2) {
 
+        }
+        if (silla.size() == 3) {
+
+        }
     }
 
     /**

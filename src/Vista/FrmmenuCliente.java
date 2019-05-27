@@ -442,11 +442,11 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JrdbtnSoloidaActionPerformed
 
     private void JcbxIdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcbxIdaActionPerformed
-      
+
     }//GEN-LAST:event_JcbxIdaActionPerformed
 
     private void JcbxDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcbxDestinoActionPerformed
-        
+
     }//GEN-LAST:event_JcbxDestinoActionPerformed
 
     private void btnSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumarActionPerformed
@@ -472,17 +472,19 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRestarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+      
         String origen = JcbxIda.getSelectedItem().toString();
         String destino = JcbxDestino.getSelectedItem().toString();
-        String fechaida = formato.format(JdateFechaida.getDate());
         int pasajeros = Integer.parseInt(txtPasajeros.getText());
         if (JrdbtnSoloida.isSelected() == true) {
             for (int i = 0; i < listavuelos.size(); i++) {
                 if (listavuelos.get(i).getTipovuelo().equals("Ida")) {
+                    String fechaida = formato.format(JdateFechaida.getDate());
                     Date ida = convertirString(fechaida);
                     Date idavuelos = convertirString(listavuelos.get(i).getFecha());
                     boolean desicionida = buscarorigenydestinoida(origen, destino);
-                    if (ida.equals(idavuelos) && listavuelos.get(i).getTipovuelo().equals("Ida") && desicionida == true) {
+                    if (ida.equals(idavuelos) && listavuelos.get(i).getTipovuelo().equals("Ida") && origen.equals(listavuelos.get(i).getOrigen())&& destino.equals(listavuelos.get(i).getDestino())) {
+                       
                         FrmVueloida vuelo = new FrmVueloida(listavuelos, pasajeros, nombre);
                         vuelo.setVisible(true);
                         dispose();
@@ -497,6 +499,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         if (JrdbtnSoloidayvuelta.isSelected() == true) {
             for (int i = 0; i < listavuelos.size(); i++) {
                 String fecharegreso = formato.format(JdateFecharegreso.getDate());
+                String fechaida = formato.format(JdateFechaida.getDate());
                 Date ida = convertirString(fechaida);
                 Date regreso = convertirString(fecharegreso);
                 boolean desicionida = buscarfechasida(ida);

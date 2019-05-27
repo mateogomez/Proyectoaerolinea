@@ -53,7 +53,6 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         fila[9] = new String("J");
         cargarBotones();
 
-        
     }
 
     /**
@@ -138,17 +137,17 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
     private void BtnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservarActionPerformed
-    ArrayList<String>listasilla=new ArrayList<String>();
-        for(int i=0;i<botones.length;i++){
-        for(int j=0;j<botones[i].length;j++){
-            if(botones[i][j].getBackground()== Color.BLUE){
-              listasilla.add(sillas[i][j].getNumeropuesto());
-              FrmIngresarDatos datos= new FrmIngresarDatos(listasilla);
-              datos.setVisible(true);
-              dispose();
+        ArrayList<String> listasilla = new ArrayList<String>();
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                if (botones[i][j].getBackground() == Color.BLUE) {
+                    listasilla.add(sillas[i][j].getNumeropuesto());
+                 }
             }
         }
-    }
+        FrmIngresarDatos datos = new FrmIngresarDatos(listasilla);
+        datos.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtnReservarActionPerformed
 
     /**
