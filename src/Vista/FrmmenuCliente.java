@@ -90,6 +90,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         Jmenupromociones = new javax.swing.JMenu();
         jmOfertas = new javax.swing.JMenuItem();
+        jMenuItemEquipaje = new javax.swing.JMenuItem();
         JmDestinos = new javax.swing.JMenu();
         JmtRutas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -370,6 +371,14 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         });
         Jmenupromociones.add(jmOfertas);
 
+        jMenuItemEquipaje.setText("Equipaje");
+        jMenuItemEquipaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEquipajeActionPerformed(evt);
+            }
+        });
+        Jmenupromociones.add(jMenuItemEquipaje);
+
         jMenuBar1.add(Jmenupromociones);
 
         JmDestinos.setText("Destinos");
@@ -544,6 +553,12 @@ public class FrmmenuCliente extends javax.swing.JFrame {
             JdateFecharegreso.setEnabled(true);
         }
     }//GEN-LAST:event_JrdbtnSoloidayvueltaActionPerformed
+
+    private void jMenuItemEquipajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEquipajeActionPerformed
+        FrmEquipaje equipaje = new FrmEquipaje(nombre);
+        equipaje.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItemEquipajeActionPerformed
     private void listarcomboxorigen() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < listarutas.size(); i++) {
@@ -698,6 +713,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemEquipaje;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
