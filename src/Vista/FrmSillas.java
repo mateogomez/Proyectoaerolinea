@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.CtSilla;
 import Modelo.ClsSillas;
 import Modelo.ClsVuelo;
 import java.awt.Color;
@@ -28,6 +29,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     public String nombre;
     public ArrayList<ClsVuelo> listavuelo = new ArrayList<ClsVuelo>();
     int contador = 0;
+    CtSilla controladorsilla;
 
     public FrmSillas() {
         initComponents();
@@ -35,7 +37,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
 
     public FrmSillas(ArrayList<ClsVuelo> listavuelo, ClsVuelo vuelo, String nombre, int pasajeros) {
         initComponents();
-
+        controladorsilla = new CtSilla();
         this.vuelo = vuelo;
         this.nombre = nombre;
         this.pasajeros = pasajeros;
@@ -54,7 +56,11 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         fila[8] = new String("I");
         fila[9] = new String("J");
         cargarBotones();
-
+        /**try {
+            sillas = controladorsilla.cargarArchivo(sillas);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }*/
     }
 
     /**
@@ -224,6 +230,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                                 }
                             }
                             verificarsilla();
+                        
                         }
                     }
                     if (pasajeros == 2) {

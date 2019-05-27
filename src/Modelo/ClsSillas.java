@@ -5,11 +5,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mateo
  */
-public class ClsSillas {
+public class ClsSillas implements Serializable{
 
     String numeropuesto;
     boolean ocupado;
