@@ -27,6 +27,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     public ClsVuelo vuelo;
     public String nombre;
     public ArrayList<ClsVuelo> listavuelo = new ArrayList<ClsVuelo>();
+    int contador = 0;
 
     public FrmSillas() {
         initComponents();
@@ -34,6 +35,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
 
     public FrmSillas(ArrayList<ClsVuelo> listavuelo, ClsVuelo vuelo, String nombre, int pasajeros) {
         initComponents();
+
         this.vuelo = vuelo;
         this.nombre = nombre;
         this.pasajeros = pasajeros;
@@ -142,7 +144,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
             for (int j = 0; j < botones[i].length; j++) {
                 if (botones[i][j].getBackground() == Color.BLUE) {
                     listasilla.add(sillas[i][j].getNumeropuesto());
-                 }
+                }
             }
         }
         FrmIngresarDatos datos = new FrmIngresarDatos(listasilla);
@@ -187,6 +189,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 if (e.getSource() == botones[i][j]) {
@@ -194,11 +197,17 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                         if (sillas[i][j] == null) {
                             String puesto = botones[i][j].getText();
                             boolean asignado = new Boolean(false);
-                            if (asignado == false) {
-                                ClsSillas silla = new ClsSillas(puesto, false);
-                                sillas[i][j] = silla;
+                            if (contador < pasajeros) {
+                                if (asignado == false) {
+                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    sillas[i][j] = silla;
+                                }
+                                verificarsilla();
+                            } else {
+                                JOptionPane.showMessageDialog(this, "sobrepaso pasajeros");
+                                break;
                             }
-                            verificarsilla();
+
                         }
                         if (sillas[i][j].isOcupado() == false) {
                             String puesto = botones[i][j].getText();
@@ -207,6 +216,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             if (asignar.equals("si")) {
                                 ClsSillas silla = new ClsSillas(puesto, true);
                                 sillas[i][j] = silla;
+                                contador++;
                             } else {
                                 if (asignar.equals("no")) {
                                     ClsSillas silla = new ClsSillas(puesto, false);
@@ -220,11 +230,16 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                         if (sillas[i][j] == null) {
                             String puesto = botones[i][j].getText();
                             boolean asignado = new Boolean(false);
-                            if (asignado == false) {
-                                ClsSillas silla = new ClsSillas(puesto, false);
-                                sillas[i][j] = silla;
+                            if (contador < pasajeros) {
+                                if (asignado == false) {
+                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    sillas[i][j] = silla;
+                                }
+                                verificarsilla();
+                            } else {
+                                JOptionPane.showMessageDialog(this, "sobrepaso pasajeros");
+                                break;
                             }
-                            verificarsilla();
                         }
                         if (sillas[i][j].isOcupado() == false) {
                             String puesto = botones[i][j].getText();
@@ -233,6 +248,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             if (asignar.equals("si")) {
                                 ClsSillas silla = new ClsSillas(puesto, true);
                                 sillas[i][j] = silla;
+                                contador++;
                             } else {
                                 if (asignar.equals("no")) {
                                     ClsSillas silla = new ClsSillas(puesto, false);
@@ -247,11 +263,16 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                         if (sillas[i][j] == null) {
                             String puesto = botones[i][j].getText();
                             boolean asignado = new Boolean(false);
-                            if (asignado == false) {
-                                ClsSillas silla = new ClsSillas(puesto, false);
-                                sillas[i][j] = silla;
+                            if (contador < pasajeros) {
+                                if (asignado == false) {
+                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    sillas[i][j] = silla;
+                                }
+                                verificarsilla();
+                            } else {
+                                JOptionPane.showMessageDialog(this, "sobrepaso pasajeros");
+                                break;
                             }
-                            verificarsilla();
                         }
                         if (sillas[i][j].isOcupado() == false) {
                             String puesto = botones[i][j].getText();
@@ -260,6 +281,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             if (asignar.equals("si")) {
                                 ClsSillas silla = new ClsSillas(puesto, true);
                                 sillas[i][j] = silla;
+                                contador++;
                             } else {
                                 if (asignar.equals("no")) {
                                     ClsSillas silla = new ClsSillas(puesto, false);
