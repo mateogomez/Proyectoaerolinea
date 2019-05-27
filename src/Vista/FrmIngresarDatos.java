@@ -13,20 +13,57 @@ import java.util.ArrayList;
  * @author Javier Parra
  */
 public class FrmIngresarDatos extends javax.swing.JFrame {
-
+ArrayList<String>silla=new ArrayList<String>();
     public FrmIngresarDatos() {
-        initComponents();
+        
     }
 
     public FrmIngresarDatos(ArrayList<String> silla) {
+        this.silla=silla;
         if (silla.size() == 1) {
             initComponents();
+            jPanelPasajero1.setEnabled(true);
+            txtNombres.setEnabled(true);
+            txtApellidos.setEnabled(true);
+            txtNumeroDocumento.setEnabled(true);
+            JrbtnMasculino.setEnabled(true);
+            JrbtnFemenino.setEnabled(true);
         }
         if (silla.size() == 2) {
-
+           initComponents();
+            jPanelPasajero1.setEnabled(true);
+            txtNombres.setEnabled(true);
+            txtApellidos.setEnabled(true);
+            txtNumeroDocumento.setEnabled(true);
+            JrbtnMasculino.setEnabled(true);
+            JrbtnFemenino.setEnabled(true);
+            jPanelPasajero2.setEnabled(true);
+            txtNombres2.setEnabled(true);
+            txtApellidos2.setEnabled(true);
+            txtNumeroDocumento2.setEnabled(true);
+            JrbtnMasculino2.setEnabled(true);
+            JrbtnFemenino2.setEnabled(true);
         }
         if (silla.size() == 3) {
-
+            initComponents();
+            jPanelPasajero1.setEnabled(true);
+            txtNombres.setEnabled(true);
+            txtApellidos.setEnabled(true);
+            txtNumeroDocumento.setEnabled(true);
+            JrbtnMasculino.setEnabled(true);
+            JrbtnFemenino.setEnabled(true);
+            jPanelPasajero2.setEnabled(true);
+            txtNombres2.setEnabled(true);
+            txtApellidos2.setEnabled(true);
+            txtNumeroDocumento2.setEnabled(true);
+            JrbtnMasculino2.setEnabled(true);
+            JrbtnFemenino2.setEnabled(true);
+            jPanelPasajero3.setEnabled(true);
+            txtNombres3.setEnabled(true);
+            txtApellidos3.setEnabled(true);
+            txtNumeroDocumento3.setEnabled(true);
+            JrbtnMasculino3.setEnabled(true);
+            JrbtnFemenino3.setEnabled(true);
         }
     }
 
@@ -46,14 +83,14 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
         jPanelPasajero1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         lblGeneros = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        Femenino = new javax.swing.JRadioButton();
+        JrbtnMasculino = new javax.swing.JRadioButton();
+        JrbtnFemenino = new javax.swing.JRadioButton();
         lblApellidos = new javax.swing.JLabel();
         lblNumeroDocumento = new javax.swing.JLabel();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         txtNumeroDocumento = new javax.swing.JTextField();
-        jPanelPasajaero2 = new javax.swing.JPanel();
+        jPanelPasajero2 = new javax.swing.JPanel();
         lblNombre2 = new javax.swing.JLabel();
         lblApellidos2 = new javax.swing.JLabel();
         lblGenero2 = new javax.swing.JLabel();
@@ -61,8 +98,8 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
         txtNombres2 = new javax.swing.JTextField();
         txtApellidos2 = new javax.swing.JTextField();
         txtNumeroDocumento2 = new javax.swing.JTextField();
-        rdbMasculino2 = new javax.swing.JRadioButton();
-        rdbFemenino2 = new javax.swing.JRadioButton();
+        JrbtnMasculino2 = new javax.swing.JRadioButton();
+        JrbtnFemenino2 = new javax.swing.JRadioButton();
         jPanelPasajero3 = new javax.swing.JPanel();
         lblNombre3 = new javax.swing.JLabel();
         lblApellidos3 = new javax.swing.JLabel();
@@ -71,27 +108,36 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
         txtNombres3 = new javax.swing.JTextField();
         txtApellidos3 = new javax.swing.JTextField();
         txtNumeroDocumento3 = new javax.swing.JTextField();
-        rdbMasculino3 = new javax.swing.JRadioButton();
-        rdbFemenino3 = new javax.swing.JRadioButton();
+        JrbtnMasculino3 = new javax.swing.JRadioButton();
+        JrbtnFemenino3 = new javax.swing.JRadioButton();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelPasajero1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPasajero1.setEnabled(false);
 
         lblNombre.setText("Nombres:");
 
         lblGeneros.setText("Genero");
 
-        buttonGroupGenero.add(jRadioButton1);
-        jRadioButton1.setText("Masculino");
+        buttonGroupGenero.add(JrbtnMasculino);
+        JrbtnMasculino.setText("Masculino");
+        JrbtnMasculino.setEnabled(false);
 
-        buttonGroupGenero.add(Femenino);
-        Femenino.setText("Femenino");
+        buttonGroupGenero.add(JrbtnFemenino);
+        JrbtnFemenino.setText("Femenino");
+        JrbtnFemenino.setEnabled(false);
 
         lblApellidos.setText("Apellidos");
 
         lblNumeroDocumento.setText("Numero Documento:");
+
+        txtNombres.setEnabled(false);
+
+        txtApellidos.setEnabled(false);
+
+        txtNumeroDocumento.setEnabled(false);
 
         javax.swing.GroupLayout jPanelPasajero1Layout = new javax.swing.GroupLayout(jPanelPasajero1);
         jPanelPasajero1.setLayout(jPanelPasajero1Layout);
@@ -102,9 +148,9 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                 .addGroup(jPanelPasajero1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblGeneros)
                     .addGroup(jPanelPasajero1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(JrbtnMasculino)
                         .addGap(18, 18, 18)
-                        .addComponent(Femenino))
+                        .addComponent(JrbtnFemenino))
                     .addComponent(lblNombre)
                     .addComponent(txtNombres))
                 .addGap(137, 137, 137)
@@ -117,7 +163,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                             .addGap(66, 66, 66))
                         .addComponent(txtNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
         jPanelPasajero1Layout.setVerticalGroup(
             jPanelPasajero1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,8 +176,8 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                 .addComponent(lblGeneros)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelPasajero1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(Femenino))
+                    .addComponent(JrbtnMasculino)
+                    .addComponent(JrbtnFemenino))
                 .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPasajero1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -145,7 +191,8 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        jPanelPasajaero2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPasajero2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPasajero2.setEnabled(false);
 
         lblNombre2.setText("Nombres:");
 
@@ -155,62 +202,71 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
 
         lblNumeroDocumento1.setText("Numero Documento:");
 
-        buttonGroupGenero2.add(rdbMasculino2);
-        rdbMasculino2.setText("Masculino");
+        txtNombres2.setEnabled(false);
 
-        buttonGroupGenero2.add(rdbFemenino2);
-        rdbFemenino2.setText("Femenino");
+        txtApellidos2.setEnabled(false);
 
-        javax.swing.GroupLayout jPanelPasajaero2Layout = new javax.swing.GroupLayout(jPanelPasajaero2);
-        jPanelPasajaero2.setLayout(jPanelPasajaero2Layout);
-        jPanelPasajaero2Layout.setHorizontalGroup(
-            jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPasajaero2Layout.createSequentialGroup()
-                .addGroup(jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPasajaero2Layout.createSequentialGroup()
+        txtNumeroDocumento2.setEnabled(false);
+
+        buttonGroupGenero2.add(JrbtnMasculino2);
+        JrbtnMasculino2.setText("Masculino");
+        JrbtnMasculino2.setEnabled(false);
+
+        buttonGroupGenero2.add(JrbtnFemenino2);
+        JrbtnFemenino2.setText("Femenino");
+        JrbtnFemenino2.setEnabled(false);
+
+        javax.swing.GroupLayout jPanelPasajero2Layout = new javax.swing.GroupLayout(jPanelPasajero2);
+        jPanelPasajero2.setLayout(jPanelPasajero2Layout);
+        jPanelPasajero2Layout.setHorizontalGroup(
+            jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPasajero2Layout.createSequentialGroup()
+                .addGroup(jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelPasajero2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombre2)
                             .addComponent(lblGenero2)
                             .addComponent(txtNombres2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelPasajaero2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPasajero2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(JrbtnMasculino2)
                         .addGap(18, 18, 18)
-                        .addComponent(rdbMasculino2)
-                        .addGap(18, 18, 18)
-                        .addComponent(rdbFemenino2)))
+                        .addComponent(JrbtnFemenino2)))
                 .addGap(126, 126, 126)
-                .addGroup(jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtApellidos2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGroup(jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtApellidos2, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                     .addComponent(lblNumeroDocumento1)
                     .addComponent(lblApellidos2)
-                    .addComponent(txtNumeroDocumento2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                .addGap(214, 214, 214))
+                    .addComponent(txtNumeroDocumento2, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                .addGap(211, 211, 211))
         );
-        jPanelPasajaero2Layout.setVerticalGroup(
-            jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPasajaero2Layout.createSequentialGroup()
+        jPanelPasajero2Layout.setVerticalGroup(
+            jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPasajero2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre2)
                     .addComponent(lblApellidos2))
                 .addGap(11, 11, 11)
-                .addGroup(jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombres2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtApellidos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGenero2)
                     .addComponent(lblNumeroDocumento1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNumeroDocumento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelPasajaero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rdbMasculino2)
-                        .addComponent(rdbFemenino2)))
+                    .addGroup(jPanelPasajero2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JrbtnMasculino2)
+                        .addComponent(JrbtnFemenino2)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jPanelPasajero3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPasajero3.setEnabled(false);
 
         lblNombre3.setText("Nombres:");
 
@@ -220,36 +276,41 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
 
         lblGenero3.setText("Genero");
 
-        buttonGroupGenero3.add(rdbMasculino3);
-        rdbMasculino3.setText("Masculino");
+        txtNombres3.setEnabled(false);
 
-        buttonGroupGenero3.add(rdbFemenino3);
-        rdbFemenino3.setText("Femenino");
+        txtApellidos3.setEnabled(false);
+
+        txtNumeroDocumento3.setEnabled(false);
+
+        buttonGroupGenero3.add(JrbtnMasculino3);
+        JrbtnMasculino3.setText("Masculino");
+        JrbtnMasculino3.setEnabled(false);
+
+        buttonGroupGenero3.add(JrbtnFemenino3);
+        JrbtnFemenino3.setText("Femenino");
+        JrbtnFemenino3.setEnabled(false);
 
         javax.swing.GroupLayout jPanelPasajero3Layout = new javax.swing.GroupLayout(jPanelPasajero3);
         jPanelPasajero3.setLayout(jPanelPasajero3Layout);
         jPanelPasajero3Layout.setHorizontalGroup(
             jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPasajero3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addGroup(jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre3)
+                    .addComponent(txtNombres3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGenero3)
                     .addGroup(jPanelPasajero3Layout.createSequentialGroup()
-                        .addComponent(rdbMasculino3)
+                        .addComponent(JrbtnMasculino3)
                         .addGap(18, 18, 18)
-                        .addComponent(rdbFemenino3))
-                    .addGroup(jPanelPasajero3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre3)
-                            .addComponent(txtNombres3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGenero3))))
-                .addGap(125, 125, 125)
+                        .addComponent(JrbtnFemenino3)))
+                .addGap(123, 123, 123)
                 .addGroup(jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblApellidos3)
                     .addComponent(lblNumeroDocumento2)
                     .addComponent(txtApellidos3, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                     .addComponent(txtNumeroDocumento3))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
         jPanelPasajero3Layout.setVerticalGroup(
             jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,20 +323,16 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                 .addGroup(jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombres3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtApellidos3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPasajero3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblGenero3))
-                    .addGroup(jPanelPasajero3Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lblNumeroDocumento2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNumeroDocumento3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(2, 2, 2)
+                .addGap(30, 30, 30)
                 .addGroup(jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdbMasculino3)
-                    .addComponent(rdbFemenino3))
-                .addGap(18, 18, 18))
+                    .addComponent(lblNumeroDocumento2)
+                    .addComponent(lblGenero3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelPasajero3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumeroDocumento3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JrbtnMasculino3)
+                    .addComponent(JrbtnFemenino3))
+                .addGap(18, 32, Short.MAX_VALUE))
         );
 
         btnRegresar.setText("Regresar");
@@ -286,7 +343,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
         });
 
         jDesktopPane1.setLayer(jPanelPasajero1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jPanelPasajaero2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jPanelPasajero2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jPanelPasajero3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(btnRegresar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -295,7 +352,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelPasajero1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanelPasajaero2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelPasajero2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanelPasajero3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -308,7 +365,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanelPasajero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelPasajaero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelPasajero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(jPanelPasajero3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -369,16 +426,20 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Femenino;
+    private javax.swing.JRadioButton JrbtnFemenino;
+    private javax.swing.JRadioButton JrbtnFemenino2;
+    private javax.swing.JRadioButton JrbtnFemenino3;
+    private javax.swing.JRadioButton JrbtnMasculino;
+    private javax.swing.JRadioButton JrbtnMasculino2;
+    private javax.swing.JRadioButton JrbtnMasculino3;
     private javax.swing.JButton btnRegresar;
     private javax.swing.ButtonGroup buttonGroupGenero;
     private javax.swing.ButtonGroup buttonGroupGenero2;
     private javax.swing.ButtonGroup buttonGroupGenero3;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JPanel jPanelPasajaero2;
     private javax.swing.JPanel jPanelPasajero1;
+    private javax.swing.JPanel jPanelPasajero2;
     private javax.swing.JPanel jPanelPasajero3;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblApellidos2;
     private javax.swing.JLabel lblApellidos3;
@@ -391,10 +452,6 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
     private javax.swing.JLabel lblNumeroDocumento;
     private javax.swing.JLabel lblNumeroDocumento1;
     private javax.swing.JLabel lblNumeroDocumento2;
-    private javax.swing.JRadioButton rdbFemenino2;
-    private javax.swing.JRadioButton rdbFemenino3;
-    private javax.swing.JRadioButton rdbMasculino2;
-    private javax.swing.JRadioButton rdbMasculino3;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtApellidos2;
     private javax.swing.JTextField txtApellidos3;

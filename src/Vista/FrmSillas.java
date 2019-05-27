@@ -56,11 +56,12 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         fila[8] = new String("I");
         fila[9] = new String("J");
         cargarBotones();
-        /**try {
+        try {
             sillas = controladorsilla.cargarArchivo(sillas);
+            cargarsilla();
         } catch (Exception e) {
             System.out.println(e.toString());
-        }*/
+        }
     }
 
     /**
@@ -153,6 +154,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                 }
             }
         }
+        System.out.println("tamaño array " + listasilla.size());
         FrmIngresarDatos datos = new FrmIngresarDatos(listasilla);
         datos.setVisible(true);
         dispose();
@@ -207,8 +209,9 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                                 if (asignado == false) {
                                     ClsSillas silla = new ClsSillas(puesto, false);
                                     sillas[i][j] = silla;
+                                     elegirsilla(i,j);
                                 }
-                                verificarsilla();
+                               
                             } else {
                                 JOptionPane.showMessageDialog(this, "sobrepaso pasajeros");
                                 break;
@@ -230,7 +233,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                                 }
                             }
                             verificarsilla();
-                        
+                         String res= controladorsilla.guardarArchivo(sillas);
                         }
                     }
                     if (pasajeros == 2) {
@@ -315,8 +318,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
             }
         }
     }
-
-    private void verificarsilla() {
+private void cargarsilla() {
         for (int i = 0; i < sillas.length; i++) {
             for (int j = 0; j < sillas[i].length; j++) {
                 //si libros en la posicion esta vacio 
@@ -330,7 +332,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                     // si libros es prestado
                     if (sillas[i][j].isOcupado()) {
                         //cambiar color
-                        botones[i][j].setBackground(Color.BLUE);
+                        botones[i][j].setBackground(Color.RED);
                     } else {
                         //cambiar color
                         botones[i][j].setBackground(Color.WHITE);
@@ -339,6 +341,32 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
 
             }
         }
+    }
+private void verificarsilla() {
+        for (int i = 0; i < sillas.length; i++) {
+            for (int j = 0; j < sillas[i].length; j++) {
+                //si libros en la posicion esta vacio 
+                if (sillas[i][j] == null) {
+                    //El boton en la posicion cambiar el color agris
+                    botones[i][j].setBackground(Color.GRAY);
+
+                } else {
+                    //Botones en la posicion mandememe libros en posicion el nombre
+                    botones[i][j].setText(sillas[i][j].getNumeropuesto());
+                    // si libros es prestado
+                   
+                    if (sillas[i][j].isOcupado()){
+                    } else {
+                        //cambiar color
+                        botones[i][j].setBackground(Color.WHITE);
+                    }
+                }
+
+            }
+        }
+    }
+    private void elegirsilla(int m,int n) {
+        botones[m][n].setBackground(Color.BLUE);            
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAleatorio;
