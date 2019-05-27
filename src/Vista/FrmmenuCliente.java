@@ -465,7 +465,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
                     Date ida = convertirString(fechaida);
                     Date idavuelos = convertirString(listavuelos.get(i).getFecha());
                     boolean desicionida = buscarorigenydestinoida(origen, destino);
-                    if (ida.equals(idavuelos) && listavuelos.get(i).getTipovuelo().equals("Ida") && desicionida == true) {
+                    if (origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino()) && ida.equals(idavuelos) && listavuelos.get(i).getTipovuelo().equals("Ida") && desicionida == true) {
                         FrmVueloida vuelo = new FrmVueloida(listavuelos, pasajeros, nombre);
                         vuelo.setVisible(true);
                         dispose();

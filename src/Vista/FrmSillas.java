@@ -10,6 +10,7 @@ import Modelo.ClsVuelo;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -23,13 +24,20 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     ClsSillas[][] sillas;
     String fila[];
     public int pasajeros;
-    // ClsVuelo vuelo;
-    // public FrmSillas() {
+    public ClsVuelo vuelo;
+    public String nombre;
+    public ArrayList<ClsVuelo> listavuelo = new ArrayList<ClsVuelo>();
 
-    //}
     public FrmSillas() {
         initComponents();
-        //this.vuelo=vuelo;
+    }
+
+    public FrmSillas(ArrayList<ClsVuelo> listavuelo, ClsVuelo vuelo, String nombre, int pasajeros) {
+        initComponents();
+        this.vuelo = vuelo;
+        this.nombre = nombre;
+        this.pasajeros = pasajeros;
+        this.listavuelo = listavuelo;
         botones = new JButton[6][10];
         sillas = new ClsSillas[6][10];
         fila = new String[10];
@@ -43,9 +51,9 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         fila[7] = new String("H");
         fila[8] = new String("I");
         fila[9] = new String("J");
-
         cargarBotones();
 
+        
     }
 
     /**
@@ -60,6 +68,8 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         BtnAleatorio = new javax.swing.JButton();
+        BtnRegresar = new javax.swing.JButton();
+        BtnReservar = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -69,7 +79,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
+            .addGap(0, 942, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,6 +88,20 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
 
         BtnAleatorio.setText("Aleatorio");
 
+        BtnRegresar.setText("Regresar");
+        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegresarActionPerformed(evt);
+            }
+        });
+
+        BtnReservar.setText("Reservar");
+        BtnReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReservarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,20 +109,47 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnAleatorio)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnAleatorio)
+                    .addComponent(BtnRegresar)
+                    .addComponent(BtnReservar))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(294, Short.MAX_VALUE)
+                .addContainerGap(233, Short.MAX_VALUE)
+                .addComponent(BtnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnAleatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(218, 218, 218))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+        FrmVueloida vueloida = new FrmVueloida(listavuelo, pasajeros, nombre);
+        vueloida.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnRegresarActionPerformed
+
+    private void BtnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservarActionPerformed
+    ArrayList<String>listasilla=new ArrayList<String>();
+        for(int i=0;i<botones.length;i++){
+        for(int j=0;j<botones[i].length;j++){
+            if(botones[i][j].getBackground()== Color.BLUE){
+              listasilla.add(sillas[i][j].getNumeropuesto());
+              FrmIngresarDatos datos= new FrmIngresarDatos(listasilla);
+              datos.setVisible(true);
+              dispose();
+            }
+        }
+    }
+    }//GEN-LAST:event_BtnReservarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,12 +192,83 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
             for (int j = 0; j < botones[i].length; j++) {
                 if (e.getSource() == botones[i][j]) {
                     if (pasajeros == 1) {
+                        if (sillas[i][j] == null) {
+                            String puesto = botones[i][j].getText();
+                            boolean asignado = new Boolean(false);
+                            if (asignado == false) {
+                                ClsSillas silla = new ClsSillas(puesto, false);
+                                sillas[i][j] = silla;
+                            }
+                            verificarsilla();
+                        }
+                        if (sillas[i][j].isOcupado() == false) {
+                            String puesto = botones[i][j].getText();
+                            boolean asignado = new Boolean(false);
+                            String asignar = JOptionPane.showInputDialog("Desea reservar esta silla? (si-no):").toLowerCase();
+                            if (asignar.equals("si")) {
+                                ClsSillas silla = new ClsSillas(puesto, true);
+                                sillas[i][j] = silla;
+                            } else {
+                                if (asignar.equals("no")) {
+                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    sillas[i][j] = silla;
+                                }
+                            }
+                            verificarsilla();
+                        }
                     }
                     if (pasajeros == 2) {
+                        if (sillas[i][j] == null) {
+                            String puesto = botones[i][j].getText();
+                            boolean asignado = new Boolean(false);
+                            if (asignado == false) {
+                                ClsSillas silla = new ClsSillas(puesto, false);
+                                sillas[i][j] = silla;
+                            }
+                            verificarsilla();
+                        }
+                        if (sillas[i][j].isOcupado() == false) {
+                            String puesto = botones[i][j].getText();
+                            boolean asignado = new Boolean(false);
+                            String asignar = JOptionPane.showInputDialog("Desea reservar esta silla? (si-no):").toLowerCase();
+                            if (asignar.equals("si")) {
+                                ClsSillas silla = new ClsSillas(puesto, true);
+                                sillas[i][j] = silla;
+                            } else {
+                                if (asignar.equals("no")) {
+                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    sillas[i][j] = silla;
+                                }
 
+                            }
+                            verificarsilla();
+                        }
                     }
                     if (pasajeros == 3) {
-
+                        if (sillas[i][j] == null) {
+                            String puesto = botones[i][j].getText();
+                            boolean asignado = new Boolean(false);
+                            if (asignado == false) {
+                                ClsSillas silla = new ClsSillas(puesto, false);
+                                sillas[i][j] = silla;
+                            }
+                            verificarsilla();
+                        }
+                        if (sillas[i][j].isOcupado() == false) {
+                            String puesto = botones[i][j].getText();
+                            boolean asignado = new Boolean(false);
+                            String asignar = JOptionPane.showInputDialog("Desea reservar esta silla? (si-no):").toLowerCase();
+                            if (asignar.equals("si")) {
+                                ClsSillas silla = new ClsSillas(puesto, true);
+                                sillas[i][j] = silla;
+                            } else {
+                                if (asignar.equals("no")) {
+                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    sillas[i][j] = silla;
+                                }
+                            }
+                            verificarsilla();
+                        }
                     }
                 }
             }
@@ -172,18 +294,18 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                 //si libros en la posicion esta vacio 
                 if (sillas[i][j] == null) {
                     //El boton en la posicion cambiar el color agris
-                    botones[j][i].setBackground(Color.GRAY);
+                    botones[i][j].setBackground(Color.GRAY);
 
                 } else {
                     //Botones en la posicion mandememe libros en posicion el nombre
-                    botones[j][i].setText(sillas[i][j].getNumeropuesto());
+                    botones[i][j].setText(sillas[i][j].getNumeropuesto());
                     // si libros es prestado
                     if (sillas[i][j].isOcupado()) {
                         //cambiar color
-                        botones[j][i].setBackground(Color.BLUE);
+                        botones[i][j].setBackground(Color.BLUE);
                     } else {
                         //cambiar color
-                        botones[j][i].setBackground(Color.WHITE);
+                        botones[i][j].setBackground(Color.WHITE);
                     }
                 }
 
@@ -192,6 +314,8 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAleatorio;
+    private javax.swing.JButton BtnRegresar;
+    private javax.swing.JButton BtnReservar;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

@@ -14,14 +14,12 @@ import java.util.ArrayList;
  */
 public class FrmIngresarDatos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmIngresarDatos
-     */
+    
     public FrmIngresarDatos() {
         initComponents();
     }
 
-    public FrmIngresarDatos(String silla) {
+    public FrmIngresarDatos(ArrayList<String>silla) {
         initComponents();
 
     }

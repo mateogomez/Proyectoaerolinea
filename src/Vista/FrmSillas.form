@@ -33,7 +33,11 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="BtnAleatorio" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="BtnAleatorio" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnRegresar" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnReservar" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -42,9 +46,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="294" max="32767" attributes="0"/>
+              <EmptySpace pref="233" max="32767" attributes="0"/>
+              <Component id="BtnReservar" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="BtnAleatorio" min="-2" pref="56" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="BtnRegresar" min="-2" pref="59" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,7 +63,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="944" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="942" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -69,6 +77,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Aleatorio"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnRegresar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Regresar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRegresarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnReservar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reservar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnReservarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
