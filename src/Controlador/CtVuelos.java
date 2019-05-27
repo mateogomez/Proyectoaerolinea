@@ -148,8 +148,26 @@ public class CtVuelos {
         try {
 
             for (int i = 0; i < listaVuelos.size(); i++) {
-                modelo.addRow(new Object[]{listaVuelos.get(i).getFecha(), listaVuelos.get(i).getNumeroVuelo(), listaVuelos.get(i).getSerial(), listaVuelos.get(i).getOrigen(), listaVuelos.get(i).getDestino(), listaVuelos.get(i).getHoraSalida(), listaVuelos.get(i).getHoraLlegada(), listaVuelos.get(i).getEstado(), listaVuelos.get(i).getTipovuelo()});
+                if (listaVuelos.get(i).getTipovuelo().equals("Ida")) {
+                    modelo.addRow(new Object[]{listaVuelos.get(i).getFecha(), listaVuelos.get(i).getNumeroVuelo(), listaVuelos.get(i).getSerial(), listaVuelos.get(i).getOrigen(), listaVuelos.get(i).getDestino(), listaVuelos.get(i).getHoraSalida(), listaVuelos.get(i).getHoraLlegada(), listaVuelos.get(i).getEstado(), listaVuelos.get(i).getTipovuelo()});
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return modelo;
+    }
 
+    public DefaultTableModel listarElementosvuelta(ArrayList<ClsVuelo> listaVuelos) {
+        DefaultTableModel modelo;
+        String nombreColumnas[] = {"Fecha", "Numero vuelo", "Avion", "Origen", "Destino", "Hora salida", "Hora llegada", "Estado", "Tipo viaje"};
+        modelo = new DefaultTableModel(new Object[][]{}, nombreColumnas);
+        try {
+
+            for (int i = 0; i < listaVuelos.size(); i++) {
+                if (listaVuelos.get(i).getTipovuelo().equals("Vuelta")) {
+                    modelo.addRow(new Object[]{listaVuelos.get(i).getFecha(), listaVuelos.get(i).getNumeroVuelo(), listaVuelos.get(i).getSerial(), listaVuelos.get(i).getOrigen(), listaVuelos.get(i).getDestino(), listaVuelos.get(i).getHoraSalida(), listaVuelos.get(i).getHoraLlegada(), listaVuelos.get(i).getEstado(), listaVuelos.get(i).getTipovuelo()});
+                }
             }
         } catch (Exception e) {
             System.out.println(e.toString());

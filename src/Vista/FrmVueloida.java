@@ -33,8 +33,8 @@ public class FrmVueloida extends javax.swing.JFrame {
         this.pasajeros = pasajeros;
         this.nombre = nombre;
         controladorvuelos = new CtVuelos();
-        this.listavuelos = listavuelo;
-        listar();
+        this.listavuelos= listavuelo;
+        listar(listavuelo);
     }
 
     /**
@@ -143,12 +143,13 @@ public class FrmVueloida extends javax.swing.JFrame {
         for (int i = 0; i < listavuelos.size(); i++) {
             if (numerovuelo.equals(listavuelos.get(i).getNumeroVuelo())) {
                 vuelo = listavuelos.get(i);
-                FrmSillas sillas = new FrmSillas(listavuelos,vuelo,nombre,pasajeros);
+                FrmSillas sillas = new FrmSillas(listavuelos, vuelo, nombre, pasajeros);
                 sillas.setVisible(true);
                 dispose();
                 break;
             } else {
                 JOptionPane.showMessageDialog(this, "no se encontro numero de vuelo");
+                break;
             }
         }
         if (vuelo == null) {
@@ -160,7 +161,7 @@ public class FrmVueloida extends javax.swing.JFrame {
     private void JtViajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtViajesMouseClicked
 
     }//GEN-LAST:event_JtViajesMouseClicked
-    public void listar() {
+    public void listar(ArrayList<ClsVuelo> listavuelos) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = controladorvuelos.listarElementosida(listavuelos);
         JtViajes.setModel(modelo);

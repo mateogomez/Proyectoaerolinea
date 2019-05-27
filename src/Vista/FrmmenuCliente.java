@@ -119,6 +119,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
 
         lblIda.setText("Ida");
 
+        JcbxIda.setEnabled(false);
         JcbxIda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JcbxIdaActionPerformed(evt);
@@ -127,7 +128,11 @@ public class FrmmenuCliente extends javax.swing.JFrame {
 
         lblFechaida.setText("Fecha ida");
 
+        JdateFechaida.setEnabled(false);
+
         lblFecharegreso.setText("Fecha regreso");
+
+        JdateFecharegreso.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -181,6 +186,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
 
         lblPasajeros.setText("Pasajeros");
 
+        JcbxDestino.setEnabled(false);
         JcbxDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JcbxDestinoActionPerformed(evt);
@@ -188,6 +194,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         });
 
         txtPasajeros.setText("1");
+        txtPasajeros.setEnabled(false);
         txtPasajeros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasajerosActionPerformed(evt);
@@ -200,6 +207,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         });
 
         btnSumar.setText("+");
+        btnSumar.setEnabled(false);
         btnSumar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSumarActionPerformed(evt);
@@ -207,6 +215,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         });
 
         BtnRestar.setText("-");
+        BtnRestar.setEnabled(false);
         BtnRestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRestarActionPerformed(evt);
@@ -250,6 +259,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
 
         BtnBuscar.setBackground(new java.awt.Color(204, 204, 204));
         BtnBuscar.setText("Buscar");
+        BtnBuscar.setEnabled(false);
         BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBuscarActionPerformed(evt);
@@ -420,16 +430,23 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         if (JrdbtnSoloida.isSelected() == true) {
             lblFecharegreso.setEnabled(false);
             JdateFecharegreso.setEnabled(false);
+            JdateFechaida.setEnabled(true);
+            JcbxIda.setEnabled(true);
+            JcbxDestino.setEnabled(true);
+            txtPasajeros.setEnabled(true);
+            btnSumar.setEnabled(true);
+            BtnRestar.setEnabled(true);
+            BtnBuscar.setEnabled(true);
         }
 
     }//GEN-LAST:event_JrdbtnSoloidaActionPerformed
 
     private void JcbxIdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcbxIdaActionPerformed
-        listarcomboxorigen();
+      
     }//GEN-LAST:event_JcbxIdaActionPerformed
 
     private void JcbxDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JcbxDestinoActionPerformed
-        listarcomboxdestino();
+        
     }//GEN-LAST:event_JcbxDestinoActionPerformed
 
     private void btnSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumarActionPerformed
@@ -465,7 +482,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
                     Date ida = convertirString(fechaida);
                     Date idavuelos = convertirString(listavuelos.get(i).getFecha());
                     boolean desicionida = buscarorigenydestinoida(origen, destino);
-                    if (origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino()) && ida.equals(idavuelos) && listavuelos.get(i).getTipovuelo().equals("Ida") && desicionida == true) {
+                    if (ida.equals(idavuelos) && listavuelos.get(i).getTipovuelo().equals("Ida") && desicionida == true) {
                         FrmVueloida vuelo = new FrmVueloida(listavuelos, pasajeros, nombre);
                         vuelo.setVisible(true);
                         dispose();
@@ -486,7 +503,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
                 boolean desicionregreso = buscarfechasregreso(regreso);
                 boolean origenydestinoida = buscarorigenydestinoida(origen, destino);
                 boolean origenydestinoregreso = buscarorigenydestinoregreso(destino, origen);
-                if (desicionida == true && desicionregreso == true && origenydestinoida == true && origenydestinoregreso) {
+                if (origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino()) && desicionida == true && desicionregreso == true && origenydestinoida == true && origenydestinoregreso) {
                     FrmVueloidaregreso vuelos = new FrmVueloidaregreso(listavuelos, pasajeros, nombre);
                     vuelos.setVisible(true);
                     dispose();
