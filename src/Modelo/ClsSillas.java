@@ -12,15 +12,22 @@ import java.io.Serializable;
  * @author mateo
  */
 public class ClsSillas implements Serializable{
-
+    String numerovuelo;
     String numeropuesto;
     boolean ocupado;
-    
 
-    public ClsSillas(String numeropuesto, boolean ocupado) {
+    public ClsSillas(String numerovuelo, String numeropuesto, boolean ocupado) {
+        this.numerovuelo = numerovuelo;
         this.numeropuesto = numeropuesto;
         this.ocupado = ocupado;
-        
+    }
+
+    public String getNumerovuelo() {
+        return numerovuelo;
+    }
+
+    public void setNumerovuelo(String numerovuelo) {
+        this.numerovuelo = numerovuelo;
     }
 
     public String getNumeropuesto() {
@@ -38,6 +45,9 @@ public class ClsSillas implements Serializable{
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
+    
+
+   
 
   
 

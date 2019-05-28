@@ -55,6 +55,7 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
         BtnRegresar = new javax.swing.JButton();
         lblBienvenido = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
+        lblVendedor = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         JmbMenu = new javax.swing.JMenu();
         BtnConsultar = new javax.swing.JMenuItem();
@@ -75,6 +76,8 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
         lblBienvenido.setText("Bienvenido");
 
         lblNombre.setText("Nombre");
+
+        lblVendedor.setText("Vendedor");
 
         JmbMenu.setText("Menu");
 
@@ -100,17 +103,18 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(310, Short.MAX_VALUE)
+                .addComponent(BtnRegresar)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblBienvenido)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BtnRegresar)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblBienvenido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblNombre)
-                        .addGap(75, 75, 75))))
+                    .addComponent(lblVendedor)
+                    .addComponent(lblNombre))
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +122,9 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBienvenido)
                     .addComponent(lblNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblVendedor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                 .addComponent(BtnRegresar)
                 .addContainerGap())
         );
@@ -186,5 +192,6 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblVendedor;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,6 +26,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     String fila[];
     public int pasajeros;
     public ClsVuelo vuelo;
+    public String numerovuelo;
     public String nombreCliente;
     public String cedulaCliente;
     public ArrayList<ClsVuelo> listavuelo = new ArrayList<ClsVuelo>();
@@ -36,12 +37,14 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         initComponents();
     }
 
-    public FrmSillas(ArrayList<ClsVuelo> listavuelo, ClsVuelo vuelo, String nombre,String cedulaCliente, int pasajeros) {
+    public FrmSillas(ArrayList<ClsVuelo> listavuelo, ClsVuelo vuelo, String nombre, String cedulaCliente, int pasajeros) {
+
         initComponents();
         controladorsilla = new CtSilla();
+        this.numerovuelo = vuelo.getNumeroVuelo();
         this.vuelo = vuelo;
         this.nombreCliente = nombre;
-        this.cedulaCliente=cedulaCliente;
+        this.cedulaCliente = cedulaCliente;
         this.pasajeros = pasajeros;
         this.listavuelo = listavuelo;
         botones = new JButton[6][10];
@@ -142,7 +145,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmVueloida vueloida = new FrmVueloida(listavuelo, pasajeros, nombreCliente,cedulaCliente);
+        FrmVueloida vueloida = new FrmVueloida(listavuelo, pasajeros, nombreCliente, cedulaCliente);
         vueloida.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
@@ -156,7 +159,6 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                 }
             }
         }
-        System.out.println("tamaño array " + listasilla.size());
         FrmIngresarDatos datos = new FrmIngresarDatos(listasilla);
         datos.setVisible(true);
         dispose();
@@ -209,11 +211,11 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             boolean asignado = new Boolean(false);
                             if (contador < pasajeros) {
                                 if (asignado == false) {
-                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
-                                     elegirsilla(i,j);
+                                    elegirsilla(i, j);
                                 }
-                               
+
                             } else {
                                 JOptionPane.showMessageDialog(this, "sobrepaso pasajeros");
                                 break;
@@ -225,17 +227,17 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             boolean asignado = new Boolean(false);
                             String asignar = JOptionPane.showInputDialog("Desea reservar esta silla? (si-no):").toLowerCase();
                             if (asignar.equals("si")) {
-                                ClsSillas silla = new ClsSillas(puesto, true);
+                                ClsSillas silla = new ClsSillas(numerovuelo, puesto, true);
                                 sillas[i][j] = silla;
                                 contador++;
                             } else {
                                 if (asignar.equals("no")) {
-                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
                                 }
                             }
                             verificarsilla();
-                         String res= controladorsilla.guardarArchivo(sillas);
+                            String res = controladorsilla.guardarArchivo(sillas);
                         }
                     }
                     if (pasajeros == 2) {
@@ -244,7 +246,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             boolean asignado = new Boolean(false);
                             if (contador < pasajeros) {
                                 if (asignado == false) {
-                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
                                 }
                                 verificarsilla();
@@ -258,12 +260,12 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             boolean asignado = new Boolean(false);
                             String asignar = JOptionPane.showInputDialog("Desea reservar esta silla? (si-no):").toLowerCase();
                             if (asignar.equals("si")) {
-                                ClsSillas silla = new ClsSillas(puesto, true);
+                                ClsSillas silla = new ClsSillas(numerovuelo, puesto, true);
                                 sillas[i][j] = silla;
                                 contador++;
                             } else {
                                 if (asignar.equals("no")) {
-                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
                                 }
 
@@ -277,7 +279,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             boolean asignado = new Boolean(false);
                             if (contador < pasajeros) {
                                 if (asignado == false) {
-                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
                                 }
                                 verificarsilla();
@@ -291,12 +293,12 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                             boolean asignado = new Boolean(false);
                             String asignar = JOptionPane.showInputDialog("Desea reservar esta silla? (si-no):").toLowerCase();
                             if (asignar.equals("si")) {
-                                ClsSillas silla = new ClsSillas(puesto, true);
+                                ClsSillas silla = new ClsSillas(numerovuelo, puesto, true);
                                 sillas[i][j] = silla;
                                 contador++;
                             } else {
                                 if (asignar.equals("no")) {
-                                    ClsSillas silla = new ClsSillas(puesto, false);
+                                    ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
                                 }
                             }
@@ -320,11 +322,12 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
             }
         }
     }
-private void cargarsilla() {
+
+    private void cargarsilla() {
         for (int i = 0; i < sillas.length; i++) {
             for (int j = 0; j < sillas[i].length; j++) {
                 //si libros en la posicion esta vacio 
-                if (sillas[i][j] == null) {
+                if (sillas[i][j] == null && vuelo.getNumeroVuelo().equals(numerovuelo)) {
                     //El boton en la posicion cambiar el color agris
                     botones[i][j].setBackground(Color.GRAY);
 
@@ -332,7 +335,7 @@ private void cargarsilla() {
                     //Botones en la posicion mandememe libros en posicion el nombre
                     botones[i][j].setText(sillas[i][j].getNumeropuesto());
                     // si libros es prestado
-                    if (sillas[i][j].isOcupado()) {
+                    if (sillas[i][j].isOcupado() && vuelo.getNumeroVuelo().equals(numerovuelo)) {
                         //cambiar color
                         botones[i][j].setBackground(Color.RED);
                     } else {
@@ -344,11 +347,12 @@ private void cargarsilla() {
             }
         }
     }
-private void verificarsilla() {
+
+    private void verificarsilla() {
         for (int i = 0; i < sillas.length; i++) {
             for (int j = 0; j < sillas[i].length; j++) {
                 //si libros en la posicion esta vacio 
-                if (sillas[i][j] == null) {
+                if (sillas[i][j] == null && vuelo.getNumeroVuelo().equals(numerovuelo)) {
                     //El boton en la posicion cambiar el color agris
                     botones[i][j].setBackground(Color.GRAY);
 
@@ -356,8 +360,8 @@ private void verificarsilla() {
                     //Botones en la posicion mandememe libros en posicion el nombre
                     botones[i][j].setText(sillas[i][j].getNumeropuesto());
                     // si libros es prestado
-                   
-                    if (sillas[i][j].isOcupado()){
+
+                    if (sillas[i][j].isOcupado() && vuelo.getNumeroVuelo().equals(numerovuelo)) {
                     } else {
                         //cambiar color
                         botones[i][j].setBackground(Color.WHITE);
@@ -367,8 +371,9 @@ private void verificarsilla() {
             }
         }
     }
-    private void elegirsilla(int m,int n) {
-        botones[m][n].setBackground(Color.BLUE);            
+
+    private void elegirsilla(int m, int n) {
+        botones[m][n].setBackground(Color.BLUE);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAleatorio;
