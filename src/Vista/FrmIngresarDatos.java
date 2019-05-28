@@ -13,13 +13,23 @@ import java.util.ArrayList;
  * @author Javier Parra
  */
 public class FrmIngresarDatos extends javax.swing.JFrame {
-ArrayList<String>silla=new ArrayList<String>();
+
+    ArrayList<String> silla = new ArrayList<String>();
+    String nombreCliente;
+    String cedulaCliente;
+    int pasajeros;
+    String nombrepromocion;
+
     public FrmIngresarDatos() {
-        
+
     }
 
-    public FrmIngresarDatos(ArrayList<String> silla) {
-        this.silla=silla;
+    public FrmIngresarDatos(ArrayList<String> silla, String nombreCliente, String cedulaCliente, String nombrepromocion) {
+        this.silla = silla;
+        this.nombreCliente = nombreCliente;
+        this.cedulaCliente = cedulaCliente;
+        this.nombrepromocion = nombrepromocion;
+
         if (silla.size() == 1) {
             initComponents();
             jPanelPasajero1.setEnabled(true);
@@ -28,9 +38,10 @@ ArrayList<String>silla=new ArrayList<String>();
             txtNumeroDocumento.setEnabled(true);
             JrbtnMasculino.setEnabled(true);
             JrbtnFemenino.setEnabled(true);
+
         }
         if (silla.size() == 2) {
-           initComponents();
+            initComponents();
             jPanelPasajero1.setEnabled(true);
             txtNombres.setEnabled(true);
             txtApellidos.setEnabled(true);

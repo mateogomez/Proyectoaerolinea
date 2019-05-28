@@ -562,9 +562,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JrdbtnSoloidayvueltaActionPerformed
 
     private void jMenuItemEquipajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEquipajeActionPerformed
-        FrmEquipaje equipaje = new FrmEquipaje(nombrecliente);
-        equipaje.setVisible(true);
-        dispose();
+       
     }//GEN-LAST:event_jMenuItemEquipajeActionPerformed
     private void listarcomboxorigen() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();

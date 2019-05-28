@@ -6,10 +6,13 @@
 package Vista;
 
 import Controlador.CtPromocion;
-import  Controlador.CtPromocion;
+import Controlador.CtPromocion;
 import Modelo.ClsPromocion;
 import Modelo.ClsRuta;
+import Modelo.ClsSillas;
+import Modelo.ClsVuelo;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,14 +22,25 @@ import javax.swing.table.DefaultTableModel;
 public class FrmEquipaje extends javax.swing.JFrame {
 
     ArrayList<ClsPromocion> listapromocion = new ArrayList<ClsPromocion>();
+    ArrayList<ClsVuelo>listavuelos= new ArrayList<ClsVuelo>();
     CtPromocion controladorPromocion;
-    String nombre;
-    
+    String nombreCliente;
+    String cedulaCliente;
+    int pasajero;
+    ClsVuelo vuelo;
+    ArrayList<String> silla = new ArrayList<String>();
+
     public FrmEquipaje() {
         initComponents();
     }
-    public FrmEquipaje(String nombre) {
-        this.nombre = nombre;
+
+    public FrmEquipaje(ArrayList<ClsVuelo>listavuelo,ArrayList<String> sillas,ClsVuelo vuelo, String nombre, String cedula,int pasajeros) {
+        this.nombreCliente = nombre;
+        this.cedulaCliente = cedula;
+        this.silla = sillas;
+        this.vuelo=vuelo;
+        this.pasajero=pasajeros;
+        this.listavuelos=listavuelo;
         initComponents();
         controladorPromocion = new CtPromocion();
         try {
@@ -36,12 +50,13 @@ public class FrmEquipaje extends javax.swing.JFrame {
             System.out.println(e.toString());
         }
     }
+
     public void listar() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = listarOferta(listapromocion);
         jTableEquipaje.setModel(modelo);
     }
-    
+
     public DefaultTableModel listarOferta(ArrayList<ClsPromocion> listaPromocion) {
         DefaultTableModel modelo;
         String nombreColumnas[] = {"Fecha", "Nombre promocion", "Equipaje", "Millas", "Valor Promocion"};
@@ -68,7 +83,6 @@ public class FrmEquipaje extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEquipaje = new javax.swing.JTable();
         btnAdquirirPromocion = new javax.swing.JButton();
-        btnNoGracias = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,8 +101,11 @@ public class FrmEquipaje extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableEquipaje);
 
         btnAdquirirPromocion.setText("Adquirir");
-
-        btnNoGracias.setText("No Gracias");
+        btnAdquirirPromocion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdquirirPromocionActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,42 +121,52 @@ public class FrmEquipaje extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btnAdquirirPromocion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(btnRegresar))
-                            .addComponent(btnNoGracias, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAdquirirPromocion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAdquirirPromocion)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNoGracias)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRegresar))
+                        .addComponent(btnAdquirirPromocion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        FrmIngresarDatos datos = new FrmIngresarDatos();
-        datos.setVisible(true);
+        FrmSillas sillas = new FrmSillas(listavuelos, vuelo, nombreCliente, cedulaCliente,pasajero);
+        sillas.setVisible(true);
         dispose();
+       
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnAdquirirPromocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirPromocionActionPerformed
+        String nombrepromocion = JOptionPane.showInputDialog("ingrese nombre de la promocion");
+        for (int i = 0; i < listapromocion.size(); i++) {
+            if (listapromocion.get(i).getNombrePromocion().equals(nombrepromocion)) {
+                FrmIngresarDatos datos = new FrmIngresarDatos(silla, nombreCliente, cedulaCliente, nombrepromocion);
+                datos.setVisible(true);
+                dispose();
+                break;
+            } else {
+                JOptionPane.showMessageDialog(this, "Promocion no existe");
+                break;
+            }
+
+        }
+
+
+    }//GEN-LAST:event_btnAdquirirPromocionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +205,6 @@ public class FrmEquipaje extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdquirirPromocion;
-    private javax.swing.JButton btnNoGracias;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableEquipaje;
