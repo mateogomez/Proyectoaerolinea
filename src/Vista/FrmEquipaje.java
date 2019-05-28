@@ -154,7 +154,7 @@ public class FrmEquipaje extends javax.swing.JFrame {
         String nombrepromocion = JOptionPane.showInputDialog("ingrese nombre de la promocion");
         for (int i = 0; i < listapromocion.size(); i++) {
             if (listapromocion.get(i).getNombrePromocion().equals(nombrepromocion)) {
-                FrmIngresarDatos datos = new FrmIngresarDatos(silla, nombreCliente, cedulaCliente, nombrepromocion);
+                FrmIngresarDatos datos = new FrmIngresarDatos(listavuelos,silla,vuelo, nombreCliente, cedulaCliente, nombrepromocion);
                 datos.setVisible(true);
                 dispose();
                 break;

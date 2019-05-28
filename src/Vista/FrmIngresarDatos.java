@@ -6,6 +6,7 @@
 package Vista;
 
 import Modelo.ClsSillas;
+import Modelo.ClsVuelo;
 import java.util.ArrayList;
 
 /**
@@ -15,21 +16,24 @@ import java.util.ArrayList;
 public class FrmIngresarDatos extends javax.swing.JFrame {
 
     ArrayList<String> silla = new ArrayList<String>();
+    ArrayList<ClsVuelo> listaVuelos = new ArrayList<ClsVuelo>();
     String nombreCliente;
     String cedulaCliente;
     int pasajeros;
     String nombrepromocion;
+    ClsVuelo vuelos;
 
     public FrmIngresarDatos() {
 
     }
 
-    public FrmIngresarDatos(ArrayList<String> silla, String nombreCliente, String cedulaCliente, String nombrepromocion) {
+    public FrmIngresarDatos(ArrayList<ClsVuelo> listavuelo, ArrayList<String> silla, ClsVuelo vuelo, String nombreCliente, String cedulaCliente, String nombrepromocion) {
         this.silla = silla;
         this.nombreCliente = nombreCliente;
         this.cedulaCliente = cedulaCliente;
         this.nombrepromocion = nombrepromocion;
-
+        this.listaVuelos = listavuelo;
+        this.vuelos = vuelo;
         if (silla.size() == 1) {
             initComponents();
             jPanelPasajero1.setEnabled(true);
@@ -122,6 +126,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
         JrbtnMasculino3 = new javax.swing.JRadioButton();
         JrbtnFemenino3 = new javax.swing.JRadioButton();
         btnRegresar = new javax.swing.JButton();
+        BtnContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -353,10 +358,18 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             }
         });
 
+        BtnContinuar.setText("Continuar");
+        BtnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnContinuarActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jPanelPasajero1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jPanelPasajero2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jPanelPasajero3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(btnRegresar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(BtnContinuar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -367,6 +380,8 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             .addComponent(jPanelPasajero3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnContinuar)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegresar)
                 .addContainerGap())
         );
@@ -380,7 +395,9 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jPanelPasajero3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegresar))
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegresar)
+                    .addComponent(BtnContinuar)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -398,8 +415,14 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-
+        FrmEquipaje equipaje = new FrmEquipaje(listaVuelos, silla, vuelos, nombreCliente, cedulaCliente, pasajeros);
+        equipaje.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void BtnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContinuarActionPerformed
+
+    }//GEN-LAST:event_BtnContinuarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,6 +460,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnContinuar;
     private javax.swing.JRadioButton JrbtnFemenino;
     private javax.swing.JRadioButton JrbtnFemenino2;
     private javax.swing.JRadioButton JrbtnFemenino3;
