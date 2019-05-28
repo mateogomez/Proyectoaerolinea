@@ -278,7 +278,7 @@ public class FrmLogin extends javax.swing.JFrame {
             if (respuesta.equals("Si")) {
                 String nombre = controladorCliente.buscarCedula(cedula, listaCliente);
 
-                FrmmenuCliente menucliente = new FrmmenuCliente(nombre);
+                FrmmenuCliente menucliente = new FrmmenuCliente(nombre,cedula);
                 menucliente.setVisible(true);
                 dispose();
             } else {

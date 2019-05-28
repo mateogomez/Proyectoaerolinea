@@ -18,19 +18,21 @@ public class FrmVueloidaregreso extends javax.swing.JFrame {
 
     CtVuelo controladorvuelos;
     public static int pasajeros;
-    String nombre;
-
+    String nombreCliente;
+    String cedulacliente;
     public FrmVueloidaregreso() {
         initComponents();
     }
 
-    public FrmVueloidaregreso(ArrayList<ClsVuelo> listavuelo, int pasajeros, String nombre) {
+    public FrmVueloidaregreso(ArrayList<ClsVuelo> listavueloida,ArrayList<ClsVuelo> listavueloregreso, int pasajeros, String nombre,String cedulacliente) {
         initComponents();
-        this.nombre = nombre;
+        System.out.println(listavueloida.size());
+        this.nombreCliente = nombre;
+        this.cedulacliente=cedulacliente;
         this.pasajeros = pasajeros;
         controladorvuelos = new CtVuelo();
-        listarida(listavuelo);
-        listarregreso(listavuelo);
+        listarida(listavueloida);
+        listarregreso(listavueloregreso);
     }
 
     /**
@@ -154,7 +156,7 @@ public class FrmVueloidaregreso extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-      FrmmenuCliente cliente = new FrmmenuCliente(nombre);
+      FrmmenuCliente cliente = new FrmmenuCliente(nombreCliente,cedulacliente);
       cliente.setVisible(true);
       dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed

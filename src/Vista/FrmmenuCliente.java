@@ -5,9 +5,11 @@
  */
 package Vista;
 
+import Controlador.CtCliente;
 import Controlador.CtVuelo;
 import Controlador.CtVuelos;
 import Controlador.CtlRuta;
+import Modelo.ClsCliente;
 import Modelo.ClsRuta;
 import Modelo.ClsVuelo;
 import java.text.DateFormat;
@@ -27,25 +29,31 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     DateFormat formato = DateFormat.getDateInstance();
     ArrayList<ClsRuta> listarutas = new ArrayList<ClsRuta>();
     ArrayList<ClsVuelo> listavuelos = new ArrayList<ClsVuelo>();
+    ArrayList<ClsCliente> listacliente = new ArrayList<ClsCliente>();
+    CtCliente controladorCliente;
     CtVuelos controladorVuelo;
     CtlRuta controladorruta;
     CtVuelo controladorVuelos;
-    String nombre;
+    String nombrecliente;
+    String cedulacliente;
 
     public FrmmenuCliente() {
-        
+
     }
 
-    public FrmmenuCliente(String nombre) {
+    public FrmmenuCliente(String nombre, String cedula) {
         initComponents();
         controladorruta = new CtlRuta();
         controladorVuelo = new CtVuelos();
         controladorVuelos = new CtVuelo();
-        this.nombre = nombre;
+        controladorCliente = new CtCliente();
+        this.nombrecliente = nombre;
+        this.cedulacliente = cedula;
         lblNombre.setText(nombre);
         try {
             listarutas = controladorruta.cargarArchivo(listarutas);
             listavuelos = controladorVuelo.cargarArchivo(listavuelos);
+            listacliente = controladorCliente.cargarArchivo(listacliente);
             listarcomboxorigen();
             listarcomboxdestino();
         } catch (Exception e) {
@@ -430,7 +438,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JmDestinosActionPerformed
 
     private void JmtRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmtRutasActionPerformed
-        FrmDestinos destinos = new FrmDestinos(nombre);
+        FrmDestinos destinos = new FrmDestinos(nombrecliente, cedulacliente);
         destinos.setVisible(true);
         dispose();
     }//GEN-LAST:event_JmtRutasActionPerformed
@@ -481,46 +489,38 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRestarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        ArrayList<ClsVuelo> listavuelo = new ArrayList<ClsVuelo>();
+        ArrayList<ClsVuelo> listavueloida = new ArrayList<ClsVuelo>();
+        ArrayList<ClsVuelo> listavueloidayregreso = new ArrayList<ClsVuelo>();
         String origen = JcbxIda.getSelectedItem().toString();
         String destino = JcbxDestino.getSelectedItem().toString();
         int pasajeros = Integer.parseInt(txtPasajeros.getText());
+
         if (JrdbtnSoloida.isSelected() == true) {
             String fechaida = formato.format(JdateFechaida.getDate());
             Date ida = convertirString(fechaida);
-            boolean desicionida = buscarorigenydestinoida(origen, destino);
-            listavuelo = llenararray(listavuelos, ida, origen, destino);
-
-            if (listavuelo.isEmpty()) {
+            listavueloida = listavueloida(listavuelos, ida, origen, destino);
+            if (listavueloida.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "no existe vuelos disponibles");
             } else {
-                FrmVueloida vuelo = new FrmVueloida(listavuelo, pasajeros, nombre);
+                FrmVueloida vuelo = new FrmVueloida(listavueloida, pasajeros, nombrecliente, cedulacliente);
                 vuelo.setVisible(true);
                 dispose();
             }
         }
         if (JrdbtnSoloidayvuelta.isSelected() == true) {
-            for (int i = 0; i < listavuelos.size(); i++) {
-                String fecharegreso = formato.format(JdateFecharegreso.getDate());
-                String fechaida = formato.format(JdateFechaida.getDate());
-                Date ida = convertirString(fechaida);
-                Date regreso = convertirString(fecharegreso);
-                boolean desicionida = buscarfechasida(ida);
-                boolean desicionregreso = buscarfechasregreso(regreso);
-                boolean origenydestinoida = buscarorigenydestinoida(origen, destino);
-                boolean origenydestinoregreso = buscarorigenydestinoregreso(destino, origen);
-                if (origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino()) && desicionida == true && desicionregreso == true && origenydestinoida == true && origenydestinoregreso) {
-                    FrmVueloidaregreso vuelos = new FrmVueloidaregreso(listavuelos, pasajeros, nombre);
-                    vuelos.setVisible(true);
-                    dispose();
-                    break;
-                } else {
-                    JOptionPane.showMessageDialog(this, "no existe vuelos disponibles");
-                    break;
-                }
-
+            String fechaida = formato.format(JdateFechaida.getDate());
+            String fecharegreso = formato.format(JdateFecharegreso.getDate());
+            Date ida = convertirString(fechaida);
+            Date regreso = convertirString(fecharegreso);
+            listavueloida=listavueloida(listavuelos, ida, origen, destino);
+            listavueloidayregreso=listavueloregreso(listavuelos, regreso, origen, destino);
+            if(listavueloida.isEmpty()&& listavueloidayregreso.isEmpty()){
+                JOptionPane.showMessageDialog(this, "no existe vuelos disponibles");
+            }else {
+                FrmVueloidaregreso vuelo= new FrmVueloidaregreso(listavueloida, listavueloidayregreso, pasajeros, nombrecliente, cedulacliente);
+                vuelo.setVisible(true);
+                dispose();
             }
-
         }
 
 
@@ -535,7 +535,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_JmenupromocionesActionPerformed
 
     private void jmOfertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOfertasActionPerformed
-        FrmOfertas ofertas = new FrmOfertas(nombre);
+        FrmOfertas ofertas = new FrmOfertas(nombrecliente, cedulacliente);
         ofertas.setVisible(true);
         dispose();
     }//GEN-LAST:event_jmOfertasActionPerformed
@@ -551,11 +551,18 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         if (JrdbtnSoloidayvuelta.isSelected() == true) {
             lblFecharegreso.setEnabled(true);
             JdateFecharegreso.setEnabled(true);
+            JdateFechaida.setEnabled(true);
+            JcbxIda.setEnabled(true);
+            JcbxDestino.setEnabled(true);
+            txtPasajeros.setEnabled(true);
+            btnSumar.setEnabled(true);
+            BtnRestar.setEnabled(true);
+            BtnBuscar.setEnabled(true);
         }
     }//GEN-LAST:event_JrdbtnSoloidayvueltaActionPerformed
 
     private void jMenuItemEquipajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEquipajeActionPerformed
-        FrmEquipaje equipaje = new FrmEquipaje(nombre);
+        FrmEquipaje equipaje = new FrmEquipaje(nombrecliente);
         equipaje.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItemEquipajeActionPerformed
@@ -577,20 +584,21 @@ public class FrmmenuCliente extends javax.swing.JFrame {
 
     }
 
-    public boolean buscarorigenydestinoida(String origen, String destino) {
+    public boolean buscarorigenydestinoida(ArrayList<ClsVuelo>listavuelo,String origen, String destino,Date ida) {
         boolean desicion = false;
-        for (int i = 0; i < listavuelos.size(); i++) {
-            if (origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino()) && listavuelos.get(i).getTipovuelo().equals("Ida")) {
+        for (int i = 0; i < listavuelo.size(); i++) {
+            Date fechasida=convertirString(listavuelo.get(i).getFecha());
+            if (ida.equals(fechasida)&&origen.equals(listavuelo.get(i).getOrigen()) && destino.equals(listavuelo.get(i).getDestino()) && listavuelo.get(i).getTipovuelo().equals("Ida")) {
                 desicion = true;
             }
         }
         return desicion;
     }
 
-    public boolean buscarorigenydestinoregreso(String origen, String destino) {
+    public boolean buscarorigenydestinoregreso(ArrayList<ClsVuelo>listavuelo,String origen, String destino,Date ida) {
         boolean desicion = false;
         for (int i = 0; i < listavuelos.size(); i++) {
-            if (origen.equals(listavuelos.get(i).getOrigen()) && destino.equals(listavuelos.get(i).getDestino()) && listavuelos.get(i).getTipovuelo().equals("Vuelta")) {
+            if (destino.equals(listavuelos.get(i).getOrigen()) && origen.equals(listavuelos.get(i).getDestino()) && listavuelos.get(i).getTipovuelo().equals("Vuelta")) {
                 desicion = true;
             }
         }
@@ -636,16 +644,27 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         return fechaDate;
     }
 
-    public ArrayList<ClsVuelo> llenararray(ArrayList<ClsVuelo> listavuelo, Date ida, String origen, String destino) {
+    public ArrayList<ClsVuelo> listavueloida(ArrayList<ClsVuelo> listavuelo, Date ida, String origen, String destino) {
         ArrayList<ClsVuelo> nuevalista = new ArrayList<ClsVuelo>();
 
         for (int i = 0; i < listavuelo.size(); i++) {
             Date idavuelos = convertirString(listavuelo.get(i).getFecha());
-            if (ida.equals(idavuelos) && origen.equals(listavuelo.get(i).getOrigen()) && listavuelo.get(i).getTipovuelo().equals("Ida")) {
+            if (ida.equals(idavuelos) && destino.equals(listavuelo.get(i).getDestino()) && origen.equals(listavuelo.get(i).getOrigen()) && listavuelo.get(i).getTipovuelo().equals("Ida")) {
                 nuevalista.add(listavuelo.get(i));
             }
         }
 
+        return nuevalista;
+    }
+
+    public ArrayList<ClsVuelo> listavueloregreso(ArrayList<ClsVuelo> listavuelo, Date regreso, String origen, String destino) {
+        ArrayList<ClsVuelo> nuevalista = new ArrayList<ClsVuelo>();
+        for (int i = 0; i < listavuelo.size(); i++) {
+            Date regresovuelos= convertirString(listavuelo.get(i).getFecha());
+            if(regreso.equals(regresovuelos)&&destino.equals(listavuelo.get(i).getOrigen())&& origen.equals(listavuelo.get(i).getDestino())&& listavuelo.get(i).getTipovuelo().equals("Vuelta")){
+               nuevalista.add(listavuelo.get(i));
+            }
+        }
         return nuevalista;
     }
 

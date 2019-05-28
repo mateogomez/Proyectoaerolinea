@@ -20,18 +20,20 @@ public class FrmVueloida extends javax.swing.JFrame {
 
     CtVuelo controladorvuelo;
     public static int pasajeros;
-    String nombre;
+    String nombrecliente;
+    String cedulaCliente;
     CtVuelos controladorvuelos;
     ArrayList<ClsVuelo> listavuelos = new ArrayList<ClsVuelo>();
-
+    
     public FrmVueloida() {
         initComponents();
     }
 
-    public FrmVueloida(ArrayList<ClsVuelo> listavuelo, int pasajeros, String nombre) {
+    public FrmVueloida(ArrayList<ClsVuelo> listavuelo, int pasajeros, String nombre,String cedula) {
         initComponents();
         this.pasajeros = pasajeros;
-        this.nombre = nombre;
+        this.nombrecliente = nombre;
+        this.cedulaCliente=cedula;
         controladorvuelos = new CtVuelos();
         this.listavuelos= listavuelo;
         listar(listavuelo);
@@ -132,7 +134,7 @@ public class FrmVueloida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmmenuCliente cliente = new FrmmenuCliente(nombre);
+        FrmmenuCliente cliente = new FrmmenuCliente(nombrecliente,cedulaCliente);
         cliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
@@ -143,7 +145,7 @@ public class FrmVueloida extends javax.swing.JFrame {
         for (int i = 0; i < listavuelos.size(); i++) {
             if (numerovuelo.equals(listavuelos.get(i).getNumeroVuelo())) {
                 vuelo = listavuelos.get(i);
-                FrmSillas sillas = new FrmSillas(listavuelos, vuelo, nombre, pasajeros);
+                FrmSillas sillas = new FrmSillas(listavuelos, vuelo, nombrecliente,cedulaCliente, pasajeros);
                 sillas.setVisible(true);
                 dispose();
                 break;

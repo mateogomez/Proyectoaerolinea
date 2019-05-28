@@ -26,7 +26,8 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     String fila[];
     public int pasajeros;
     public ClsVuelo vuelo;
-    public String nombre;
+    public String nombreCliente;
+    public String cedulaCliente;
     public ArrayList<ClsVuelo> listavuelo = new ArrayList<ClsVuelo>();
     int contador = 0;
     CtSilla controladorsilla;
@@ -35,11 +36,12 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         initComponents();
     }
 
-    public FrmSillas(ArrayList<ClsVuelo> listavuelo, ClsVuelo vuelo, String nombre, int pasajeros) {
+    public FrmSillas(ArrayList<ClsVuelo> listavuelo, ClsVuelo vuelo, String nombre,String cedulaCliente, int pasajeros) {
         initComponents();
         controladorsilla = new CtSilla();
         this.vuelo = vuelo;
-        this.nombre = nombre;
+        this.nombreCliente = nombre;
+        this.cedulaCliente=cedulaCliente;
         this.pasajeros = pasajeros;
         this.listavuelo = listavuelo;
         botones = new JButton[6][10];
@@ -140,7 +142,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmVueloida vueloida = new FrmVueloida(listavuelo, pasajeros, nombre);
+        FrmVueloida vueloida = new FrmVueloida(listavuelo, pasajeros, nombreCliente,cedulaCliente);
         vueloida.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed

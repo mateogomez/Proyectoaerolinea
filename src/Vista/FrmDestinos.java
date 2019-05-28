@@ -18,14 +18,15 @@ public class FrmDestinos extends javax.swing.JFrame {
 
     ArrayList<ClsRuta> listaruta = new ArrayList<ClsRuta>();
     CtlRuta controladorruta;
-    String nombre;
-
+    String nombrecliente;
+    String cedulacliente;
     public FrmDestinos() {
         initComponents();
     }
 
-    public FrmDestinos(String nombre) {
-        this.nombre = nombre;
+    public FrmDestinos(String nombre,String cedula) {
+        this.nombrecliente = nombre;
+        this.cedulacliente=cedula;
         initComponents();
         controladorruta = new CtlRuta();
         try {
@@ -107,7 +108,7 @@ public class FrmDestinos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmmenuCliente cliente = new FrmmenuCliente(nombre);
+        FrmmenuCliente cliente = new FrmmenuCliente(nombrecliente,cedulacliente);
         cliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed

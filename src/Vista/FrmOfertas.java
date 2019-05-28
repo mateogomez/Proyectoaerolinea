@@ -18,15 +18,16 @@ public class FrmOfertas extends javax.swing.JFrame {
 
     ArrayList<ClsPromocion> listapromociones = new ArrayList<ClsPromocion>();
     CtPromocion controladorPromocion;
-    String nombre;
-
+    String nombrecliente;
+    String cedulacliente;
     public FrmOfertas() {
         initComponents();
     }
 
-    public FrmOfertas(String nombre) {
+    public FrmOfertas(String nombre,String cedulacliente) {
         initComponents();
-        this.nombre = nombre;
+        this.nombrecliente = nombre;
+        this.cedulacliente=cedulacliente;
         controladorPromocion = new CtPromocion();
 
         try {
@@ -115,7 +116,7 @@ public class FrmOfertas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmmenuCliente cliente = new FrmmenuCliente(nombre);
+        FrmmenuCliente cliente = new FrmmenuCliente(nombrecliente,cedulacliente);
         cliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
