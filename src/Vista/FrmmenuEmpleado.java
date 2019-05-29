@@ -60,7 +60,6 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
         JmbMenu = new javax.swing.JMenu();
         BtnConsultar = new javax.swing.JMenuItem();
         JmtpagarReservas = new javax.swing.JMenuItem();
-        Jmtreservas = new javax.swing.JMenuItem();
 
         jLabel2.setText("jLabel2");
 
@@ -90,10 +89,12 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
         JmbMenu.add(BtnConsultar);
 
         JmtpagarReservas.setText("Pagar reservas");
+        JmtpagarReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmtpagarReservasActionPerformed(evt);
+            }
+        });
         JmbMenu.add(JmtpagarReservas);
-
-        Jmtreservas.setText("Reservas");
-        JmbMenu.add(Jmtreservas);
 
         jMenuBar1.add(JmbMenu);
 
@@ -146,6 +147,13 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BtnConsultarActionPerformed
 
+    private void JmtpagarReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmtpagarReservasActionPerformed
+        FrmPagarreservaempleado pagar = new FrmPagarreservaempleado(nombre);
+        pagar.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_JmtpagarReservasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,7 +195,6 @@ public class FrmmenuEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton BtnRegresar;
     private javax.swing.JMenu JmbMenu;
     private javax.swing.JMenuItem JmtpagarReservas;
-    private javax.swing.JMenuItem Jmtreservas;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBienvenido;

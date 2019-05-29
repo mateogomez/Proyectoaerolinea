@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mateo
  */
-public class FrmPagarreserva extends javax.swing.JFrame {
+public class FrmPagarreservaempleado extends javax.swing.JFrame {
 
     ArrayList<ClsReserva> listareservas = new ArrayList<ClsReserva>();
     ArrayList<ClsPagoreserva> listapagos = new ArrayList<ClsPagoreserva>();
@@ -29,15 +29,15 @@ public class FrmPagarreserva extends javax.swing.JFrame {
     String nombre;
     String cedula;
 
-    public FrmPagarreserva() {
+    public FrmPagarreservaempleado() {
         initComponents();
     }
 
-    public FrmPagarreserva(String nombre, String cedulacliente) {
+    public FrmPagarreservaempleado(String nombre) {
         initComponents();
         
         this.nombre = nombre;
-        this.cedula = cedulacliente;
+        
         txtCedula.setText(cedula);
          
         controladorreserva = new CtReserva();
@@ -176,10 +176,11 @@ public class FrmPagarreserva extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNumeroreserva)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnpagar)
-                    .addComponent(BtnRegresar)
-                    .addComponent(txtNumeroreserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNumeroreserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnpagar)
+                        .addComponent(BtnRegresar)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -221,8 +222,8 @@ public class FrmPagarreserva extends javax.swing.JFrame {
     }//GEN-LAST:event_btnpagarActionPerformed
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmmenuCliente cliente= new FrmmenuCliente(nombre, cedula);
-        cliente.setVisible(true);
+        FrmmenuEmpleado empleado= new FrmmenuEmpleado(nombre);
+        empleado.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
     public void listar(ClsCliente cliente) {
@@ -265,20 +266,21 @@ public class FrmPagarreserva extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmPagarreserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPagarreservaempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmPagarreserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPagarreservaempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmPagarreserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPagarreservaempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmPagarreserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmPagarreservaempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmPagarreserva().setVisible(true);
+                new FrmPagarreservaempleado().setVisible(true);
             }
         });
     }
