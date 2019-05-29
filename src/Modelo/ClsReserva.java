@@ -25,9 +25,9 @@ public class ClsReserva implements Serializable{
     double valorTotal;
     String idReserva;
     String estadoPago;
-    int numeroSilla;
+    String numeroSilla;
 
-    public ClsReserva(String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, int numeroSilla) {
+    public ClsReserva(String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla) {
         this.tipoVuelo = tipoVuelo;
         this.numerovuelo = numerovuelo;
         this.fecha = fecha;
@@ -130,11 +130,11 @@ public class ClsReserva implements Serializable{
         this.estadoPago = estadoPago;
     }
 
-    public int getNumeroSilla() {
+    public String getNumeroSilla() {
         return numeroSilla;
     }
 
-    public void setNumeroSilla(int numeroSilla) {
+    public void setNumeroSilla(String numeroSilla) {
         this.numeroSilla = numeroSilla;
     }
 

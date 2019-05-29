@@ -6,7 +6,13 @@
 package Controlador;
 
 import Modelo.ClsPromocion;
+import Modelo.ClsReserva;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,11 +20,48 @@ import java.util.ArrayList;
  */
 public class CtReserva {
 
-    public double pesoequipaje(ArrayList<ClsPromocion>listapromocion,String nombrepromocion,int pasajeros) {
-     double valor=0;
-     for(int i=0;i<listapromocion.size();i++){
-         
-     }
+    public ArrayList<ClsReserva> registrarreserva(ArrayList<ClsReserva> listareserva, String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla) {
+        
+        try {
+            if (listareserva.isEmpty()) {
+                ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla);
+                listareserva.add(reserva);
+                JOptionPane.showMessageDialog(null, "reserva registrada");
+            } else {
+                for (int i = 0; i < listareserva.size(); i++) {
+                    if (idReserva.equals(listareserva.get(i).getIdReserva())) {
+                        JOptionPane.showMessageDialog(null, "reserva ya existe");
+                        break;
+                    } else {
+                        ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla);
+                        listareserva.add(reserva);
+                        JOptionPane.showMessageDialog(null, "reserva registrada");
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return listareserva;
+    }
+
+    public String numerosilla(ArrayList<String> silla) {
+        String sillas = null;
+        for (int i = 0; i < silla.size(); i++) {
+            sillas = silla.get(i);
+        }
+        return sillas;
+    }
+
+    public double pesoequipaje(ArrayList<ClsPromocion> listapromocion, String nombrepromocion, int pasajeros) {
+        double valor = 0;
+        for (int i = 0; i < listapromocion.size(); i++) {
+            if (listapromocion.get(i).getNombrePromocion().equals(nombrepromocion)) {
+                valor = listapromocion.get(i).getEquipaje() * pasajeros;
+            }
+        }
+        return valor;
     }
 
     public double pagototal(double valorsilla, double seguros, double checkins, double valorpromocion) {
@@ -120,4 +163,55 @@ public class CtReserva {
         return valor;
     }
 
+    public String guardarArchivo(ArrayList<ClsReserva> listaReserva) {
+        FileOutputStream archivo = null; //reservar en memoria un espacio para la creacion del archivo
+
+        try {
+            archivo = new FileOutputStream("Reservas.dat");
+        } catch (Exception e) {
+            return "Error creando el archivo";
+        }
+
+        ObjectOutputStream escrituraArchivo = null; //creamos un objeto para la escritura en el archivo
+
+        try {
+            escrituraArchivo = new ObjectOutputStream(archivo);// se asigna al archivo anteriormente cargado
+        } catch (Exception e) {
+            return "Error con el archivo";
+        }
+
+        try {
+            escrituraArchivo.writeObject(listaReserva);// ingresar el listado al archivo creado
+            return "Se guardo correctamente";
+        } catch (Exception e) {
+            return "Error almacenando la informacion";
+        }
+
+    }
+
+    public ArrayList<ClsReserva> cargarArchivo(ArrayList<ClsReserva> listaReserva) {
+        FileInputStream archivo = null; // se reserva el espacio en memoria para el archivo que se va a cargar
+
+        try {
+            archivo = new FileInputStream("Reservas.dat");//se lee el archivo creado en el guardar
+        } catch (Exception e) {
+            // return "Error cargando el archivo";
+        }
+
+        ObjectInputStream lecturaArchivo = null;// definimos un objeto para la lectura del archivo
+
+        try {
+            lecturaArchivo = new ObjectInputStream(archivo); // se lo asignamos al archivo leido anteiormente
+        } catch (Exception e) {
+            //  return "Error con el archivo";
+        }
+
+        try {
+            listaReserva = (ArrayList<ClsReserva>) lecturaArchivo.readObject();// se saca la informacion del archivo cargado
+        } catch (Exception e) {
+            //return "Error cargando la informacion";
+        }
+        return listaReserva;
+        // return "Archivo cargado correctamente";
+    }
 }
