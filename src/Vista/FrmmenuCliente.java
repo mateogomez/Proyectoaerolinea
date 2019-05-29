@@ -97,12 +97,12 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmMireserva = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         Jmenupromociones = new javax.swing.JMenu();
         jmOfertas = new javax.swing.JMenuItem();
         jMenuItemEquipaje = new javax.swing.JMenuItem();
         JmDestinos = new javax.swing.JMenu();
         JmtRutas = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -364,13 +364,16 @@ public class FrmmenuCliente extends javax.swing.JFrame {
 
         jMenu1.setText("Mi reserva");
 
-        jmMireserva.setText("Abrir");
+        jmMireserva.setText("Reserva");
         jmMireserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmMireservaActionPerformed(evt);
             }
         });
         jMenu1.add(jmMireserva);
+
+        jMenuItem1.setText("Pagar reserva");
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -415,9 +418,6 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         JmDestinos.add(JmtRutas);
 
         jMenuBar1.add(JmDestinos);
-
-        jMenu4.setText("Atencion al cliente");
-        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -744,8 +744,8 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemEquipaje;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

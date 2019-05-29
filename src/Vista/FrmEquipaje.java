@@ -35,7 +35,7 @@ public class FrmEquipaje extends javax.swing.JFrame {
     }
 
     public FrmEquipaje(ArrayList<ClsVuelo> listavuelo, ArrayList<String> sillas, ClsVuelo vuelo, String nombre, String cedula, int pasajeros) {
-
+        System.out.println(silla.size());
         this.nombreCliente = nombre;
         this.cedulaCliente = cedula;
         this.silla = sillas;

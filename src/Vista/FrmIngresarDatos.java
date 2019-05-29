@@ -474,14 +474,9 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
 
     public ClsUsuario agregaracompanate(String nombre2, String apellido2, String numerodocumento2, String genero2) {
         ClsUsuario acompanante = null;
-        acompanante.setNombre(nombre2);
-        acompanante.setApellido(apellido2);
-        acompanante.setCedula(numerodocumento2);
-        acompanante.setGenero(genero2);
-        acompanante.setCorreo("");
-        acompanante.setPassword("");
-        acompanante.setTelefono("");
-
+        
+        acompanante = new ClsUsuario(nombre2, apellido2, numerodocumento2, genero2, "", "","");
+        
         return acompanante;
 
     }

@@ -248,8 +248,9 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                                 if (asignado == false) {
                                     ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
+                                    elegirsilla(i, j);
                                 }
-                                verificarsilla();
+
                             } else {
                                 JOptionPane.showMessageDialog(this, "sobrepaso pasajeros");
                                 break;
@@ -268,9 +269,9 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                                     ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
                                 }
-
                             }
                             verificarsilla();
+                            String res = controladorsilla.guardarArchivo(sillas);
                         }
                     }
                     if (pasajeros == 3) {
@@ -281,8 +282,9 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                                 if (asignado == false) {
                                     ClsSillas silla = new ClsSillas(numerovuelo, puesto, false);
                                     sillas[i][j] = silla;
+                                    elegirsilla(i, j);
                                 }
-                                verificarsilla();
+
                             } else {
                                 JOptionPane.showMessageDialog(this, "sobrepaso pasajeros");
                                 break;
@@ -303,6 +305,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                                 }
                             }
                             verificarsilla();
+                            String res = controladorsilla.guardarArchivo(sillas);
                         }
                     }
                 }
@@ -327,7 +330,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         for (int i = 0; i < sillas.length; i++) {
             for (int j = 0; j < sillas[i].length; j++) {
                 //si libros en la posicion esta vacio 
-                if (sillas[i][j] == null  ) {
+                if (sillas[i][j] == null) {
                     //El boton en la posicion cambiar el color agris
                     botones[i][j].setBackground(Color.GRAY);
 
@@ -335,7 +338,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                     //Botones en la posicion mandememe libros en posicion el nombre
                     botones[i][j].setText(sillas[i][j].getNumeropuesto());
                     // si libros es prestado
-                    if (sillas[i][j].isOcupado() ) {
+                    if (sillas[i][j].isOcupado()) {
                         //cambiar color
                         botones[i][j].setBackground(Color.RED);
                     } else {
@@ -352,7 +355,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         for (int i = 0; i < sillas.length; i++) {
             for (int j = 0; j < sillas[i].length; j++) {
                 //si libros en la posicion esta vacio 
-                if (sillas[i][j] == null ) {
+                if (sillas[i][j] == null) {
                     //El boton en la posicion cambiar el color agris
                     botones[i][j].setBackground(Color.GRAY);
 
@@ -361,7 +364,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                     botones[i][j].setText(sillas[i][j].getNumeropuesto());
                     // si libros es prestado
 
-                    if (sillas[i][j].isOcupado() ) {
+                    if (sillas[i][j].isOcupado()) {
                     } else {
                         //cambiar color
                         botones[i][j].setBackground(Color.WHITE);
