@@ -152,8 +152,9 @@ public class FrmEquipaje extends javax.swing.JFrame {
 
     private void btnAdquirirPromocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirPromocionActionPerformed
         String nombrepromocion = JOptionPane.showInputDialog("ingrese nombre de la promocion");
+       ClsPromocion promocion;
         for (int i = 0; i < listapromocion.size(); i++) {
-            if (listapromocion.get(i).getNombrePromocion().equals(nombrepromocion)) {
+            if (nombrepromocion.equals(listapromocion.get(i).getNombrePromocion())) {
                 FrmIngresarDatos datos = new FrmIngresarDatos(listavuelos,silla,vuelo, nombreCliente, cedulaCliente, nombrepromocion);
                 datos.setVisible(true);
                 dispose();

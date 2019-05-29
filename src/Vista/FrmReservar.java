@@ -5,8 +5,12 @@
  */
 package Vista;
 
+import Controlador.CtPromocion;
+import Controlador.CtReserva;
+import Modelo.ClsPromocion;
 import Modelo.ClsVuelo;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,10 +18,45 @@ import java.util.ArrayList;
  */
 public class FrmReservar extends javax.swing.JFrame {
 
-   ArrayList<ClsVuelo>listavuelo=new ArrayList<ClsVuelo>();
-   
+    ArrayList<ClsVuelo> listavuelo = new ArrayList<ClsVuelo>();
+    ArrayList<String> silla = new ArrayList<String>();
+    ArrayList<ClsPromocion> listapromocion = new ArrayList<ClsPromocion>();
+    ClsVuelo vuelo;
+    String seguros;
+    String checkins;
+    String cedulacliente;
+    String nombrecliente;
+    String[] pasajero;
+    String nombrepromocion;
+    CtReserva controladorreserva;
+    CtPromocion controladorpromocion;
+
     public FrmReservar() {
         initComponents();
+    }
+
+    public FrmReservar(ArrayList<ClsVuelo> listavuelo, ArrayList<String> silla, ClsVuelo vuelo, String nombreCliente, String apellidoCliente, String cedulaCliente, String nombrepromocion, String seguro, String checkin) {
+        initComponents();
+
+        this.nombrecliente = nombreCliente;
+        this.cedulacliente = cedulaCliente;
+        this.nombrepromocion = nombrepromocion;
+        this.silla = silla;
+        this.seguros = seguro;
+        this.checkins = checkin;
+        controladorpromocion = new CtPromocion();
+        controladorreserva = new CtReserva();
+        txtNombre.setText(nombreCliente + " " + apellidoCliente);
+        txtCedula.setText(cedulaCliente);
+        txtOrigen.setText(vuelo.getOrigen());
+        txtDestino.setText(vuelo.getDestino());
+
+        try {
+            listapromocion = controladorpromocion.cargarArchivo(listapromocion);
+            ;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     /**
@@ -29,21 +68,214 @@ public class FrmReservar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        TxtIdReserva = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtOrigen = new javax.swing.JTextField();
+        txtDestino = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtValorreserva = new javax.swing.JTextField();
+        BtnReservar = new javax.swing.JButton();
+        BtnRegresar = new javax.swing.JButton();
+        lblCedula = new javax.swing.JLabel();
+        txtCedula = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Nombre cliente");
+
+        jLabel2.setText("id reseva");
+
+        jLabel3.setText("Origen");
+
+        jLabel4.setText("Destino");
+
+        jLabel5.setText("Valor total reserva");
+
+        txtValorreserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtValorreservaMouseClicked(evt);
+            }
+        });
+        txtValorreserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorreservaActionPerformed(evt);
+            }
+        });
+
+        BtnReservar.setText("Reservar");
+        BtnReservar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReservarActionPerformed(evt);
+            }
+        });
+
+        BtnRegresar.setText("Regresar");
+
+        lblCedula.setText("Cedula");
+
+        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(txtNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxtIdReserva, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(txtOrigen, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(txtDestino, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(txtValorreserva, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(BtnReservar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(BtnRegresar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(lblCedula, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(txtCedula, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addGap(0, 213, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtValorreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel5)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnRegresar)
+                            .addComponent(BtnReservar))))
+                .addGap(18, 18, 18))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNombre)
+                            .addComponent(TxtIdReserva)
+                            .addComponent(jLabel3)
+                            .addComponent(txtOrigen)
+                            .addComponent(txtDestino)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCedula)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCedula)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(39, 102, Short.MAX_VALUE)
+                        .addComponent(BtnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TxtIdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(5, 5, 5)
+                .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtValorreserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtValorreservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorreservaActionPerformed
+
+
+    }//GEN-LAST:event_txtValorreservaActionPerformed
+
+    private void txtValorreservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtValorreservaMouseClicked
+        txtValorreserva.setText(valortotal() + "");
+    }//GEN-LAST:event_txtValorreservaMouseClicked
+
+    private void BtnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReservarActionPerformed
+        if (silla.size() == 1) {
+            String estadopago = JOptionPane.showInputDialog("desea pagar ya o luego");
+            if (estadopago.equals("ya")) {
+                String tipovuelo = vuelo.getTipovuelo();
+                String fecha = vuelo.getFecha();
+                pasajero=agregarsolopasajero(cedulacliente);
+                String promocion= nombrepromocion;
+                double pesoequipaje=
+            }
+            if (estadopago.equals("luego")) {
+
+            }
+
+        }
+    }//GEN-LAST:event_BtnReservarActionPerformed
+    public String[] agregarsolopasajero(String cedula) {
+        String[] pasajero = new String[silla.size()];
+        for (int i = 0; i < pasajero.length; i++) {
+            pasajero[i] = cedula;
+        }
+        return pasajero;
+
+    }
+
+    public double valorpromocion() {
+        double valor = 0;
+        int pasajeros = silla.size();
+        for (int i = 0; i < listapromocion.size(); i++) {
+            if (listapromocion.get(i).getNombrePromocion().equals(nombrepromocion)) {
+                double valorpromocion = listapromocion.get(i).getValorPromocion();
+                valor = valorpromocion * pasajeros;
+                break;
+            } else {
+
+            }
+        }
+        return valor;
+    }
+
+    public double valortotal() {
+
+        double valorsilla = controladorreserva.valorsillaeconomica(silla) + controladorreserva.valorsillaintermedio(silla) + controladorreserva.valorsillaeconomicavip(silla);
+        double valorseguro = controladorreserva.seguro(seguros);
+        double valorcheckins = controladorreserva.checkin(checkins);
+        double valorpromocion = valorpromocion();
+        double valortotal = controladorreserva.pagototal(valorsilla, valorseguro, valorcheckins, valorpromocion);
+        return valortotal;
+    }
 
     /**
      * @param args the command line arguments
@@ -81,5 +313,20 @@ public class FrmReservar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnRegresar;
+    private javax.swing.JButton BtnReservar;
+    private javax.swing.JTextField TxtIdReserva;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtDestino;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtOrigen;
+    private javax.swing.JTextField txtValorreserva;
     // End of variables declaration//GEN-END:variables
 }

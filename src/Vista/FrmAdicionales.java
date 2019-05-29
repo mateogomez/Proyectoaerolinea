@@ -14,31 +14,30 @@ import java.util.ArrayList;
  */
 public class FrmAdicionales extends javax.swing.JFrame {
 
-   ArrayList<ClsVuelo>listavuelos=new ArrayList<ClsVuelo>();
-   ArrayList<String>sillas= new ArrayList<String>();
-   ClsVuelo vuelo;
-   String nombrecliente;
-   String apellidocliente;
-   String cedulacliente;
-   String nombrepromocion;
-   String genero;
-   
+    ArrayList<ClsVuelo> listavuelos = new ArrayList<ClsVuelo>();
+    ArrayList<String> sillas = new ArrayList<String>();
+    ClsVuelo vuelo;
+    String nombrecliente;
+    String apellidocliente;
+    String cedulacliente;
+    String nombrepromocion;
+    String genero;
+
     public FrmAdicionales() {
         initComponents();
     }
 
     public FrmAdicionales(ArrayList<ClsVuelo> listavuelo, ArrayList<String> silla, ClsVuelo vuelo, String nombreCliente, String apellidoCliente, String cedulaCliente, String nombrepromocion, String genero) {
-     this.listavuelos= listavuelo;
-     this.sillas=silla;
-     this.vuelo=vuelo;
-     this.nombrecliente=nombreCliente;
-     this.apellidocliente=apellidoCliente;
-     this.cedulacliente=cedulaCliente;
-     this.nombrepromocion=nombrepromocion;
-     this.genero=genero;
-     
-     
-     
+        initComponents();
+        this.listavuelos = listavuelo;
+        this.sillas = silla;
+        this.vuelo = vuelo;
+        this.nombrecliente = nombreCliente;
+        this.apellidocliente = apellidoCliente;
+        this.cedulacliente = cedulaCliente;
+        this.nombrepromocion = nombrepromocion;
+        this.genero = genero;
+
     }
 
     /**
@@ -162,14 +161,39 @@ public class FrmAdicionales extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContinuarActionPerformed
-      if(JrbtnSi.isSelected()&& JrbtnSicheck.isSelected()){
-          String seguro=JrbtnSi.getText();
-          String checkin=JrbtnSicheck.getText();
-          
-      }
-      if(JrbtnNo.isSelected()&& JrbtnNocheck.isSelected()){
-          
-      }
+        if (sillas.size() == 1) {
+            if (JrbtnSi.isSelected() && JrbtnSicheck.isSelected()) {
+                String seguro = JrbtnSi.getText();
+                String checkin = JrbtnSicheck.getText();
+
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin);
+                reservar.setVisible(true);
+                dispose();
+
+            }
+            if (JrbtnNo.isSelected() && JrbtnNocheck.isSelected()) {
+                String seguro = JrbtnNo.getText();
+                String checkin = JrbtnNocheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin);
+                reservar.setVisible(true);
+                dispose();
+            }
+            if (JrbtnSi.isSelected() && JrbtnNocheck.isSelected()) {
+                String seguro = JrbtnSi.getText();
+                String checkin = JrbtnNocheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin);
+                reservar.setVisible(true);
+                dispose();
+            }
+            if (JrbtnNo.isSelected() && JrbtnSicheck.isSelected()) {
+                String seguro = JrbtnNo.getText();
+                String checkin = JrbtnSicheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin);
+                reservar.setVisible(true);
+                dispose();
+            }
+        }
+
     }//GEN-LAST:event_BtnContinuarActionPerformed
 
     /**
