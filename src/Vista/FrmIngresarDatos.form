@@ -205,21 +205,12 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblNombre2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblGenero2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtNombres2" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JrbtnMasculino2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="JrbtnFemenino2" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblNombre2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblGenero2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombres2" alignment="0" pref="160" max="32767" attributes="0"/>
+                          <Component id="CbxGenero2" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -251,14 +242,11 @@
                           <Component id="lblNumeroDocumento1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNumeroDocumento2" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="JrbtnMasculino2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JrbtnFemenino2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtNumeroDocumento2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CbxGenero2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -299,23 +287,19 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="JrbtnMasculino2">
+            <Component class="javax.swing.JComboBox" name="CbxGenero2">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroupGenero2"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="Masculino"/>
+                    <StringItem index="1" value="Femenino"/>
+                  </StringArray>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Masculino"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="JrbtnFemenino2">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroupGenero2"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Femenino"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -332,17 +316,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="lblNombre3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNombres3" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="txtNombres3" alignment="0" pref="160" max="32767" attributes="0"/>
                           <Component id="lblGenero3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JrbtnMasculino3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="JrbtnFemenino3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="CbxGenero3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="lblApellidos3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNumeroDocumento2" min="-2" max="-2" attributes="0"/>
@@ -374,10 +354,9 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtNumeroDocumento3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JrbtnMasculino3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JrbtnFemenino3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CbxGenero3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" pref="32" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" pref="34" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -418,23 +397,19 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="JrbtnMasculino3">
+            <Component class="javax.swing.JComboBox" name="CbxGenero3">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroupGenero3"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="Masculino"/>
+                    <StringItem index="1" value="Femenino"/>
+                  </StringArray>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Masculino"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="JrbtnFemenino3">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroupGenero3"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Femenino"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

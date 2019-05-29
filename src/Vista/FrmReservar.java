@@ -260,7 +260,7 @@ public class FrmReservar extends javax.swing.JFrame {
                 String sillas = controladorreserva.numerosilla(silla);
                 String cedula = cedulacliente;
 
-                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas);
+                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula);
                 String guardarreserva = controladorreserva.guardarArchivo(listareserva);
                 listapagosreservas = controladopagoreserva.pagoreserva(listapagosreservas, idreserva, pago);
                 String guardarpago = controladopagoreserva.guardarArchivo(listapagosreservas);
@@ -276,11 +276,11 @@ public class FrmReservar extends javax.swing.JFrame {
                 String checkin = checkins;
                 double valortotal = valortotal();
                 String idreserva = TxtIdReserva.getText();
-                String pago = "activo";
+                String pago = "inactivo";
                 String sillas = controladorreserva.numerosilla(silla);
                 String cedula = cedulacliente;
 
-                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas);
+                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula);
                 String guardarreserva = controladorreserva.guardarArchivo(listareserva);
                 listapagosreservas = controladopagoreserva.pagoreserva(listapagosreservas, idreserva, pago);
                 String guardarpago = controladopagoreserva.guardarArchivo(listapagosreservas);

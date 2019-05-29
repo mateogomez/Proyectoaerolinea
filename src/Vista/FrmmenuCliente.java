@@ -96,6 +96,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jmMireserva = new javax.swing.JMenuItem();
         Jmenupromociones = new javax.swing.JMenu();
         jmOfertas = new javax.swing.JMenuItem();
         jMenuItemEquipaje = new javax.swing.JMenuItem();
@@ -362,6 +363,15 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Mi reserva");
+
+        jmMireserva.setText("Abrir");
+        jmMireserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmMireservaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmMireserva);
+
         jMenuBar1.add(jMenu1);
 
         Jmenupromociones.setText("Promociones");
@@ -564,6 +574,12 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     private void jMenuItemEquipajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEquipajeActionPerformed
        
     }//GEN-LAST:event_jMenuItemEquipajeActionPerformed
+
+    private void jmMireservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMireservaActionPerformed
+     FrmMireserva reserva = new FrmMireserva(nombrecliente, cedulacliente);
+     reserva.setVisible(true);
+     dispose();
+    }//GEN-LAST:event_jmMireservaActionPerformed
     private void listarcomboxorigen() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < listarutas.size(); i++) {
@@ -735,6 +751,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JMenuItem jmMireserva;
     private javax.swing.JMenuItem jmOfertas;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblFechaida;

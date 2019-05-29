@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmEquipaje extends javax.swing.JFrame {
 
     ArrayList<ClsPromocion> listapromocion = new ArrayList<ClsPromocion>();
-    ArrayList<ClsVuelo>listavuelos= new ArrayList<ClsVuelo>();
+    ArrayList<ClsVuelo> listavuelos = new ArrayList<ClsVuelo>();
     CtPromocion controladorPromocion;
     String nombreCliente;
     String cedulaCliente;
@@ -34,26 +34,28 @@ public class FrmEquipaje extends javax.swing.JFrame {
         initComponents();
     }
 
-    public FrmEquipaje(ArrayList<ClsVuelo>listavuelo,ArrayList<String> sillas,ClsVuelo vuelo, String nombre, String cedula,int pasajeros) {
+    public FrmEquipaje(ArrayList<ClsVuelo> listavuelo, ArrayList<String> sillas, ClsVuelo vuelo, String nombre, String cedula, int pasajeros) {
+
         this.nombreCliente = nombre;
         this.cedulaCliente = cedula;
         this.silla = sillas;
-        this.vuelo=vuelo;
-        this.pasajero=pasajeros;
-        this.listavuelos=listavuelo;
+        this.vuelo = vuelo;
+        this.pasajero = pasajeros;
+        this.listavuelos = listavuelo;
         initComponents();
         controladorPromocion = new CtPromocion();
         try {
             listapromocion = controladorPromocion.cargarArchivo(listapromocion);
-            listar();
+           
+            listar(listapromocion);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
 
-    public void listar() {
+    public void listar(ArrayList<ClsPromocion> listaPromocion) {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = listarOferta(listapromocion);
+        modelo = listarOferta(listaPromocion);
         jTableEquipaje.setModel(modelo);
     }
 
@@ -144,30 +146,35 @@ public class FrmEquipaje extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        FrmSillas sillas = new FrmSillas(listavuelos, vuelo, nombreCliente, cedulaCliente,pasajero);
+        FrmSillas sillas = new FrmSillas(listavuelos, vuelo, nombreCliente, cedulaCliente, pasajero);
         sillas.setVisible(true);
         dispose();
-       
+
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAdquirirPromocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirPromocionActionPerformed
         String nombrepromocion = JOptionPane.showInputDialog("ingrese nombre de la promocion");
-       ClsPromocion promocion;
-        for (int i = 0; i < listapromocion.size(); i++) {
-            if (nombrepromocion.equals(listapromocion.get(i).getNombrePromocion())) {
-                FrmIngresarDatos datos = new FrmIngresarDatos(listavuelos,silla,vuelo, nombreCliente, cedulaCliente, nombrepromocion);
-                datos.setVisible(true);
-                dispose();
-                break;
-            } else {
-                JOptionPane.showMessageDialog(this, "Promocion no existe");
-                break;
-            }
+        String promocion = nombrepromocion(nombrepromocion);
 
+        if (promocion == null) {
+            JOptionPane.showMessageDialog(this,"no existe promocion");
+        } else {
+            FrmIngresarDatos datos = new FrmIngresarDatos(listavuelos, silla, vuelo, nombreCliente, cedulaCliente, nombrepromocion);
+            datos.setVisible(true);
+            dispose();
         }
 
 
     }//GEN-LAST:event_btnAdquirirPromocionActionPerformed
+    public String nombrepromocion(String nombre) {
+        String nombrepromocion = null;
+        for (int i = 0; i < listapromocion.size(); i++) {
+            if (nombre.equals(listapromocion.get(i).getNombrePromocion())) {
+                nombrepromocion = nombre;
+            }
+        }
+        return nombrepromocion;
+    }
 
     /**
      * @param args the command line arguments

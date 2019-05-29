@@ -11,14 +11,13 @@ import java.io.Serializable;
  *
  * @author mateo
  */
-public class ClsReserva implements Serializable{
+public class ClsReserva implements Serializable {
 
     String tipoVuelo;
     String numerovuelo;
     String fecha;
     String[] pasajero;
     String promocion;
-   
     double pesoEquipaje;
     String seguro;
     String checkin;
@@ -26,8 +25,9 @@ public class ClsReserva implements Serializable{
     String idReserva;
     String estadoPago;
     String numeroSilla;
+    String cedulacliente;
 
-    public ClsReserva(String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla) {
+    public ClsReserva(String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla, String cedulacliente) {
         this.tipoVuelo = tipoVuelo;
         this.numerovuelo = numerovuelo;
         this.fecha = fecha;
@@ -40,6 +40,7 @@ public class ClsReserva implements Serializable{
         this.idReserva = idReserva;
         this.estadoPago = estadoPago;
         this.numeroSilla = numeroSilla;
+        this.cedulacliente = cedulacliente;
     }
 
     public String getTipoVuelo() {
@@ -138,4 +139,13 @@ public class ClsReserva implements Serializable{
         this.numeroSilla = numeroSilla;
     }
 
+    public String getCedulacliente() {
+        return cedulacliente;
+    }
+
+    public void setCedulacliente(String cedulacliente) {
+        this.cedulacliente = cedulacliente;
+    }
+
+    
 }

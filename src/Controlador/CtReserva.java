@@ -20,11 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class CtReserva {
 
-    public ArrayList<ClsReserva> registrarreserva(ArrayList<ClsReserva> listareserva, String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla) {
+    public ArrayList<ClsReserva> registrarreserva(ArrayList<ClsReserva> listareserva, String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla,String cedulacliente) {
         
         try {
             if (listareserva.isEmpty()) {
-                ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla);
+                ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla,cedulacliente);
                 listareserva.add(reserva);
                 JOptionPane.showMessageDialog(null, "reserva registrada");
             } else {
@@ -33,7 +33,7 @@ public class CtReserva {
                         JOptionPane.showMessageDialog(null, "reserva ya existe");
                         break;
                     } else {
-                        ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla);
+                        ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla,cedulacliente);
                         listareserva.add(reserva);
                         JOptionPane.showMessageDialog(null, "reserva registrada");
                         break;
