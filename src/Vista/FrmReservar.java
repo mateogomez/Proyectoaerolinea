@@ -11,6 +11,7 @@ import Controlador.CtReserva;
 import Modelo.ClsPagoreserva;
 import Modelo.ClsPromocion;
 import Modelo.ClsReserva;
+import Modelo.ClsUsuario;
 import Modelo.ClsVuelo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -36,6 +37,8 @@ public class FrmReservar extends javax.swing.JFrame {
     String numerovuelo;
     String tipovuelo;
     String fecha;
+    ClsUsuario acompanante1;
+    ClsUsuario acompanante2;
     CtReserva controladorreserva;
     CtPromocion controladorpromocion;
     CtPagoreserva controladopagoreserva;
@@ -44,8 +47,10 @@ public class FrmReservar extends javax.swing.JFrame {
         initComponents();
     }
 
-    public FrmReservar(ArrayList<ClsVuelo> listavuelo, ArrayList<String> silla, ClsVuelo vuelo, String nombreCliente, String apellidoCliente, String cedulaCliente, String nombrepromocion, String seguro, String checkin) {
+    public FrmReservar(ArrayList<ClsVuelo> listavuelo, ArrayList<String> silla, ClsVuelo vuelo, String nombreCliente, String apellidoCliente, String cedulaCliente, String nombrepromocion, String seguro, String checkin,ClsUsuario acompanate1,ClsUsuario acompanante2) {
         initComponents();
+        this.acompanante1=acompanate1;
+        this.acompanante2=acompanante2;
         this.numerovuelo = vuelo.getNumeroVuelo();
         this.fecha = vuelo.getFecha();
         this.tipovuelo = vuelo.getTipovuelo();
@@ -260,7 +265,7 @@ public class FrmReservar extends javax.swing.JFrame {
                 String sillas = controladorreserva.numerosilla(silla);
                 String cedula = cedulacliente;
 
-                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula);
+                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula,acompanante1,acompanante2);
                 String guardarreserva = controladorreserva.guardarArchivo(listareserva);
                 listapagosreservas = controladopagoreserva.pagoreserva(listapagosreservas, idreserva, pago);
                 String guardarpago = controladopagoreserva.guardarArchivo(listapagosreservas);
@@ -280,7 +285,97 @@ public class FrmReservar extends javax.swing.JFrame {
                 String sillas = controladorreserva.numerosilla(silla);
                 String cedula = cedulacliente;
 
-                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula);
+                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula,acompanante1,acompanante2);
+                String guardarreserva = controladorreserva.guardarArchivo(listareserva);
+                listapagosreservas = controladopagoreserva.pagoreserva(listapagosreservas, idreserva, pago);
+                String guardarpago = controladopagoreserva.guardarArchivo(listapagosreservas);
+
+                FrmmenuCliente cliente = new FrmmenuCliente(nombrecliente, cedulacliente);
+                cliente.setVisible(true);
+                dispose();
+            }
+
+        }
+        if (silla.size() == 2) {
+            String estadopago = JOptionPane.showInputDialog("desea pagar ya o luego");
+            if (estadopago.equals("ya")) {
+                pasajero = agregarsolopasajero(cedulacliente);
+                String promocion = nombrepromocion;
+                double pesoequipaje = controladorreserva.pesoequipaje(listapromocion, nombrepromocion, silla.size());
+                String seguro = seguros;
+                String checkin = checkins;
+                double valortotal = valortotal();
+                String idreserva = TxtIdReserva.getText();
+                String pago = "activo";
+                String sillas = controladorreserva.numerosilla(silla);
+                String cedula = cedulacliente;
+
+                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula,acompanante1,acompanante2);
+                String guardarreserva = controladorreserva.guardarArchivo(listareserva);
+                listapagosreservas = controladopagoreserva.pagoreserva(listapagosreservas, idreserva, pago);
+                String guardarpago = controladopagoreserva.guardarArchivo(listapagosreservas);
+                FrmmenuCliente cliente = new FrmmenuCliente(nombrecliente, cedulacliente);
+                cliente.setVisible(true);
+                dispose();
+            }
+            if (estadopago.equals("luego")) {
+                pasajero = agregarsolopasajero(cedulacliente);
+                String promocion = nombrepromocion;
+                double pesoequipaje = controladorreserva.pesoequipaje(listapromocion, nombrepromocion, silla.size());
+                String seguro = seguros;
+                String checkin = checkins;
+                double valortotal = valortotal();
+                String idreserva = TxtIdReserva.getText();
+                String pago = "inactivo";
+                String sillas = controladorreserva.numerosilla(silla);
+                String cedula = cedulacliente;
+
+                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula,acompanante1,acompanante2);
+                String guardarreserva = controladorreserva.guardarArchivo(listareserva);
+                listapagosreservas = controladopagoreserva.pagoreserva(listapagosreservas, idreserva, pago);
+                String guardarpago = controladopagoreserva.guardarArchivo(listapagosreservas);
+
+                FrmmenuCliente cliente = new FrmmenuCliente(nombrecliente, cedulacliente);
+                cliente.setVisible(true);
+                dispose();
+            }
+
+        }
+        if (silla.size() == 3) {
+            String estadopago = JOptionPane.showInputDialog("desea pagar ya o luego");
+            if (estadopago.equals("ya")) {
+                pasajero = agregarsolopasajero(cedulacliente);
+                String promocion = nombrepromocion;
+                double pesoequipaje = controladorreserva.pesoequipaje(listapromocion, nombrepromocion, silla.size());
+                String seguro = seguros;
+                String checkin = checkins;
+                double valortotal = valortotal();
+                String idreserva = TxtIdReserva.getText();
+                String pago = "activo";
+                String sillas = controladorreserva.numerosilla(silla);
+                String cedula = cedulacliente;
+
+                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula,acompanante1,acompanante2);
+                String guardarreserva = controladorreserva.guardarArchivo(listareserva);
+                listapagosreservas = controladopagoreserva.pagoreserva(listapagosreservas, idreserva, pago);
+                String guardarpago = controladopagoreserva.guardarArchivo(listapagosreservas);
+                FrmmenuCliente cliente = new FrmmenuCliente(nombrecliente, cedulacliente);
+                cliente.setVisible(true);
+                dispose();
+            }
+            if (estadopago.equals("luego")) {
+                pasajero = agregarsolopasajero(cedulacliente);
+                String promocion = nombrepromocion;
+                double pesoequipaje = controladorreserva.pesoequipaje(listapromocion, nombrepromocion, silla.size());
+                String seguro = seguros;
+                String checkin = checkins;
+                double valortotal = valortotal();
+                String idreserva = TxtIdReserva.getText();
+                String pago = "inactivo";
+                String sillas = controladorreserva.numerosilla(silla);
+                String cedula = cedulacliente;
+
+                listareserva = controladorreserva.registrarreserva(listareserva, tipovuelo, numerovuelo, fecha, pasajero, promocion, pesoequipaje, seguro, checkin, valortotal, idreserva, pago, sillas,cedula,acompanante1,acompanante2);
                 String guardarreserva = controladorreserva.guardarArchivo(listareserva);
                 listapagosreservas = controladopagoreserva.pagoreserva(listapagosreservas, idreserva, pago);
                 String guardarpago = controladopagoreserva.guardarArchivo(listapagosreservas);
@@ -294,7 +389,7 @@ public class FrmReservar extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnReservarActionPerformed
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmAdicionales adicionales = new FrmAdicionales(listavuelo, silla, vuelo, nombrecliente, cedulacliente, cedulacliente, nombrepromocion, seguros);
+        FrmAdicionales adicionales = new FrmAdicionales(listavuelo, silla, vuelo, nombrecliente, cedulacliente, cedulacliente, nombrepromocion, seguros,acompanante1,acompanante2);
         adicionales.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed

@@ -26,8 +26,10 @@ public class ClsReserva implements Serializable {
     String estadoPago;
     String numeroSilla;
     String cedulacliente;
+    ClsUsuario acompanante1;
+    ClsUsuario acompanante2;
 
-    public ClsReserva(String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla, String cedulacliente) {
+    public ClsReserva(String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla, String cedulacliente, ClsUsuario acompanante1, ClsUsuario acompanante2) {
         this.tipoVuelo = tipoVuelo;
         this.numerovuelo = numerovuelo;
         this.fecha = fecha;
@@ -41,6 +43,8 @@ public class ClsReserva implements Serializable {
         this.estadoPago = estadoPago;
         this.numeroSilla = numeroSilla;
         this.cedulacliente = cedulacliente;
+        this.acompanante1 = acompanante1;
+        this.acompanante2 = acompanante2;
     }
 
     public String getTipoVuelo() {
@@ -145,6 +149,22 @@ public class ClsReserva implements Serializable {
 
     public void setCedulacliente(String cedulacliente) {
         this.cedulacliente = cedulacliente;
+    }
+
+    public ClsUsuario getAcompanante1() {
+        return acompanante1;
+    }
+
+    public void setAcompanante1(ClsUsuario acompanante1) {
+        this.acompanante1 = acompanante1;
+    }
+
+    public ClsUsuario getAcompanante2() {
+        return acompanante2;
+    }
+
+    public void setAcompanante2(ClsUsuario acompanante2) {
+        this.acompanante2 = acompanante2;
     }
 
     

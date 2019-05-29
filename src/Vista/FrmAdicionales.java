@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Modelo.ClsUsuario;
 import Modelo.ClsVuelo;
 import java.util.ArrayList;
 
@@ -22,12 +23,14 @@ public class FrmAdicionales extends javax.swing.JFrame {
     String cedulacliente;
     String nombrepromocion;
     String genero;
+    ClsUsuario acompanante1 = null;
+    ClsUsuario acompanante2 = null;
 
     public FrmAdicionales() {
         initComponents();
     }
 
-    public FrmAdicionales(ArrayList<ClsVuelo> listavuelo, ArrayList<String> silla, ClsVuelo vuelo, String nombreCliente, String apellidoCliente, String cedulaCliente, String nombrepromocion, String genero) {
+    public FrmAdicionales(ArrayList<ClsVuelo> listavuelo, ArrayList<String> silla, ClsVuelo vuelo, String nombreCliente, String apellidoCliente, String cedulaCliente, String nombrepromocion, String genero, ClsUsuario acompanante1, ClsUsuario acompanante2) {
         initComponents();
         this.listavuelos = listavuelo;
         this.sillas = silla;
@@ -37,6 +40,8 @@ public class FrmAdicionales extends javax.swing.JFrame {
         this.cedulacliente = cedulaCliente;
         this.nombrepromocion = nombrepromocion;
         this.genero = genero;
+        this.acompanante1 = acompanante1;
+        this.acompanante2 = acompanante2;
 
     }
 
@@ -166,7 +171,7 @@ public class FrmAdicionales extends javax.swing.JFrame {
                 String seguro = JrbtnSi.getText();
                 String checkin = JrbtnSicheck.getText();
 
-                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin);
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
                 reservar.setVisible(true);
                 dispose();
 
@@ -174,21 +179,85 @@ public class FrmAdicionales extends javax.swing.JFrame {
             if (JrbtnNo.isSelected() && JrbtnNocheck.isSelected()) {
                 String seguro = JrbtnNo.getText();
                 String checkin = JrbtnNocheck.getText();
-                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin);
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
                 reservar.setVisible(true);
                 dispose();
             }
             if (JrbtnSi.isSelected() && JrbtnNocheck.isSelected()) {
                 String seguro = JrbtnSi.getText();
                 String checkin = JrbtnNocheck.getText();
-                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin);
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
                 reservar.setVisible(true);
                 dispose();
             }
             if (JrbtnNo.isSelected() && JrbtnSicheck.isSelected()) {
                 String seguro = JrbtnNo.getText();
                 String checkin = JrbtnSicheck.getText();
-                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin);
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
+                reservar.setVisible(true);
+                dispose();
+            }
+        }
+        if (sillas.size() == 2) {
+            if (JrbtnSi.isSelected() && JrbtnSicheck.isSelected()) {
+                String seguro = JrbtnSi.getText();
+                String checkin = JrbtnSicheck.getText();
+
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
+                reservar.setVisible(true);
+                dispose();
+
+            }
+            if (JrbtnNo.isSelected() && JrbtnNocheck.isSelected()) {
+                String seguro = JrbtnNo.getText();
+                String checkin = JrbtnNocheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
+                reservar.setVisible(true);
+                dispose();
+            }
+            if (JrbtnSi.isSelected() && JrbtnNocheck.isSelected()) {
+                String seguro = JrbtnSi.getText();
+                String checkin = JrbtnNocheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
+                reservar.setVisible(true);
+                dispose();
+            }
+            if (JrbtnNo.isSelected() && JrbtnSicheck.isSelected()) {
+                String seguro = JrbtnNo.getText();
+                String checkin = JrbtnSicheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
+                reservar.setVisible(true);
+                dispose();
+            }
+        }
+        if (sillas.size() == 3) {
+            if (JrbtnSi.isSelected() && JrbtnSicheck.isSelected()) {
+                String seguro = JrbtnSi.getText();
+                String checkin = JrbtnSicheck.getText();
+
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
+                reservar.setVisible(true);
+                dispose();
+
+            }
+            if (JrbtnNo.isSelected() && JrbtnNocheck.isSelected()) {
+                String seguro = JrbtnNo.getText();
+                String checkin = JrbtnNocheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
+                reservar.setVisible(true);
+                dispose();
+            }
+            if (JrbtnSi.isSelected() && JrbtnNocheck.isSelected()) {
+                String seguro = JrbtnSi.getText();
+                String checkin = JrbtnNocheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
+                reservar.setVisible(true);
+                dispose();
+            }
+            if (JrbtnNo.isSelected() && JrbtnSicheck.isSelected()) {
+                String seguro = JrbtnNo.getText();
+                String checkin = JrbtnSicheck.getText();
+                FrmReservar reservar = new FrmReservar(listavuelos, sillas, vuelo, nombrecliente, apellidocliente, cedulacliente, nombrepromocion, seguro, checkin,acompanante1,acompanante2);
                 reservar.setVisible(true);
                 dispose();
             }

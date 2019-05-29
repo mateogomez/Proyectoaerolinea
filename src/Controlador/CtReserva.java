@@ -7,6 +7,7 @@ package Controlador;
 
 import Modelo.ClsPromocion;
 import Modelo.ClsReserva;
+import Modelo.ClsUsuario;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -20,11 +21,11 @@ import javax.swing.JOptionPane;
  */
 public class CtReserva {
 
-    public ArrayList<ClsReserva> registrarreserva(ArrayList<ClsReserva> listareserva, String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla,String cedulacliente) {
+    public ArrayList<ClsReserva> registrarreserva(ArrayList<ClsReserva> listareserva, String tipoVuelo, String numerovuelo, String fecha, String[] pasajero, String promocion, double pesoEquipaje, String seguro, String checkin, double valorTotal, String idReserva, String estadoPago, String numeroSilla,String cedulacliente,ClsUsuario acompanante1,ClsUsuario acompanante2) {
         
         try {
             if (listareserva.isEmpty()) {
-                ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla,cedulacliente);
+                ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla,cedulacliente,acompanante1,acompanante2);
                 listareserva.add(reserva);
                 JOptionPane.showMessageDialog(null, "reserva registrada");
             } else {
@@ -33,7 +34,7 @@ public class CtReserva {
                         JOptionPane.showMessageDialog(null, "reserva ya existe");
                         break;
                     } else {
-                        ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla,cedulacliente);
+                        ClsReserva reserva = new ClsReserva(tipoVuelo, numerovuelo, fecha, pasajero, promocion, pesoEquipaje, seguro, checkin, valorTotal, idReserva, estadoPago, numeroSilla,cedulacliente,acompanante1,acompanante2);
                         listareserva.add(reserva);
                         JOptionPane.showMessageDialog(null, "reserva registrada");
                         break;

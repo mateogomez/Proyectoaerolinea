@@ -8,6 +8,7 @@ package Vista;
 import Controlador.CtCliente;
 import Modelo.ClsCliente;
 import Modelo.ClsSillas;
+import Modelo.ClsUsuario;
 import Modelo.ClsVuelo;
 import java.util.ArrayList;
 
@@ -412,7 +413,9 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             String apellido = txtApellidos.getText();
             String cedula = txtNumeroDocumento.getText();
             String genero = CbxGenero.getSelectedItem().toString();
-            FrmAdicionales adicionales = new FrmAdicionales(listaVuelos, silla, vuelos, nombre, apellido, cedula, nombrepromocion, genero);
+            ClsUsuario acompanante1 = null;
+            ClsUsuario acompanante2 = null;
+            FrmAdicionales adicionales = new FrmAdicionales(listaVuelos, silla, vuelos, nombre, apellido, cedula, nombrepromocion, genero, acompanante1, acompanante2);
             adicionales.setVisible(true);
             dispose();
         }
@@ -425,6 +428,11 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             String apellido2 = txtApellidos2.getText();
             String cedula2 = txtNumeroDocumento2.getText();
             String genero2 = CbxGenero.getSelectedItem().toString();
+            ClsUsuario acompanante1 = agregaracompanate(nombre2, apellido2, cedula2, genero2);
+            ClsUsuario acompanante2 = null;
+            FrmAdicionales adicionales = new FrmAdicionales(listaVuelos, silla, vuelos, nombre, apellido, cedula, nombrepromocion, genero, acompanante1, acompanante2);
+            adicionales.setVisible(true);
+            dispose();
         }
         if (silla.size() == 3) {
             String nombre = txtNombres.getText();
@@ -439,6 +447,11 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             String apellido3 = txtApellidos2.getText();
             String cedula3 = txtNumeroDocumento2.getText();
             String genero3 = CbxGenero.getSelectedItem().toString();
+            ClsUsuario acompanante1 = agregaracompanate(nombre2, apellido2, cedula2, genero2);
+            ClsUsuario acompanante2 = agregaracompanate(nombre3, apellido3, cedula3, genero3);
+            FrmAdicionales adicionales = new FrmAdicionales(listaVuelos, silla, vuelos, nombre, apellido, cedula, nombrepromocion, genero, acompanante1, acompanante2);
+            adicionales.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_BtnContinuarActionPerformed
     private void clientefijo() {
@@ -458,13 +471,21 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             }
         }
     }
-//public ArrayList<String>agregaracompanate1(String nombre2,String apellido2,String numerodocumento2,String genero2){
-    //ArrayList<String>companante1= new ArrayList<String>();
-    //for(int i=0;i<companante1.size();i++){
-        
-        
-  //  }
-//}
+
+    public ClsUsuario agregaracompanate(String nombre2, String apellido2, String numerodocumento2, String genero2) {
+        ClsUsuario acompanante = null;
+        acompanante.setNombre(nombre2);
+        acompanante.setApellido(apellido2);
+        acompanante.setCedula(numerodocumento2);
+        acompanante.setGenero(genero2);
+        acompanante.setCorreo("");
+        acompanante.setPassword("");
+        acompanante.setTelefono("");
+
+        return acompanante;
+
+    }
+
     /**
      * @param args the command line arguments
      */
