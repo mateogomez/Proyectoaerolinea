@@ -163,6 +163,8 @@ public class FrmAdicionales extends javax.swing.JFrame {
 
     private void BtnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContinuarActionPerformed
       if(JrbtnSi.isSelected()&& JrbtnSicheck.isSelected()){
+          String seguro=JrbtnSi.getText();
+          String checkin=JrbtnSicheck.getText();
           
       }
       if(JrbtnNo.isSelected()&& JrbtnNocheck.isSelected()){
