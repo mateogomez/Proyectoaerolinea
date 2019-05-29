@@ -5,15 +5,17 @@
  */
 package Vista;
 
+import Modelo.ClsVuelo;
+import java.util.ArrayList;
+
 /**
  *
  * @author mateo
  */
 public class FrmReservar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmReservar
-     */
+   ArrayList<ClsVuelo>listavuelo=new ArrayList<ClsVuelo>();
+   
     public FrmReservar() {
         initComponents();
     }
