@@ -97,7 +97,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmMireserva = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        JmPagar = new javax.swing.JMenuItem();
         Jmenupromociones = new javax.swing.JMenu();
         jmOfertas = new javax.swing.JMenuItem();
         jMenuItemEquipaje = new javax.swing.JMenuItem();
@@ -372,8 +372,13 @@ public class FrmmenuCliente extends javax.swing.JFrame {
         });
         jMenu1.add(jmMireserva);
 
-        jMenuItem1.setText("Pagar reserva");
-        jMenu1.add(jMenuItem1);
+        JmPagar.setText("Pagar reserva");
+        JmPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JmPagarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(JmPagar);
 
         jMenuBar1.add(jMenu1);
 
@@ -580,6 +585,12 @@ public class FrmmenuCliente extends javax.swing.JFrame {
      reserva.setVisible(true);
      dispose();
     }//GEN-LAST:event_jmMireservaActionPerformed
+
+    private void JmPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmPagarActionPerformed
+       FrmPagarreserva pagar= new FrmPagarreserva(nombrecliente, cedulacliente);
+       pagar.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_JmPagarActionPerformed
     private void listarcomboxorigen() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < listarutas.size(); i++) {
@@ -735,6 +746,7 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     public static com.toedter.calendar.JDateChooser JdateFechaida;
     public static com.toedter.calendar.JDateChooser JdateFecharegreso;
     private javax.swing.JMenu JmDestinos;
+    private javax.swing.JMenuItem JmPagar;
     private javax.swing.JMenu Jmenupromociones;
     private javax.swing.JMenuItem JmtRutas;
     private javax.swing.JRadioButton JrdbtnSoloida;
@@ -745,7 +757,6 @@ public class FrmmenuCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemEquipaje;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

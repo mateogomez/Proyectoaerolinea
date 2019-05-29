@@ -18,7 +18,16 @@ import javax.swing.JOptionPane;
  * @author mateo
  */
 public class CtPagoreserva {
-
+public ArrayList<ClsPagoreserva>modificarpago(ArrayList<ClsPagoreserva> listareserva,String idreserva){
+    for(int i=0;i<listareserva.size();i++){
+        if(idreserva.equals(listareserva.get(i).getIdreserva())&& listareserva.get(i).getEstadopago().equals("inactivo")){
+            listareserva.get(i).setEstadopago("activo");
+        }else {
+            JOptionPane.showMessageDialog(null,"no se encontro reserva");
+        }
+    }
+    return listareserva;
+}
     public ArrayList<ClsPagoreserva> pagoreserva(ArrayList<ClsPagoreserva> listareserva, String idreserva, String estado) {
 
         if (listareserva.isEmpty()) {

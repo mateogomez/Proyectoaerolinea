@@ -6,8 +6,10 @@
 package Vista;
 
 import Controlador.CtCliente;
+import Controlador.CtPagoreserva;
 import Controlador.CtReserva;
 import Modelo.ClsCliente;
+import Modelo.ClsPagoreserva;
 import Modelo.ClsReserva;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -19,30 +21,37 @@ import javax.swing.table.DefaultTableModel;
 public class FrmPagarreserva extends javax.swing.JFrame {
 
     ArrayList<ClsReserva> listareservas = new ArrayList<ClsReserva>();
+    ArrayList<ClsPagoreserva> listapagos = new ArrayList<ClsPagoreserva>();
     CtReserva controladorreserva;
     CtCliente controladorcliente;
+    CtPagoreserva controladorCtPagoreserva;
     ArrayList<ClsCliente> listarcliente = new ArrayList<ClsCliente>();
     String nombre;
     String cedula;
+
     public FrmPagarreserva() {
         initComponents();
     }
-public FrmPagarreserva(String nombre, String cedulacliente){
-    initComponents();
-     initComponents();
+
+    public FrmPagarreserva(String nombre, String cedulacliente) {
+        initComponents();
+        initComponents();
         this.nombre = nombre;
         this.cedula = cedulacliente;
         txtCedula.setText(cedula);
 
         controladorreserva = new CtReserva();
         controladorcliente = new CtCliente();
+        controladorCtPagoreserva = new CtPagoreserva();
         try {
             listareservas = controladorreserva.cargarArchivo(listareservas);
             listarcliente = controladorcliente.cargarArchivo(listarcliente);
+            listapagos = controladorCtPagoreserva.cargarArchivo(listapagos);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-}
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,14 +61,25 @@ public FrmPagarreserva(String nombre, String cedulacliente){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jDesktopPane2 = new javax.swing.JDesktopPane();
         lblCedula = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
         BtnBuscar = new javax.swing.JButton();
+        txtCedula = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtpagos = new javax.swing.JTable();
         lblNumeroreserva = new javax.swing.JLabel();
         txtNumeroreserva = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnpagar = new javax.swing.JButton();
+        BtnRegresar = new javax.swing.JButton();
+
+        jLabel1.setText("jLabel1");
+
+        jButton1.setText("jButton1");
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,89 +92,142 @@ public FrmPagarreserva(String nombre, String cedulacliente){
             }
         });
 
+        jtpagos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Numero reserva", "Numero vuelo", "Estado pago"
+            }
+        ));
+        jScrollPane1.setViewportView(jtpagos);
+
         lblNumeroreserva.setText("Numero reserva");
 
-        jButton2.setText("Pagar");
+        txtNumeroreserva.setEnabled(false);
 
-        jButton3.setText("Regresar");
+        btnpagar.setText("Pagar reserva");
+        btnpagar.setEnabled(false);
+        btnpagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpagarActionPerformed(evt);
+            }
+        });
 
-        jDesktopPane1.setLayer(lblCedula, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(txtCedula, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(BtnBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(lblNumeroreserva, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(txtNumeroreserva, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        BtnRegresar.setText("Regresar");
+        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegresarActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+        jDesktopPane2.setLayer(lblCedula, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(BtnBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(txtCedula, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(lblNumeroreserva, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(txtNumeroreserva, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(btnpagar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(BtnRegresar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
+        jDesktopPane2.setLayout(jDesktopPane2Layout);
+        jDesktopPane2Layout.setHorizontalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(txtNumeroreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(208, 208, 208))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
                         .addComponent(lblCedula)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(BtnBuscar))
-                            .addComponent(lblNumeroreserva))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnBuscar)
+                        .addGap(137, 137, 137))
+                    .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                                .addComponent(txtNumeroreserva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(btnpagar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                                .addComponent(BtnRegresar))
+                            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                                .addComponent(lblNumeroreserva)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+        jDesktopPane2Layout.setVerticalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblCedula)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscar))
-                .addGap(117, 117, 117)
+                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnBuscar)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNumeroreserva)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumeroreserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnpagar)
+                    .addComponent(BtnRegresar)
+                    .addComponent(txtNumeroreserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jDesktopPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane2)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        // TODO add your handling code here:
+        String cedula = txtCedula.getText();
+        ClsCliente cliente = null;
+        cliente = controladorcliente.buscarCliente(listarcliente, cedula);
+        if (cliente == null) {
+            txtCedula.setText("");
+        } else {
+            listar(cliente);
+            btnpagar.setEnabled(true);
+            txtNumeroreserva.setEnabled(true);
+        }
     }//GEN-LAST:event_BtnBuscarActionPerformed
-public void listar(ClsCliente cliente) {
+
+    private void btnpagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagarActionPerformed
+        String cedula = txtCedula.getText();
+        ClsCliente cliente = null;
+        cliente = controladorcliente.buscarCliente(listarcliente, cedula);
+        String idreserva = txtNumeroreserva.getText();
+        listapagos = controladorCtPagoreserva.modificarpago(listapagos, idreserva);
+        listar(cliente);
+    }//GEN-LAST:event_btnpagarActionPerformed
+
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+        FrmmenuCliente cliente= new FrmmenuCliente(nombre, cedula);
+        cliente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnRegresarActionPerformed
+    public void listar(ClsCliente cliente) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = listarElementoscedula(listareservas, cliente);
-        JtbPagos.setModel(modelo);
+        jtpagos.setModel(modelo);
     }
 
     public DefaultTableModel listarElementoscedula(ArrayList<ClsReserva> listareservas, ClsCliente cliente) {
@@ -173,6 +246,7 @@ public void listar(ClsCliente cliente) {
         }
         return modelo;
     }
+
     /**
      * @param args the command line arguments
      */
@@ -210,9 +284,14 @@ public void listar(ClsCliente cliente) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JButton BtnRegresar;
+    private javax.swing.JButton btnpagar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jtpagos;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblNumeroreserva;
     private javax.swing.JTextField txtCedula;
