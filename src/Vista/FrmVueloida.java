@@ -36,7 +36,7 @@ public class FrmVueloida extends javax.swing.JFrame {
         this.cedulaCliente=cedula;
         controladorvuelos = new CtVuelos();
         this.listavuelos= listavuelo;
-        listar(listavuelo);
+        listar(listavuelos);
     }
 
     /**

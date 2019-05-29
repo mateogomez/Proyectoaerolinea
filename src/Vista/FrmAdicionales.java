@@ -5,17 +5,40 @@
  */
 package Vista;
 
+import Modelo.ClsVuelo;
+import java.util.ArrayList;
+
 /**
  *
  * @author mateo
  */
 public class FrmAdicionales extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmAdicionales
-     */
+   ArrayList<ClsVuelo>listavuelos=new ArrayList<ClsVuelo>();
+   ArrayList<String>sillas= new ArrayList<String>();
+   ClsVuelo vuelo;
+   String nombrecliente;
+   String apellidocliente;
+   String cedulacliente;
+   String nombrepromocion;
+   String genero;
+   
     public FrmAdicionales() {
         initComponents();
+    }
+
+    public FrmAdicionales(ArrayList<ClsVuelo> listavuelo, ArrayList<String> silla, ClsVuelo vuelo, String nombreCliente, String apellidoCliente, String cedulaCliente, String nombrepromocion, String genero) {
+     this.listavuelos= listavuelo;
+     this.sillas=silla;
+     this.vuelo=vuelo;
+     this.nombrecliente=nombreCliente;
+     this.apellidocliente=apellidoCliente;
+     this.cedulacliente=cedulaCliente;
+     this.nombrepromocion=nombrepromocion;
+     this.genero=genero;
+     
+     
+     
     }
 
     /**
@@ -37,7 +60,7 @@ public class FrmAdicionales extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         JrbtnSicheck = new javax.swing.JRadioButton();
         JrbtnNocheck = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        BtnContinuar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
@@ -60,7 +83,12 @@ public class FrmAdicionales extends javax.swing.JFrame {
         buttonGroup2.add(JrbtnNocheck);
         JrbtnNocheck.setText("No");
 
-        jButton1.setText("Continuar");
+        BtnContinuar.setText("Continuar");
+        BtnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnContinuarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Regresar");
 
@@ -70,7 +98,7 @@ public class FrmAdicionales extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(JrbtnSicheck, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(JrbtnNocheck, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(BtnContinuar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -81,7 +109,7 @@ public class FrmAdicionales extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(BtnContinuar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addContainerGap())
@@ -114,7 +142,7 @@ public class FrmAdicionales extends javax.swing.JFrame {
                     .addComponent(JrbtnNocheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(BtnContinuar)
                     .addComponent(jButton2))
                 .addGap(22, 22, 22))
         );
@@ -132,6 +160,15 @@ public class FrmAdicionales extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContinuarActionPerformed
+      if(JrbtnSi.isSelected()&& JrbtnSicheck.isSelected()){
+          
+      }
+      if(JrbtnNo.isSelected()&& JrbtnNocheck.isSelected()){
+          
+      }
+    }//GEN-LAST:event_BtnContinuarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,13 +206,13 @@ public class FrmAdicionales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnContinuar;
     private javax.swing.JRadioButton JrbtnNo;
     private javax.swing.JRadioButton JrbtnNocheck;
     private javax.swing.JRadioButton JrbtnSi;
     private javax.swing.JRadioButton JrbtnSicheck;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

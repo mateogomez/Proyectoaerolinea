@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.CtCliente;
+import Modelo.ClsCliente;
 import Modelo.ClsSillas;
 import Modelo.ClsVuelo;
 import java.util.ArrayList;
@@ -17,11 +19,13 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
 
     ArrayList<String> silla = new ArrayList<String>();
     ArrayList<ClsVuelo> listaVuelos = new ArrayList<ClsVuelo>();
+    ArrayList<ClsCliente> listacliente = new ArrayList<ClsCliente>();
     String nombreCliente;
     String cedulaCliente;
     int pasajeros;
     String nombrepromocion;
     ClsVuelo vuelos;
+    CtCliente controladorcliente;
 
     public FrmIngresarDatos() {
 
@@ -40,8 +44,14 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             txtNombres.setEnabled(true);
             txtApellidos.setEnabled(true);
             txtNumeroDocumento.setEnabled(true);
-            JrbtnMasculino.setEnabled(true);
-            JrbtnFemenino.setEnabled(true);
+            CbxGenero.setEnabled(true);
+            controladorcliente = new CtCliente();
+            try {
+                listacliente = controladorcliente.cargarArchivo(listacliente);
+                clientefijo();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
 
         }
         if (silla.size() == 2) {
@@ -50,8 +60,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             txtNombres.setEnabled(true);
             txtApellidos.setEnabled(true);
             txtNumeroDocumento.setEnabled(true);
-            JrbtnMasculino.setEnabled(true);
-            JrbtnFemenino.setEnabled(true);
+            CbxGenero.setEnabled(true);
             jPanelPasajero2.setEnabled(true);
             txtNombres2.setEnabled(true);
             txtApellidos2.setEnabled(true);
@@ -65,8 +74,7 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
             txtNombres.setEnabled(true);
             txtApellidos.setEnabled(true);
             txtNumeroDocumento.setEnabled(true);
-            JrbtnMasculino.setEnabled(true);
-            JrbtnFemenino.setEnabled(true);
+            CbxGenero.setEnabled(true);
             jPanelPasajero2.setEnabled(true);
             txtNombres2.setEnabled(true);
             txtApellidos2.setEnabled(true);
@@ -98,13 +106,12 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
         jPanelPasajero1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         lblGeneros = new javax.swing.JLabel();
-        JrbtnMasculino = new javax.swing.JRadioButton();
-        JrbtnFemenino = new javax.swing.JRadioButton();
         lblApellidos = new javax.swing.JLabel();
         lblNumeroDocumento = new javax.swing.JLabel();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         txtNumeroDocumento = new javax.swing.JTextField();
+        CbxGenero = new javax.swing.JComboBox<>();
         jPanelPasajero2 = new javax.swing.JPanel();
         lblNombre2 = new javax.swing.JLabel();
         lblApellidos2 = new javax.swing.JLabel();
@@ -137,14 +144,6 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
 
         lblGeneros.setText("Genero");
 
-        buttonGroupGenero.add(JrbtnMasculino);
-        JrbtnMasculino.setText("Masculino");
-        JrbtnMasculino.setEnabled(false);
-
-        buttonGroupGenero.add(JrbtnFemenino);
-        JrbtnFemenino.setText("Femenino");
-        JrbtnFemenino.setEnabled(false);
-
         lblApellidos.setText("Apellidos");
 
         lblNumeroDocumento.setText("Numero Documento:");
@@ -155,6 +154,9 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
 
         txtNumeroDocumento.setEnabled(false);
 
+        CbxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        CbxGenero.setEnabled(false);
+
         javax.swing.GroupLayout jPanelPasajero1Layout = new javax.swing.GroupLayout(jPanelPasajero1);
         jPanelPasajero1.setLayout(jPanelPasajero1Layout);
         jPanelPasajero1Layout.setHorizontalGroup(
@@ -163,12 +165,9 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanelPasajero1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblGeneros)
-                    .addGroup(jPanelPasajero1Layout.createSequentialGroup()
-                        .addComponent(JrbtnMasculino)
-                        .addGap(18, 18, 18)
-                        .addComponent(JrbtnFemenino))
                     .addComponent(lblNombre)
-                    .addComponent(txtNombres))
+                    .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(CbxGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(137, 137, 137)
                 .addGroup(jPanelPasajero1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPasajero1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -190,13 +189,11 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
                 .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(lblGeneros)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelPasajero1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JrbtnMasculino)
-                    .addComponent(JrbtnFemenino))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CbxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPasajero1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(lblApellidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -421,8 +418,34 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void BtnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContinuarActionPerformed
-
+      if(silla.size()==1){
+          String nombre= txtNombres.getText();
+          String apellido=txtApellidos.getText();
+          String cedula= txtNumeroDocumento.getText();
+          String genero= CbxGenero.getSelectedItem().toString();
+          FrmAdicionales adicionales= new FrmAdicionales(listaVuelos, silla, vuelos, nombre,apellido,cedula, nombrepromocion, genero);
+          adicionales.setVisible(true);
+          dispose();
+          
+      }
     }//GEN-LAST:event_BtnContinuarActionPerformed
+    private void clientefijo() {
+        for (int i = 0; i < listacliente.size(); i++) {
+            if (listacliente.get(i).getCedula().equals(cedulaCliente) && listacliente.get(i).getGenero().equals("Masculino")) {
+                txtNombres.setText(listacliente.get(i).getNombre());
+                txtApellidos.setText(listacliente.get(i).getApellido());
+                txtNumeroDocumento.setText(listacliente.get(i).getCedula());
+                CbxGenero.setSelectedItem(listacliente.get(i).getGenero());
+            } else {
+                if (listacliente.get(i).getCedula().equals(cedulaCliente) && listacliente.get(i).getGenero().equals("Femenino")) {
+                    txtNombres.setText(listacliente.get(i).getNombre());
+                    txtApellidos.setText(listacliente.get(i).getApellido());
+                    txtNumeroDocumento.setText(listacliente.get(i).getCedula());
+                    CbxGenero.setSelectedItem(listacliente.get(i).getGenero());
+                }
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -461,10 +484,9 @@ public class FrmIngresarDatos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnContinuar;
-    private javax.swing.JRadioButton JrbtnFemenino;
+    private javax.swing.JComboBox<String> CbxGenero;
     private javax.swing.JRadioButton JrbtnFemenino2;
     private javax.swing.JRadioButton JrbtnFemenino3;
-    private javax.swing.JRadioButton JrbtnMasculino;
     private javax.swing.JRadioButton JrbtnMasculino2;
     private javax.swing.JRadioButton JrbtnMasculino3;
     private javax.swing.JButton btnRegresar;

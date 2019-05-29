@@ -22,6 +22,7 @@ public class ClsVuelo implements Serializable {
     String destino;
     String serial;
     String tipovuelo;
+    ClsSillas [][]sillas = new ClsSillas[6][10];
 
     public ClsVuelo(String fecha, String horaSalida, String horaLlegada, String numeroVuelo, String estado, String origen, String destino, String serial, String tipovuelo) {
         this.fecha = fecha;
@@ -106,5 +107,14 @@ public class ClsVuelo implements Serializable {
     public void setTipovuelo(String tipovuelo) {
         this.tipovuelo = tipovuelo;
     }
-    
+
+    public ClsSillas[][] getSillas() {
+        return sillas;
+    }
+
+    public void setSillas(ClsSillas[][] sillas) {
+        this.sillas = sillas;
+    }
+
+  
 }

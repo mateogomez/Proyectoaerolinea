@@ -42,6 +42,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         initComponents();
         controladorsilla = new CtSilla();
         this.numerovuelo = vuelo.getNumeroVuelo();
+        this.vuelo = vuelo;
         this.nombreCliente = nombre;
         this.cedulaCliente = cedulaCliente;
         this.pasajeros = pasajeros;
@@ -144,7 +145,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        FrmVueloida vueloida = new FrmVueloida(listavuelo, pasajeros, numerovuelo, cedulaCliente);
+        FrmVueloida vueloida = new FrmVueloida(listavuelo, pasajeros, nombreCliente, cedulaCliente);
         vueloida.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
@@ -158,8 +159,8 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                 }
             }
         }
-        FrmEquipaje datos = new FrmEquipaje(listavuelo,listasilla,vuelo, nombreCliente, cedulaCliente,pasajeros);
-        datos.setVisible(true);
+        FrmEquipaje equipaje = new FrmEquipaje(listavuelo, listasilla, vuelo, numerovuelo, cedulaCliente, pasajeros);
+        equipaje.setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnReservarActionPerformed
 
@@ -326,7 +327,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         for (int i = 0; i < sillas.length; i++) {
             for (int j = 0; j < sillas[i].length; j++) {
                 //si libros en la posicion esta vacio 
-                if (sillas[i][j] == null ) {
+                if (sillas[i][j] == null && vuelo.getNumeroVuelo().equals(numerovuelo)) {
                     //El boton en la posicion cambiar el color agris
                     botones[i][j].setBackground(Color.GRAY);
 
@@ -334,7 +335,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                     //Botones en la posicion mandememe libros en posicion el nombre
                     botones[i][j].setText(sillas[i][j].getNumeropuesto());
                     // si libros es prestado
-                    if (sillas[i][j].isOcupado() ) {
+                    if (sillas[i][j].isOcupado() && vuelo.getNumeroVuelo().equals(numerovuelo)) {
                         //cambiar color
                         botones[i][j].setBackground(Color.RED);
                     } else {
@@ -351,7 +352,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
         for (int i = 0; i < sillas.length; i++) {
             for (int j = 0; j < sillas[i].length; j++) {
                 //si libros en la posicion esta vacio 
-                if (sillas[i][j] == null ) {
+                if (sillas[i][j] == null && vuelo.getNumeroVuelo().equals(numerovuelo)) {
                     //El boton en la posicion cambiar el color agris
                     botones[i][j].setBackground(Color.GRAY);
 
@@ -360,7 +361,7 @@ public class FrmSillas extends javax.swing.JFrame implements ActionListener {
                     botones[i][j].setText(sillas[i][j].getNumeropuesto());
                     // si libros es prestado
 
-                    if (sillas[i][j].isOcupado() ) {
+                    if (sillas[i][j].isOcupado() && vuelo.getNumeroVuelo().equals(numerovuelo)) {
                     } else {
                         //cambiar color
                         botones[i][j].setBackground(Color.WHITE);
